@@ -1,7 +1,9 @@
+package solutions;
+
 /**
  * Created by dpark on 5/6/2017.
  */
-public class Problem4 {
+public class Problem004 {
     public static void main(String[] args) {
         int ans = 101 * 101;
         for (int i = 100; i < 999; i++) {

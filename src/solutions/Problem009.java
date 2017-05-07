@@ -1,7 +1,9 @@
+package solutions;
+
 /**
  * Created by dpark on 5/6/2017.
  */
-public class Problem9 {
+public class Problem009 {
     public static void main(String[] args) {
         out:
         for (int c = 1; c < 1000; c++) {

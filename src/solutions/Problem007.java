@@ -1,7 +1,9 @@
+package solutions;
+
 /**
  * Created by dpark on 5/6/2017.
  */
-public class Problem7 {
+public class Problem007 {
     public static void main(String[] args) {
         int pc = 0, p = 1;
         out:
