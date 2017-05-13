@@ -8,7 +8,7 @@ public class Problem004 {
         int ans = 101 * 101;
         for (int i = 100; i < 999; i++) {
             for (int j = 100; j < 999; j++) {
-                if (ans < i * j && palindromeQ(i * j)) {
+                if (ans < i * j && isPalindrome(i * j)) {
                     ans = i * j;
                 }
             }
@@ -16,7 +16,7 @@ public class Problem004 {
         System.out.println(ans);
     }
 
-    private static boolean palindromeQ(int x) {
+    private static boolean isPalindrome(int x) {
         return Integer.toString(x).equals(new StringBuilder(Integer.toString(x)).reverse().toString());
     }
 }

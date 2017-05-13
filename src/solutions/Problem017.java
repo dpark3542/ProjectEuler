@@ -22,6 +22,26 @@ public class Problem017 {
         System.out.println(tot);
     }
 
+    private static String convert(int x) {
+        if (map.containsKey(x)) {
+            return map.get(x);
+        }
+        String s = "";
+        if (x >= 100) {
+            s += map.get(x / 100) + " hundred ";
+            if (x % 100 != 0) {
+                s += "and ";
+            }
+        }
+        if (map.containsKey(x % 100)) {
+            s += map.get(x % 100);
+        }
+        else if (x % 100 != 0) {
+            s += map.get(x % 100 - x % 10) + "-" + map.get(x % 10);
+        }
+        return s;
+    }
+
     private static Map<Integer, String> map;
 
     private static void initMap() {
@@ -54,25 +74,5 @@ public class Problem017 {
         map.put(80, "eighty");
         map.put(90, "ninety");
         map.put(1000, "one thousand");
-    }
-
-    private static String convert(int x) {
-        if (map.containsKey(x)) {
-            return map.get(x);
-        }
-        String s = "";
-        if (x >= 100) {
-            s += map.get(x / 100) + " hundred ";
-            if (x % 100 != 0) {
-                s += "and ";
-            }
-        }
-        if (map.containsKey(x % 100)) {
-            s += map.get(x % 100);
-        }
-        else if (x % 100 != 0) {
-            s += map.get(x % 100 - x % 10) + "-" + map.get(x % 10);
-        }
-        return s;
     }
 }

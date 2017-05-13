@@ -9,9 +9,7 @@ public class Problem014 {
         long max = 0;
         for (int i = 1; i < 1000000; i++) {
             int n = 1;
-            long x = i;
-            while (x > 1) {
-                x = collatz(x);
+            for (long x = i; x > 1; x = collatz(x)) {
                 n++;
             }
             if (max < n) {

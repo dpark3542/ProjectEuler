@@ -14,7 +14,7 @@ public class Problem012 {
 
     private static int divisorCount(int x) {
         int cnt = 0;
-        if (Math.floor(Math.sqrt(x)) == Math.sqrt(x)) {
+        if (Math.sqrt(x) == Math.floor(Math.sqrt(x))) {
             cnt++;
         }
         for (int i = 2; i < Math.sqrt(x); i++) {

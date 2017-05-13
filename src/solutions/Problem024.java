@@ -13,20 +13,17 @@ public class Problem024 {
         for (int i = 0; i <= 9; i++) {
             d.add(i);
         }
+        int[] f = new int[10];
+        f[0] = 1;
+        for (int i = 1; i <= 9; i++) {
+            f[i] = f[i - 1] * i;
+        }
         StringBuilder sb = new StringBuilder();
         for (int i = 9; i >= 0; i--) {
-            sb.append(d.get(n / factorial(i)));
-            d.remove(n / factorial(i));
-            n %= factorial(i);
+            sb.append(d.get(n / f[i]));
+            d.remove(n / f[i]);
+            n %= f[i];
         }
         System.out.println(sb);
-    }
-
-    private static int factorial(int n) {
-        int f = 1;
-        for (int i = 1; i <= n; i++) {
-            f *= i;
-        }
-        return f;
     }
 }

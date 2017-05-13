@@ -8,10 +8,8 @@ public class Problem030 {
         int max = 10000000, tot = 0;
         for (int i = 10; i < max; i++) {
             int sum = 0;
-            int j = i;
-            while (j > 0) {
+            for (int j = i; j > 0; j /= 10) {
                 sum += Math.pow(j % 10, 5);
-                j /= 10;
             }
             if (i == sum) {
                 tot += i;
