@@ -5,7 +5,7 @@ package solutions.java;
  */
 public class Problem016 {
     /*
-     * Bignum multiplication
+     * Bignum multiplication:
      * Compute successive powers of 2.
      * For each power of 2, multiply 2 to each digit and carry over to get the next power of 2.
      * Bignum operations are already implemented in Java's BigInteger class.

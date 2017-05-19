@@ -14,7 +14,7 @@ public class Problem008 {
      */
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p008_string"));
+        BufferedReader br = new BufferedReader(new FileReader("src/input/p008_string.txt"));
         StringBuilder sb = new StringBuilder();
         while (br.ready()) {
             sb.append(br.readLine());

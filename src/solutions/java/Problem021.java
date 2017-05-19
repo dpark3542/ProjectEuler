@@ -4,6 +4,11 @@ package solutions.java;
  * Created by dpark3542 on 5/10/2017.
  */
 public class Problem021 {
+    /*
+     * Brute force: determine if each number is amicable by d(d(n)) = n.
+     * d can be calculated using prime factorization algorithms.
+     *
+     */
     public static void main(String[] args) {
         int sum = 0;
         for (int i = 1; i < 10000; i++) {

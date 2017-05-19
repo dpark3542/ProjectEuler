@@ -3,4 +3,7 @@
 (* :Author: dpark3542 *)
 (* :Date: 2017-05-14 *)
 
-a*b*c/.First@Solve[a+b+c==1000&&a^2+b^2==c^2&&0<a<b<c,{a,b,c},Integers]
+ClearAll[cl];
+cl[1]=1;
+cl[n_]:=cl[n]=If[EvenQ[n],cl[n/2],cl[3n+1]]+1
+First@MaximalBy[Range[1000000], cl]

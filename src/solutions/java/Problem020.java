@@ -5,7 +5,7 @@ package solutions.java;
  */
 public class Problem020 {
     /*
-     * Bignum multiplication
+     * Bignum multiplication:
      * Compute successive factorials.
      * For each factorial, multiply each digit by the next number and carry over to get the next factorial.
      * Alternate factorial computation algorithms exist such as prime factorization.

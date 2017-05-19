@@ -21,7 +21,7 @@ public class Problem018 {
      */
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p018_triangle"));
+        BufferedReader br = new BufferedReader(new FileReader("src/input/p018_triangle.txt"));
         StringTokenizer st;
         int[][] a = new int[15][15];
         for (int i = 0; i < 15; i++) {

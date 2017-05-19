@@ -3,6 +3,6 @@
 (* :Author: dpark3542 *)
 (* :Date: 2017-05-14 *)
 
-raw = Import[FileNameJoin[{NestWhile[ParentDirectory,NotebookDirectory[],FileBaseName[#]!="ProjectEuler"&],"src/input/p008_string"}]];
-
-Max[Times@@@Partition[Flatten@IntegerDigits@raw,13,1]]
+ClearAll[raw];
+raw=Import[FileNameJoin[{NestWhile[ParentDirectory,NotebookDirectory[],FileBaseName[#]!="ProjectEuler"&],"src/input/p008_string.txt"}]];
+Max[Times@@@Partition[IntegerDigits@ToExpression@StringDelete[raw,"\n"],13,1]]

@@ -7,6 +7,10 @@ import java.util.List;
  * Created by dpark3542 on 5/11/2017.
  */
 public class Problem023 {
+    /*
+     * Store all abundant numbers less than 28123 and calculate all possible sums. Total numbers that cannot be written as a sum.
+     *
+     */
     public static void main(String[] args){
         int n = 28123, sum = 0;
         boolean[] a = new boolean[n + 1];

@@ -15,7 +15,7 @@ public class Problem011 {
      */
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p011_grid"));
+        BufferedReader br = new BufferedReader(new FileReader("src/input/p011_grid.txt"));
         StringTokenizer st;
         int[][] a = new int[20][20];
         for (int i = 0; i < 20; i++) {

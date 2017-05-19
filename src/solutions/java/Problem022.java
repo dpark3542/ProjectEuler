@@ -9,9 +9,13 @@ import java.util.Arrays;
  * Created by dpark3542 on 5/10/2017.
  */
 public class Problem022 {
+    /*
+     * Brute force: sort list, calculate each name score, and total the scores
+     *
+     */
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p022_names"));
+        BufferedReader br = new BufferedReader(new FileReader("src/input/p022_names.txt"));
         String[] a = br.readLine().split("(\\W)+");
 
         Arrays.sort(a);
