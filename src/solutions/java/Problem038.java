@@ -4,6 +4,11 @@ package solutions.java;
  * Created by dpark3542 on 5/13/2017.
  */
 public class Problem038 {
+    /*
+     * Brute force: test each number for a pandigital product and take the largest product.
+     * An upper bound of 10000 can be established as any 5-digit or higher digit number will have over 9 digits in its pandigital product.
+     *
+     */
     public static void main(String[] args) {
         int n = 10000, max = 0;
         out:

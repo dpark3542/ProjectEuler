@@ -4,9 +4,13 @@ package solutions.java;
  * Created by dpark3542 on 5/13/2017.
  */
 public class Problem036 {
+    /*
+     * Brute force: test all numbers less than one million.
+     *
+     */
     public static void main(String[] args) {
         int sum = 0;
-        for (int i = 1; i  < 1000000; i++) {
+        for (int i = 1; i < 1000000; i++) {
             if (isPalindrome(Integer.toString(i)) && isPalindrome(Integer.toBinaryString(i))) {
                 sum += i;
             }

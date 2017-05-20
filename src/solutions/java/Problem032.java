@@ -7,18 +7,23 @@ import java.util.Set;
  * Created by dpark3542 on 5/13/2017.
  */
 public class Problem032 {
+    /*
+     * Brute force: test all possible combinations of multiplicands and multipliers.
+     * An optimization can be made in noticing that the product must be a 1-digit number times a 4-digit number or a 2-digit number times a 3-digit number, otherwise the number of digits will not turn out to be 9.
+     *
+     */
     public static void main(String[] args) {
         Set<Integer> prod = new HashSet<>();
         for (int i = 1; i <= 9; i++) {
             for (int j = 1000; j <= 9999; j++) {
-                if (pandigitalQ(i, j, i * j)) {
+                if (isPandigital(i, j, i * j)) {
                     prod.add(i * j);
                 }
             }
         }
         for (int i = 10; i <= 99; i++) {
             for (int j = 100; j <= 999; j++) {
-                if (pandigitalQ(i, j, i * j)) {
+                if (isPandigital(i, j, i * j)) {
                     prod.add(i * j);
                 }
             }
@@ -30,7 +35,7 @@ public class Problem032 {
         System.out.println(sum);
     }
 
-    private static boolean pandigitalQ(int a, int b, int c) {
+    private static boolean isPandigital(int a, int b, int c) {
         int[] l = {a, b, c};
         boolean[] mkd = new boolean[10];
         mkd[0] = true;

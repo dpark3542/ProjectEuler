@@ -12,11 +12,11 @@ public class Problem018 {
     /*
      * Brute force: compute all totals
      *
-     * Dynamic Programming:
+     * Dynamic programming:
      * Let a[i][j] be the jth number in the ith row of the triangle.
      * Let dp[i][j] be the greatest subtotal from the top to the jth number in the ith row.
      * Recursive formula: dp[i][j] = max(dp[i - 1][j - 1], dp[i - 1][j]) + a[i][j]
-     * Loop formula over all i,j.
+     * Loop formula over all i, j.
      *
      */
     public static void main(String[] args) throws IOException {

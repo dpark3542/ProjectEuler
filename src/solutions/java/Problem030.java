@@ -7,6 +7,7 @@ public class Problem030 {
     /*
      * Brute force: test all numbers.
      * An upper bound of 10^6 can be established as all 7 digit numbers are greater than 7*9^5, the maximum possible sum of the fifth powers of the digits.
+     * This also holds true for numbers with more digits.
      *
      */
     public static void main(String[] args) {
