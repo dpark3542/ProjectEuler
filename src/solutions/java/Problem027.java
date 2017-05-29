@@ -6,6 +6,7 @@ package solutions.java;
 public class Problem027 {
     /*
      * Brute force: test all polynomials
+     *
      */
     public static void main(String[] args) {
         int max = 0, maxa = 0, maxb = 0;

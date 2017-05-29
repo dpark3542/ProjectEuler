@@ -9,11 +9,9 @@ import java.util.List;
 public class Problem024 {
     /*
      * Brute force: generate all permutations and find the millionth permutation.
-     * Algorithms such as Heap's algorithm generate all permutations but not in lexicographic order. Sort the permutations after generation.
-     * A classical algorithm first discovered by Narayana Pandita generates all permutations in lexicographic order.
+     * Algorithms such as Heap's algorithm generate all permutations. Some do not generate permutations in lexicographic order and require sorting after generation.
      *
-     * Alternative solution: In a list of n elements, notice that the ith element changes after (n-i)! permutations.
-     * Using this fact, determine each digit by calculating n mod (n-i)! and choosing from the unused digits.
+     * Alternative solution: Convert the permutation's index first to the factorial number system. Then convert the number to the permutation using the Lehmer code.
      *
      */
     public static void main(String[] args) {

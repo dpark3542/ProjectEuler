@@ -6,6 +6,7 @@ package solutions.java;
 public class Problem010 {
     /*
      * Brute force: test numbers for primality and sum them.
+     * Many algorithms exist for testing primality.
      *
      */
     public static void main(String[] args) {
