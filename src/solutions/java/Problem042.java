@@ -4,13 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-/**
- * Created by dpark3542 on 5/20/2017.
- */
 public class Problem042 {
     /*
-     * Brute force: test each string. Solve t = n(n+1)/2 over the integers to test if a word value is a triangular number.
-     *
+     * Brute force: test each string. Solve t = n(n+1)/2 over the integers to test if a word value is a triangular
+     * number.
      */
     public static void main(String[] args) throws IOException {
         // input

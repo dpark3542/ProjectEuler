@@ -1,8 +1,5 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/12/2017.
- */
 public class Problem031 {
     /*
      * Brute force: run through all possible combinations of coins.
@@ -11,7 +8,6 @@ public class Problem031 {
      * Let dp[i][j] be the number of ways to get a sum of j pence using the first i types of coins.
      * Recursive formula: dp[i][j] = dp[i - 1][j] + dp[i][j - a[i]]
      * Loop formula over all i, j.
-     *
      */
     public static void main(String[] args) {
         int n = 8, m = 200;

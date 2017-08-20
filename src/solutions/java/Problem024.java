@@ -9,9 +9,11 @@ import java.util.List;
 public class Problem024 {
     /*
      * Brute force: generate all permutations and find the millionth permutation.
-     * Algorithms such as Heap's algorithm generate all permutations. Some do not generate permutations in lexicographic order and require sorting after generation.
+     * Algorithms such as Heap's algorithm generate all permutations. Some do not generate permutations in lexicographic
+     * order and require sorting after generation.
      *
-     * Alternative solution: Convert the permutation's index first to the factorial number system. Then convert the number to the permutation using the Lehmer code.
+     * Alternative solution: Convert the permutation's index first to the factorial number system. Then convert the
+     * number to the permutation using the Lehmer code.
      *
      */
     public static void main(String[] args) {

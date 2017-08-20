@@ -1,12 +1,8 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/6/2017.
- */
 public class Problem004 {
     /*
      * Brute force: compute all products and return largest product that is a palindrome
-     *
      */
     public static void main(String[] args) {
         int ans = 101 * 101;

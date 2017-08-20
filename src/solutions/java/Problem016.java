@@ -1,15 +1,11 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/7/2017.
- */
 public class Problem016 {
     /*
      * Bignum multiplication:
      * Compute successive powers of 2.
      * For each power of 2, multiply 2 to each digit and carry over to get the next power of 2.
      * Bignum operations are already implemented in Java's BigInteger class.
-     *
      */
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder("1");

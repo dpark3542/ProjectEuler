@@ -1,12 +1,8 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/13/2017.
- */
 public class Problem033 {
     /*
      * Brute force: test all fractions.
-     *
      */
     public static void main(String[] args) {
         int n = 1, d = 1;

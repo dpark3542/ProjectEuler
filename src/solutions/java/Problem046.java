@@ -1,12 +1,8 @@
 package solutions.java;
 
-/**
- * Created by dpark3542 on 5/22/2017.
- */
 public class Problem046 {
     /*
      * Brute force: run through every number and test possible sums of primes and squares.
-     *
      */
     public static void main(String[] args) {
         int n = 1;

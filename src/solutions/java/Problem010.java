@@ -1,13 +1,9 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/6/2017.
- */
 public class Problem010 {
     /*
      * Brute force: test numbers for primality and sum them.
      * Many algorithms exist for testing primality.
-     *
      */
     public static void main(String[] args) {
         long sum = 0;

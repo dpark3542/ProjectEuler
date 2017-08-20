@@ -1,13 +1,9 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/7/2017.
- */
 public class Problem014 {
     /*
      * Brute force: find the length of the Collatz sequence of each number
      * Optimizations could be made in storing the length of the Collatz sequence of numbers.
-     *
      */
     public static void main(String[] args) {
         int ans = 0;

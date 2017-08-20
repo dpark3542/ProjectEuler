@@ -1,14 +1,10 @@
 package solutions.java;
 
-/**
- * Created by dpark3542 on 5/20/2017.
- */
 public class Problem043 {
     /*
      * Brute force: test each permutation for the desired properties.
      * Many algorithms exist for generating permutations.
      * Optimizations can be made in noticing that the fourth digit must be even and the sixth digit must be 0 or 5.
-     *
      */
     public static void main(String[] args) {
         int f9 = 362881, f10 = 3628800;

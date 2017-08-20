@@ -5,15 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/*
- * Created by dpark3542 on 5/11/2017.
- */
 public class Problem029 {
     /*
      * Represent all numbers by their prime factorization and remove repeats.
      *
-     * Alternatively, use bignums to calculate and count all numbers.
-     *
+     * Alternatively, use Bignums to calculate and count all numbers.
      */
     public static void main(String[] args) {
         List<Integer> pr = new ArrayList<>();

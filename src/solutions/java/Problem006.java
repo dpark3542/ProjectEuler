@@ -1,8 +1,5 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/6/2017.
- */
 public class Problem006 {
     /*
      * Implementation
@@ -10,7 +7,6 @@ public class Problem006 {
      * Alternatively, compute the answer by hand using the following well known formulas:
      * 1^2 + 2^2 + ... + n^2 = n(n+1)(n+2)/6
      * 1 + 2 + ... + n = n(n+1)/2
-     *
      */
     public static void main(String[] args) {
         int a = 0;

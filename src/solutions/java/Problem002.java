@@ -1,12 +1,8 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/6/2017.
- */
 public class Problem002 {
     /*
      * Brute force
-     *
      */
     public static void main(String[] args) {
         int a = 1, b = 1, sum = 0;

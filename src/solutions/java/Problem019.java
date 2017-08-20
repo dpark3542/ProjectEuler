@@ -1,14 +1,11 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/10/2017.
- */
 public class Problem019 {
     /*
-     * Implementation: cycle through each month's first day, keeping track of the total number of days mod 7 to determine the day of the week.
+     * Implementation: cycle through each month's first day, keeping track of the total number of days mod 7 to
+     * determine the day of the week.
      *
      * Alternatively, implement the Doomsday algorithm.
-     *
      */
     public static void main(String[] args) {
         // 0 denotes a Sunday

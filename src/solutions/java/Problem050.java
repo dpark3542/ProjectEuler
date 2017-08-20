@@ -3,14 +3,11 @@ package solutions.java;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by dpark3542 on 5/28/2017.
- */
 public class Problem050 {
     /*
      *  Brute force: test each sum of primes in decreasing order of number of primes.
-     *  An optimization can be made using dynamic programming in calculating the sum of primes; store the sum of the first n primes.
-     *
+     *  An optimization can be made using dynamic programming in calculating the sum of primes; store the sum of the
+     *  first n primes.
      */
     public static void main(String[] args) {
         List<Integer> pr = new ArrayList<>();

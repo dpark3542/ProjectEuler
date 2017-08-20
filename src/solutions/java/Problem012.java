@@ -1,13 +1,9 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/7/2017.
- */
 public class Problem012 {
     /*
      * Brute force: compute the number of divisors of each triangle number
      * Number of divisors are computed using a prime factorization algorithm.
-     *
      */
     public static void main(String[] args) {
         int T = 1;

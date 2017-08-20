@@ -4,13 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-/*
- * Created by dpark3542 on 5/6/2017.
- */
 public class Problem008 {
     /*
      * Brute force: test all products
-     *
      */
     public static void main(String[] args) throws IOException {
         // input

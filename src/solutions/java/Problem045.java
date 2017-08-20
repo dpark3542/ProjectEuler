@@ -1,13 +1,9 @@
 package solutions.java;
 
-/**
- * Created by dpark3542 on 5/22/2017.
- */
 public class Problem045 {
     /*
      * Brute force: test if each hexagonal number is also a triangular and pentagonal number.
      * An optimization made be made in noticing that all hexagonal numbers are triangular numbers.
-     *
      */
     public static void main(String[] args) {
         long b = 144;

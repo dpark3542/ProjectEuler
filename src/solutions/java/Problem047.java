@@ -3,13 +3,9 @@ package solutions.java;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by dpark3542 on 5/22/2017.
- */
 public class Problem047 {
     /*
      * Brute force: test each quadruple of consecutive integers.
-     *
      */
     public static void main(String[] args) {
         int i = 1;

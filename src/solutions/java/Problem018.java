@@ -5,9 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-/*
- * Created by dpark3542 on 5/10/2017.
- */
 public class Problem018 {
     /*
      * Brute force: compute all totals
@@ -17,7 +14,6 @@ public class Problem018 {
      * Let dp[i][j] be the greatest subtotal from the top to the jth number in the ith row.
      * Recursive formula: dp[i][j] = max(dp[i - 1][j - 1], dp[i - 1][j]) + a[i][j]
      * Loop formula over all i, j.
-     *
      */
     public static void main(String[] args) throws IOException {
         // input

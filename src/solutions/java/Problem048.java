@@ -1,13 +1,9 @@
 package solutions.java;
 
-/**
- * Created by dpark3542 on 5/28/2017.
- */
 public class Problem048 {
     /*
      * Brute force: calculate the series.
      * Bignums are not needed if mods are properly taken.
-     *
      */
     public static void main(String[] args) {
         long sum = 0;

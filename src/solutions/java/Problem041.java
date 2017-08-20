@@ -1,14 +1,11 @@
 package solutions.java;
 
-/**
- * Created by dpark3542 on 5/20/2017.
- */
 public class Problem041 {
     /*
      * Brute force: test each permutation for primality.
      * Many algorithms exist for generating permutations and testing primality.
-     * An optimization can be made in noticing that 9-digit and 8-digit pandigitals are always divisible by 3 and therefore not prime.
-     *
+     * An optimization can be made in noticing that 9-digit and 8-digit pandigitals are always divisible by 3 and
+     * therefore not prime.
      */
     public static void main(String[] args) {
         for (int d = 7; d >= 1; d--) {

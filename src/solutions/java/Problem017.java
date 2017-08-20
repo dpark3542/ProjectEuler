@@ -3,13 +3,9 @@ package solutions.java;
 import java.util.HashMap;
 import java.util.Map;
 
-/*
- * Created by dpark3542 on 5/7/2017.
- */
 public class Problem017 {
     /*
-     * Implementation: convert every number to words
-     *
+     * Implementation: convert every number to words.
      */
     public static void main(String[] args) {
         int tot = 0;

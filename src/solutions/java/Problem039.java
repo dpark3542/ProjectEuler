@@ -1,16 +1,15 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/13/2017.
- */
 public class Problem039 {
     /*
-     * Brute force: loop through all possible a, b with integer c = sqrt(a^2 + b^2). Increment the number of solutions to the perimeter a + b + c if c is integer.
+     * Brute force: loop through all possible a, b with integer c = sqrt(a^2 + b^2). Increment the number of solutions
+     * to the perimeter a + b + c if c is integer.
      *
-     * Alternatively, transform a^2 + b^2 = c^2 = (p - a - b)^2 to (a - p)(b - p) = p^2/2 using Simon's Favorite Factoring Trick.
-     * Because a > 0 and, without loss of generality, b >= a, the number of right triangles with perimeter p is equal to the number of divisors of p^2/2 between p/sqrt(2) and p.
+     * Alternatively, transform a^2 + b^2 = c^2 = (p - a - b)^2 to (a - p)(b - p) = p^2/2 using Simon's Favorite
+     * Factoring Trick.
+     * Because a > 0 and, without loss of generality, b >= a, the number of right triangles with perimeter p is equal to
+     * the number of divisors of p^2/2 between p/sqrt(2) and p.
      * Brute force to find the number of solutions for each perimeter.
-     *
      */
     public static void main(String[] args) {
         int[] cnt = new int[1001];

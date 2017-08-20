@@ -5,13 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-/*
- * Created by dpark3542 on 5/7/2017.
- */
 public class Problem011 {
     /*
      * Brute force: test all products.
-     *
      */
     public static void main(String[] args) throws IOException {
         // input

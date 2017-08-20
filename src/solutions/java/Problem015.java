@@ -1,8 +1,5 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/7/2017.
- */
 public class Problem015 {
     /*
      * Dynamic programming:
@@ -13,7 +10,6 @@ public class Problem015 {
      * Alternatively, notice all routes must go down a block 20 times and to the right a block 20 times.
      * Problem is equivalent to choosing when to go down 20 times out of the 40 possible times.
      * Answer is 40 choose 20.
-     *
      */
     public static void main(String[] args) {
         int n = 20;

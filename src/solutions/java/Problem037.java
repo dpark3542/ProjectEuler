@@ -1,12 +1,8 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/13/2017.
- */
 public class Problem037 {
     /*
      * Brute force: test primes until 11 truncatable primes are found.
-     *
      */
     public static void main(String[] args) {
         int sum = 0, cnt = 0;

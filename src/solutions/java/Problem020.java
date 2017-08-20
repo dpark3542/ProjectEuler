@@ -1,8 +1,5 @@
 package solutions.java;
 
-/*
- * Created by dpark3542 on 5/10/2017.
- */
 public class Problem020 {
     /*
      * Bignum multiplication:
@@ -10,7 +7,6 @@ public class Problem020 {
      * For each factorial, multiply each digit by the next number and carry over to get the next factorial.
      * Alternate factorial computation algorithms exist such as prime factorization.
      * Bignum operations are already implemented in Java's BigInteger class.
-     *
      */
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder("1");
