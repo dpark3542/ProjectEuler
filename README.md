@@ -1,15 +1,7 @@
 # ProjectEuler
 
 This is a collection of solutions to the problems on [Project Euler](https://projecteuler.net/).
-Problems are not being solved in order.
 
-Every solved problem has a Java 8 solution.
+Solutions are written in Java. Old Mathematica solutions can be found [here](https://github.com/dpark3542/ProjectEuler/tree/d68aa8487fd90615790529b85858c09c9f7de538/src/solutions/mathematica).
 
-The Java solutions are general and meant to be easy to replicate in other languages.
-The Java solutions contain brief solution outlines in the comments.
-
-Some solutions are in Mathematica 11.1.
-
-The Mathematica solutions will often use library functions not available in other languages and primarily focus on short and compact code.
-The Mathematica solutions will not have solution outlines.
-Not all problems have Mathematica solutions.
+I aim to provide an outline of the solution in the comments. Not every solution has an explanation. Some problems are skipped, but the gaps will be filled in eventually.
