@@ -20,6 +20,7 @@ import java.math.BigInteger;
  * We can make some optimizations/simplifications.
  * Then sum for each x is [sigma(1) + ... + sigma(floor(n / (x^2 + y^2)))]x.
  * We can compute sigma(1) + ... + sigma(t) using dynamic programming (stored in array a below).
+ * Each sigma(t) is computed by using the fact that sigma is multiplicative and finding a prime power which divides t.
  * Also, restrict y > 0 and for each factor that is a multiple of x + yi, include the corresponding factor which is the same multiple of x - yi.
  * Then sum for each x is 2[sigma(1) + ... + sigma(floor(n / (x^2 + y^2)))]x.
  *
