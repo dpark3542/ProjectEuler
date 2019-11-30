@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/*
+ * Brute force: loop through every pair of primes.
+ * The third prime can be determined using the fact that the primes are an arithmetic sequence.
+ * Test if the third prime is a permutation.
+ *
+ * Alternate brute force: loop through every prime, testing if its permutations are prime and form an arithmetic
+ * sequence.
+ *
+ */
 public class Problem049 {
-    /*
-     * Brute force: loop through every pair of primes.
-     * The third prime can be determined using the fact that the primes are an arithmetic sequence.
-     * Test if the third prime is a permutation.
-     *
-     * Alternate brute force: loop through every prime, testing if its permutations are prime and form an artihmetic
-     * sequence.
-     */
     public static void main(String[] args) {
         List<Integer> pr = new ArrayList<>();
         for (int i = 1000; i <= 9999; i++) {

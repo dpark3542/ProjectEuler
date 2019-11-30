@@ -1,10 +1,6 @@
 package solutions._100;
 
-/**
- * Created by dpark3542 on 7/23/2017.
- */
 public class Problem135 {
-    // TODO: clean up code, add explanation
     public static void main(String[] args) {
         int lim = 1000000;
         int[] cnt = new int[lim];

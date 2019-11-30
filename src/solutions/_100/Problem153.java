@@ -2,7 +2,7 @@ package solutions._100;
 
 import java.math.BigInteger;
 
-/**
+/*
  * First, the sum of the real factors are sigma(n), where sigma(n) is the sum of the divisors of n.
  *
  * Next, we calculate the sum of the complex factors.
@@ -23,8 +23,6 @@ import java.math.BigInteger;
  * Each sigma(t) is computed by using the fact that sigma is multiplicative and finding a prime power which divides t.
  * Also, restrict y > 0 and for each factor that is a multiple of x + yi, include the corresponding factor which is the same multiple of x - yi.
  * Then sum for each x is 2[sigma(1) + ... + sigma(floor(n / (x^2 + y^2)))]x.
- *
- * BigInteger was used to prevent overflow.
  *
  */
 public class Problem153 {

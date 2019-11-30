@@ -1,12 +1,12 @@
 package solutions._000;
 
+/*
+ * Brute force: test each permutation for primality.
+ * Many algorithms exist for generating permutations and testing primality.
+ * An optimization can be made in noticing that 9-digit and 8-digit pandigitals are always divisible by 3 and
+ * therefore not prime.
+ */
 public class Problem041 {
-    /*
-     * Brute force: test each permutation for primality.
-     * Many algorithms exist for generating permutations and testing primality.
-     * An optimization can be made in noticing that 9-digit and 8-digit pandigitals are always divisible by 3 and
-     * therefore not prime.
-     */
     public static void main(String[] args) {
         for (int d = 7; d >= 1; d--) {
             int f = 1;
@@ -40,6 +40,13 @@ public class Problem041 {
         return true;
     }
 
+    /**
+     * Returns previous lexicographic permutation.
+     * Based off of: https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
+     *
+     * @param a permutation
+     * @return previous lexicographic permutation
+     */
     private static int[] generatePreviousPermutation(int[] a) {
         int n = a.length, k = n - 2;
         while (k >= 0 && a[k] <= a[k + 1]) {

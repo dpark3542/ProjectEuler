@@ -5,12 +5,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
+/*
  * First generate a(i), the set of distinct capacitance values using exactly n capacitors.
- * a(i) can be generated using some recursion.
+ * a(i) can be generated using recursion.
  * Go through each j + k = i and loop through each value in a(j) and a(k), treating each capacitance value as a single capacitor.
  * Add the result of putting the two capacitors in parallel and series to a(i).
- * Take the union of all a(i) in the end and find the size.
+ * Print the size of the union of all a(i).
  *
  */
 public class Problem155 {
@@ -37,7 +37,6 @@ public class Problem155 {
                 }
             }
             a.add(t);
-            System.out.println(t.size());
         }
 
         Set<Fraction> union = new HashSet<>();

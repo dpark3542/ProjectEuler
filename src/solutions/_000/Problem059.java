@@ -6,12 +6,13 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 import java.util.stream.Stream;
 
+/*
+ * Brute force: test every possible key for a valid message.
+ * A good heuristic for identifying a valid message are comparing the number of occurrences of common words such as
+ * "the", "be", and "to". The number of spaces and periods can also be compared.
+ *
+ */
 public class Problem059 {
-    /*
-     * Brute force: test every possible key for a valid message.
-     * A good heuristic for identifying a valid message are comparing the number of occurrences of common words such as
-     * "the", "be", and "to". The number of spaces and periods can also be compared.
-     */
     public static void main(String[] args) throws IOException {
         // input
         BufferedReader br = new BufferedReader(new FileReader("src/input/p059_cipher.txt"));

@@ -1,13 +1,28 @@
 package solutions._000;
 
-/**
- * Created by dpark3542 on 7/21/2017.
+/*
+ * nth perfect power a^n has n digits if and only if
+ *
+ * 10^(n-1) <= a^n < 10^n
+ *
+ * The second inequality gives a < 10.
+ * The first inequality gives
+ *
+ * 10^n <= 10a^n
+ * (10/a)^n <= 10
+ * n log(10/a) <= log(10)
+ * n <= 1/log(10/a)
+ * n <= 1/(1-log a)
+ *
+ * Iterate over 1 <= a <= 9 and calculate the number of values for n where 1 <= n <= floor(1/(1-log a)).
+ * Can alternatively get an upper bound for n and iterate over n.
+ *
  */
 public class Problem063 {
     public static void main(String[] args) {
         int ans = 0;
-        for (int i = 1; i < 10; i++) {
-            ans += Math.floor(1 / (1 - Math.log10(i)));
+        for (int a = 1; a < 10; a++) {
+            ans += Math.floor(1 / (1 - Math.log10(a)));
         }
         System.out.println(ans);
     }
