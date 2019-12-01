@@ -3,10 +3,11 @@ package solutions._000;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+ * Brute force: test each quadruple of consecutive integers.
+ *
+ */
 public class Problem047 {
-    /*
-     * Brute force: test each quadruple of consecutive integers.
-     */
     public static void main(String[] args) {
         int i = 1;
         boolean[] a = new boolean[4];
@@ -25,14 +26,5 @@ public class Problem047 {
             a[i % 4] = pf.size() == 4;
         }
         System.out.println(i - 1);
-    }
-
-    private static boolean isPrime(int x) {
-        for (int i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }

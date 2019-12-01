@@ -1,5 +1,7 @@
 package solutions._000;
 
+import static utils.Utils.isPrime;
+
 /*
  * Brute force: test each layer.
  * An optimization can be made in obtaining the formulas of each of the corners and realizing the bottom right
@@ -25,14 +27,5 @@ public class Problem058 {
             }
         }
         System.out.println(2 * n - 1);
-    }
-
-    private static boolean isPrime(int x) {
-        for (int i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }

@@ -1,5 +1,7 @@
 package solutions._100;
 
+import static utils.Utils.isPrime;
+
 public class Problem133 {
     public static void main(String[] args) {
         int sum = 2 + 3 + 5;
@@ -28,15 +30,6 @@ public class Problem133 {
             sum += p;
         }
         System.out.println(sum);
-    }
-
-    private static boolean isPrime(int x) {
-        for (int i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 
     private static int v(int p, int n) {

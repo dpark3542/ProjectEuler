@@ -1,5 +1,7 @@
 package solutions._100;
 
+import static utils.Utils.gcd;
+
 public class Problem129 {
     public static void main(String[] args) {
         int lim = 1000000, n = lim + 1, a = ord(lim + 1, 10);
@@ -15,15 +17,6 @@ public class Problem129 {
             }
         }
         System.out.println(n);
-    }
-
-    private static long gcd(long x, long y) {
-        while (y > 0) {
-            long t = y;
-            y = x % y;
-            x = t;
-        }
-        return x;
     }
 
     private static int ord(int n, int a) {

@@ -3,6 +3,8 @@ package solutions._000;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.Utils.isPrime;
+
 public class Problem050 {
     /*
      *  Brute force: test each sum of primes in decreasing order of number of primes.
@@ -37,14 +39,5 @@ public class Problem050 {
                 }
             }
         }
-    }
-
-    private static boolean isPrime(long x) {
-        for (long i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }

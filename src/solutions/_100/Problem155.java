@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static utils.Utils.gcd;
+
 /*
  * First generate a(i), the set of distinct capacitance values using exactly n capacitors.
  * a(i) can be generated using recursion.
@@ -47,15 +49,6 @@ public class Problem155 {
         System.out.println(union.size());
     }
 
-    private static int gcd(int x, int y) {
-        while (y > 0) {
-            int t = y;
-            y = x % y;
-            x = t;
-        }
-        return x;
-    }
-
     /**
      * Class for positive rationals.
      */
@@ -63,7 +56,7 @@ public class Problem155 {
         public int n, d;
 
         public Fraction(int a, int b) {
-            int g = gcd(a, b);
+            int g = (int) gcd(a, b);
             n = a / g;
             d = b / g;
         }

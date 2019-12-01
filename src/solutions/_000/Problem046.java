@@ -1,9 +1,12 @@
 package solutions._000;
 
+import static utils.Utils.isPrime;
+
+/*
+ * Brute force: run through every number and test possible sums of primes and squares.
+ *
+ */
 public class Problem046 {
-    /*
-     * Brute force: run through every number and test possible sums of primes and squares.
-     */
     public static void main(String[] args) {
         int n = 1;
         out:
@@ -20,17 +23,5 @@ public class Problem046 {
             break;
         }
         System.out.println(n);
-    }
-
-    private static boolean isPrime(int x) {
-        if (x < 2) {
-            return false;
-        }
-        for (int i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }

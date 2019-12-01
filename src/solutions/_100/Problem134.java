@@ -1,5 +1,7 @@
 package solutions._100;
 
+import static utils.Utils.isPrime;
+
 public class Problem134 {
     public static void main(String[] args) {
         int p = 5;
@@ -16,14 +18,6 @@ public class Problem134 {
         System.out.println(sum);
     }
 
-    private static boolean isPrime(int x) {
-        for (int i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     private static int modInverse(int a, int n) {
         int t = 0, nt = 1, r = n, nr = a;

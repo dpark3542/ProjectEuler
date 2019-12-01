@@ -1,10 +1,12 @@
 package solutions._000;
 
+import static utils.Utils.isPrime;
+
 /*
- * Brute force: test each permutation for primality.
- * Many algorithms exist for generating permutations and testing primality.
- * An optimization can be made in noticing that 9-digit and 8-digit pandigitals are always divisible by 3 and
- * therefore not prime.
+ * Brute force: test if each permutation is prime.
+ * Many algorithms exist for generating permutations.
+ * An optimization can be made in noticing that 9-digit and 8-digit pandigitals are always divisible by 3 and therefore not prime.
+ *
  */
 public class Problem041 {
     public static void main(String[] args) {
@@ -29,15 +31,6 @@ public class Problem041 {
                 p = generatePreviousPermutation(p);
             }
         }
-    }
-
-    private static boolean isPrime(int x) {
-        for (int i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 
     /**

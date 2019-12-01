@@ -1,9 +1,12 @@
 package solutions._000;
 
+import static utils.Utils.isPrime;
+
+/*
+ * Brute force: test all polynomials
+ *
+ */
 public class Problem027 {
-    /*
-     * Brute force: test all polynomials
-     */
     public static void main(String[] args) {
         int max = 0, maxa = 0, maxb = 0;
         for (int a = -999; a <= 999; a++) {
@@ -20,17 +23,5 @@ public class Problem027 {
             }
         }
         System.out.println(maxa * maxb);
-    }
-
-    private static boolean isPrime(int x) {
-        if (x < 2) {
-            return false;
-        }
-        for (int i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }

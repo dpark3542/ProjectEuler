@@ -2,17 +2,19 @@ package solutions._100;
 
 import java.math.BigInteger;
 
+import static utils.Utils.gcd;
+
 /*
  * First, the sum of the real factors are sigma(n), where sigma(n) is the sum of the divisors of n.
  *
  * Next, we calculate the sum of the complex factors.
  * If x, y coprime, it can be proven that each complex factor x + yi divides n if and only if x^2 + y^2 divides n.
- * Each complex factor is a multiple of some x + yi.
+ * Each complex factor is a multiple of some x + yi where x, y coprime.
  * We will sum the complex factors in groups based on x + yi.
  *
  * Iterate through all possible x + yi and find how many multiples of x^2 + y^2 are within upper bound 10^8.
- * For each multiple n, we have n = m(x^2 + y^2) = m(x + yi)(x - yi).
- * We want to sum the complex factors of n which are multiples of x + yi. Each multiple p(x + yi) must therefore satisfy p | m.
+ * For each multiple, we have n = m(x^2 + y^2) = m(x + yi)(x - yi).
+ * Each multiple p(x + yi) must therefore satisfy p | m.
  * Sum over all p in which the sum is sigma(m) * x.
  * The complex factors come in conjugates, so we can ignore the imaginary part yi and only sum the real part x.
  *
@@ -72,14 +74,5 @@ public class Problem153 {
             s = s.add(BigInteger.valueOf((n / d) * d));
         }
         System.out.println(s);
-    }
-
-    private static int gcd(int x, int y) {
-        while (y > 0) {
-            int t = y;
-            y = x % y;
-            x = t;
-        }
-        return x;
     }
 }

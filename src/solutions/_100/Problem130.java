@@ -1,10 +1,9 @@
 package solutions._100;
 
-/**
- * Created by dpark3542 on 7/22/2017.
- */
+import static utils.Utils.gcd;
+import static utils.Utils.isPrime;
+
 public class Problem130 {
-    // TODO: clean up code, add explanation
     public static void main(String[] args) {
         int n = 3, a, cnt = 0, sum = 0;
         while (cnt < 25) {
@@ -23,24 +22,6 @@ public class Problem130 {
             }
         }
         System.out.println(sum);
-    }
-
-    private static boolean isPrime(int x) {
-        for (int i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static int gcd(int x, int y) {
-        while (y > 0) {
-            int t = y;
-            y = x % y;
-            x = t;
-        }
-        return x;
     }
 
     private static int ord(int n, int a) {

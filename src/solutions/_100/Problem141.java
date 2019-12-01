@@ -8,18 +8,15 @@ public class Problem141 {
         Set<Long> s = new HashSet<>();
         long sum = 0, lim = 1000000000000L;
         for (int a = 1; a <= (Math.sqrt(32 * lim + 1) - 1) / 16; a++) {
-            long x;
-            int b = 1, c;
-            while (true) {
-                for (c = b + 1; (x = (long) a * a * b * c * c * c + a * b * b) < lim; c++) {
-                    if (Math.sqrt(x) == Math.floor(Math.sqrt(x))) {
+            for (int b = 1, c = -1; c != b + 1; b++) {
+                c = b + 1;
+                for (long x = -1; x < lim; c++) {
+                    x = (long) a * a * b * c * c * c + a * b * b;
+                    long sq = (long) Math.sqrt(x);
+                    if (x == sq * sq) {
                         s.add(x);
                     }
                 }
-                if (c == b + 1) {
-                    break;
-                }
-                b++;
             }
         }
         for (long x : s) {

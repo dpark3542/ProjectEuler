@@ -1,9 +1,12 @@
 package solutions._000;
 
+import static utils.Utils.gcd;
+
+/*
+ * Brute force: test all fractions.
+ *
+ */
 public class Problem033 {
-    /*
-     * Brute force: test all fractions.
-     */
     public static void main(String[] args) {
         int n = 1, d = 1;
         for (int a = 1; a <= 9; a++) {
@@ -21,14 +24,5 @@ public class Problem033 {
             }
         }
         System.out.println(d / gcd(n, d));
-    }
-
-    private static int gcd(int x, int y) {
-        while (y > 0) {
-            int t = y;
-            y = x % y;
-            x = t;
-        }
-        return x;
     }
 }

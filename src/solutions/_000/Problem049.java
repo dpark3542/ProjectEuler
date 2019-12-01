@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static utils.Utils.isPrime;
+
 /*
  * Brute force: loop through every pair of primes.
  * The third prime can be determined using the fact that the primes are an arithmetic sequence.
@@ -33,15 +35,6 @@ public class Problem049 {
                 }
             }
         }
-    }
-
-    private static boolean isPrime(int x) {
-        for (int i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 
     private static boolean isPermutation(int x, int y, int z) {

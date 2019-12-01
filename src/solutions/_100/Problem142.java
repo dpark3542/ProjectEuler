@@ -27,8 +27,8 @@ public class Problem142 {
                         b = m.get(j);
                         c = l.get(j);
                     }
-                    long x = (b * b - c * c + d * d - e * e) / 2;
-                    if (Math.sqrt(x) == Math.floor(Math.sqrt(x))) {
+                    long x = (b * b - c * c + d * d - e * e) / 2, sq = (long) Math.sqrt(x);
+                    if (x == sq * sq) {
                         long s = (c * c + 2 * d * d + e * e) / 2;
                         min = Math.min(min, s);
                     }

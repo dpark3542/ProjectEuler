@@ -3,6 +3,8 @@ package solutions._000;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.Utils.isPrime;
+
 /*
  * Call two primes p, q compatible if the concatenations pq and qp are prime.
  * Iterating through the primes, we can construct a graph with primes as the vertices and edges between compatible primes.
@@ -37,13 +39,11 @@ public class Problem060 {
             }
             boolean[] mkd = new boolean[pr.size() + 1];
             int a = pr.size(), b = db.size(), c = tr.size(), d = qd.size();
-            String u = Integer.toString(n);
             pr.add(n);
             // create doubles
             for (int i = 0; i < a; i++) {
                 int p = pr.get(i);
-                String v = Integer.toString(p);
-                mkd[i] = isPrime(Long.parseLong(u + v)) && isPrime(Long.parseLong(v + u));
+                mkd[i] = isPrime(concat(p, n)) && isPrime(concat(n, p));
                 if (mkd[i]) {
                     db.add(i);
                     db.add(a);
@@ -79,12 +79,8 @@ public class Problem060 {
         System.out.println(min);
     }
 
-    private static boolean isPrime(long x) {
-        for (long i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
+    private static long concat(long a, long b) {
+        int e = (int) Math.log10(b) + 1;
+        return a * (long) Math.pow(10, e) + b;
     }
 }

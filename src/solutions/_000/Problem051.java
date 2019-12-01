@@ -3,14 +3,17 @@ package solutions._000;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.Utils.isPrime;
+
+/*
+ * Generate all patterns for a set number of digits and test each pattern. Find the smallest prime from the valid
+ * patterns.
+ * Generating patterns can be done by generating k-combinations of a list, which is a well-known problem.
+ * An optimization can be made in noticing that the number of replaced digits for some pattern must be a multiple of
+ * 3, else there are less than 8 possible numbers that are not divisible by 3 and thus not prime.
+ *
+ */
 public class Problem051 {
-    /*
-     * Generate all patterns for a set number of digits and test each pattern. Find the smallest prime from the valid
-     * patterns.
-     * Generating patterns can be done by generating k-combinations of a list, which is a well-known problem.
-     * An optimization can be made in noticing that the number of replaced digits for some pattern must be a multiple of
-     * 3, else there are less than 8 possible numbers that are not divisible by 3 and thus not prime.
-     */
     public static void main(String[] args) {
         boolean flag = true;
         int min = Integer.MAX_VALUE;
@@ -84,14 +87,5 @@ public class Problem051 {
             }
         }
         return l;
-    }
-
-    private static boolean isPrime(int x) {
-        for (int i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }

@@ -1,5 +1,7 @@
 package solutions._100;
 
+import static utils.Utils.isPrime;
+
 public class Problem131 {
     public static void main(String[] args) {
         int cnt = 0;
@@ -12,14 +14,5 @@ public class Problem131 {
             }
         }
         System.out.println(cnt);
-    }
-
-    private static boolean isPrime(int x) {
-        for (int i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }

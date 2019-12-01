@@ -1,9 +1,12 @@
 package solutions._000;
 
+import static utils.Utils.isPrime;
+
+/*
+ * Brute force: test primes until 11 truncatable primes are found.
+ *
+ */
 public class Problem037 {
-    /*
-     * Brute force: test primes until 11 truncatable primes are found.
-     */
     public static void main(String[] args) {
         int sum = 0, cnt = 0;
         out:
@@ -22,17 +25,5 @@ public class Problem037 {
             cnt++;
         }
         System.out.println(sum);
-    }
-
-    private static boolean isPrime(int x) {
-        if (x < 2) {
-            return false;
-        }
-        for (int i = 2; i <= Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }
