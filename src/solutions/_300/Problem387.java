@@ -12,6 +12,9 @@ import static utils.Utils.isPrime;
  * For each strong number, find what primes will truncate to that number.
  * Sum up these primes.
  *
+ * Small optimizations could be made.
+ * For example, similarly calculate digit sums with dynamic programming.
+ *
  */
 public class Problem387 {
     public static void main(String[] args) {
