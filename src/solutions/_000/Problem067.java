@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 /*
+ * See Problem 18.
+ *
  * Brute force: compute all totals
  *
  * Dynamic programming:
@@ -15,12 +17,12 @@ import java.util.StringTokenizer;
  * Loop formula over all i, j.
  *
  */
-public class Problem018 {
+public class Problem067 {
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p018_triangle.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/input/p067_triangle.txt"));
         StringTokenizer st;
-        int n = 15;
+        int n = 100;
         int[][] a = new int[n][n];
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());

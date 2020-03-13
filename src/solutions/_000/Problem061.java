@@ -2,6 +2,8 @@ package solutions._000;
 
 import java.util.*;
 
+import static utils.Utils.generateNextPermutation;
+
 /*
  * Formula for nth s-gonal number can be derived as (n^2(s-2) - n(s-4))/2.
  * For each s, generate all 4-digit s-gonal numbers.
@@ -92,7 +94,7 @@ public class Problem061 {
                     return;
                 }
             }
-            c = generateNextPermutation(c);
+            generateNextPermutation(c);
         }
     }
 
@@ -105,35 +107,5 @@ public class Problem061 {
      */
     private static int polygonal(int s, int n) {
         return (n * n * (s - 2) - n * (s - 4)) / 2;
-    }
-
-    /**
-     * Returns next lexicographic permutation.
-     * Based off of: https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
-     *
-     * @param a permutation
-     * @return next lexicographic permutation
-     */
-    private static int[] generateNextPermutation(int[] a) {
-        int n = a.length, k = n - 2;
-        while (k >= 0 && a[k] >= a[k + 1]) {
-            k--;
-        }
-        if (k < 0) {
-            return a;
-        }
-        int l = n - 1;
-        while (a[k] >= a[l]) {
-            l--;
-        }
-        int t = a[l];
-        a[l] = a[k];
-        a[k] = t;
-        for (int i = k + 1; i <= (k + n - 1) / 2; i++) {
-            t = a[n - i + k];
-            a[n - i + k] = a[i];
-            a[i] = t;
-        }
-        return a;
     }
 }

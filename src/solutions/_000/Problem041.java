@@ -4,7 +4,6 @@ import static utils.Utils.isPrime;
 
 /*
  * Brute force: test if each permutation is prime.
- * Many algorithms exist for generating permutations.
  * An optimization can be made in noticing that 9-digit and 8-digit pandigitals are always divisible by 3 and therefore not prime.
  *
  */
@@ -28,25 +27,24 @@ public class Problem041 {
                     System.out.println(x);
                     return;
                 }
-                p = generatePreviousPermutation(p);
+                generatePreviousPermutation(p);
             }
         }
     }
 
     /**
-     * Returns previous lexicographic permutation.
-     * Based off of: https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
+     * Generates previous lexicographic permutation.
+     * Modified version of generateNextPermutation in Utils.
      *
      * @param a permutation
-     * @return previous lexicographic permutation
      */
-    private static int[] generatePreviousPermutation(int[] a) {
+    private static void generatePreviousPermutation(int[] a) {
         int n = a.length, k = n - 2;
         while (k >= 0 && a[k] <= a[k + 1]) {
             k--;
         }
         if (k < 0) {
-            return a;
+            return;
         }
         int l = n - 1;
         while (a[k] <= a[l]) {
@@ -60,6 +58,5 @@ public class Problem041 {
             a[n - i + k] = a[i];
             a[i] = t;
         }
-        return a;
     }
 }

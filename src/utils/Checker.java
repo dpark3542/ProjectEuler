@@ -1,4 +1,4 @@
-package checker;
+package utils;
 
 import java.io.*;
 import java.lang.reflect.Method;
@@ -7,11 +7,29 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Class for running programs and checking answers with the Project Euler website.
+ */
 public class Checker {
+    /**
+     * Check if program for a given problem is correct with the static Project Euler website.
+     *
+     * @param id problem number
+     * @return boolean if answer is correct
+     */
     public static boolean check(int id) {
+        if (id <= 0 || id >= 1000) {
+            throw new RuntimeException("Invalid problem ID.");
+        }
         return check(id, run(id));
     }
 
+    /**
+     * Runs program for a given problem.
+     *
+     * @param id problem number
+     * @return output of program
+     */
     private static String run(int id) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream), stdout = System.out;
@@ -40,6 +58,13 @@ public class Checker {
         return result.strip();
     }
 
+    /**
+     * Checks answer with the static Project Euler website.
+     *
+     * @param id problem number
+     * @param answer answer
+     * @return boolean if answer is correct
+     */
     private static boolean check(int id, String answer) {
         String url = "https://projecteuler.info/problem=" + id;
         String formData = "answer_" + id + "=" + URLEncoder.encode(answer, StandardCharsets.UTF_8) + "&captcha=";

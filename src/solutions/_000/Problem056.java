@@ -2,13 +2,14 @@ package solutions._000;
 
 import java.math.BigInteger;
 
+/*
+ * Brute force: test all digit sums.
+ * Some small optimizations can be made such as recursively calculating a^b by storing previous power(s).
+ * Also, exclude powers a^b whose maximal possible digit sum based on the number of digits is less than the current maximum.
+ * Bignums are necessary.
+ *
+ */
 public class Problem056 {
-    /*
-     * Brute force: test all digit sums.
-     * Optimizations can be made such as storing consecutive powers to reduce computation or stopping if the maximal
-     * possible number is less than the current maximum according to the number of digits.
-     * Bignums are necessary.
-     */
     public static void main(String[] args) {
         int max = 0;
         for (int a = 2; a < 100; a++) {
