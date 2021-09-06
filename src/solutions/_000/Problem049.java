@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static utils.Utils.isPrime;
+import static utils.NumberTheory.isPrime;
 
 /*
  * Brute force: loop through every pair of primes.

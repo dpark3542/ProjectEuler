@@ -1,6 +1,6 @@
 package solutions._100;
 
-import static utils.Utils.gcd;
+import static utils.NumberTheory.gcd;
 
 public class Problem129 {
     public static void main(String[] args) {

@@ -3,7 +3,7 @@ package solutions._000;
 import java.util.ArrayList;
 import java.util.List;
 
-import static utils.Utils.isPrime;
+import static utils.NumberTheory.isPrime;
 
 public class Problem050 {
     /*

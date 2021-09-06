@@ -2,7 +2,7 @@ package solutions._000;
 
 import java.util.*;
 
-import static utils.Utils.generateNextPermutation;
+import static utils.Miscellaneous.generateNextPermutation;
 
 /*
  * Formula for nth s-gonal number can be derived as (n^2(s-2) - n(s-4))/2.

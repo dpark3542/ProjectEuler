@@ -3,7 +3,7 @@ package solutions._000;
 import java.util.ArrayList;
 import java.util.List;
 
-import static utils.Utils.isPrime;
+import static utils.NumberTheory.isPrime;
 
 /*
  * Generate all patterns for a set number of digits and test each pattern. Find the smallest prime from the valid

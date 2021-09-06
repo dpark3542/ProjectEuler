@@ -1,6 +1,6 @@
 package solutions._000;
 
-import static utils.Utils.gcd;
+import static utils.NumberTheory.gcd;
 
 /*
  * Compute lcm using ab = gcd(a,b)*lcm(a,b).

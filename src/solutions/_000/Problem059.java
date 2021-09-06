@@ -16,9 +16,14 @@ public class Problem059 {
     public static void main(String[] args) throws IOException {
         // input
         BufferedReader br = new BufferedReader(new FileReader("src/input/p059_cipher.txt"));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int[] txt = Stream.of(st.nextToken().split(",")).mapToInt(Integer::parseInt).toArray();
-        int n = txt.length, cnt = 0, ans = 0;
+        String[] split = br.readLine().split(",");
+        int n = split.length;
+        int[] txt = new int[n];
+        for (int i = 0; i < n; i++) {
+            txt[i] = Integer.parseInt(split[i]);
+        }
+
+        int cnt = 0, ans = 0;
         for (int a = (int) 'a'; a <= (int) 'z'; a++) {
             for (int b = (int) 'a'; b <= (int) 'z'; b++) {
                 for (int c = (int) 'a'; c <= (int) 'z'; c++) {

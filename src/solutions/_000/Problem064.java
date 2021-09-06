@@ -22,7 +22,7 @@ import java.util.List;
  *
  * A simpler implementation exists.
  * Notice f_i is of the form (p_i + sqrt(N))/q_i where each p_i and q_i are integers.
- * (In fact, a well-known result by Euler and Lagrange states that all periodic continued fractions are irrational roots of a integer quadratic and vice versa.)
+ * (In fact, a well-known result by Euler and Lagrange states that all periodic continued fractions are irrational roots of an integer quadratic and vice versa.)
  * Proof by induction:
  * Base case is trivial. Suppose f_i = (p_i + sqrt(N))/q_i for some integers p_i, q_i.
  *
@@ -34,7 +34,7 @@ import java.util.List;
  * (p_i + sqrt(N))/q_i - a_i = q_(i+1) / (p_(i+1) + sqrt(N))
  * (p_i + sqrt(N))/q_i - a_i = q_(i+1)(p_(i+1) - sqrt(N)) / (p_(i+1)^2 - N)
  *
- * Since {1, sqrt(N)} is a basis for field Q(sqrt(N)), match coefficients,
+ * Since {1, sqrt(N)} is a basis for the field Q(sqrt(N)), match coefficients,
  *
  * p_i/q_i - a_i = p_(i+1)q_(i+1) / (p_(i+1)^2 - N)
  * 1/q_i = -q_(i+1) / (p_(i+1)^2 - N)

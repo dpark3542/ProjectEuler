@@ -1,6 +1,6 @@
 package solutions._000;
 
-import static utils.Utils.generateNextPermutation;
+import static utils.Miscellaneous.generateNextPermutation;
 
 /*
  * Brute force: test all permutations of numbers in the 5-gon ring.

@@ -2,7 +2,7 @@ package solutions._100;
 
 import java.math.BigInteger;
 
-import static utils.Utils.gcd;
+import static utils.NumberTheory.gcd;
 
 /*
  * First, the sum of the real factors are sigma(n), where sigma(n) is the sum of the divisors of n.

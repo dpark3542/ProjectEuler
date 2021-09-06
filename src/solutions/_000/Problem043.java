@@ -1,6 +1,6 @@
 package solutions._000;
 
-import static utils.Utils.generateNextPermutation;
+import static utils.Miscellaneous.generateNextPermutation;
 
 /*
  * Brute force: test each permutation for the desired properties.

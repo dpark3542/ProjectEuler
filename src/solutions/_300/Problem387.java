@@ -3,7 +3,7 @@ package solutions._300;
 import java.util.ArrayList;
 import java.util.List;
 
-import static utils.Utils.isPrime;
+import static utils.NumberTheory.isPrime;
 
 /*
  * Use dynamic programming to generate right truncatable Harshad numbers less than 10^13.

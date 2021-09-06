@@ -25,9 +25,9 @@ public class Problem067 {
         int n = 100;
         int[][] a = new int[n][n];
         for (int i = 0; i < n; i++) {
-            st = new StringTokenizer(br.readLine());
+            String[] split = br.readLine().split("\\s");
             for (int j = 0; j <= i; j++) {
-                a[i][j] = Integer.parseInt(st.nextToken());
+                a[i][j] = Integer.parseInt(split[j]);
             }
         }
 

@@ -7,8 +7,7 @@ public class Problem045 {
      */
     public static void main(String[] args) {
         long b = 144;
-        double a = 166.2;
-        for (; a != Math.floor(a); b++) {
+        for (double a = 166.2; a != Math.floor(a); b++) {
             a = (Math.sqrt(24L * (b + 1) * (2 * b + 1) + 1) + 1) / 6;
         }
         System.out.println(b * (2 * b - 1));

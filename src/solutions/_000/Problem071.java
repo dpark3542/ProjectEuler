@@ -1,6 +1,6 @@
 package solutions._000;
 
-import static utils.Utils.gcd;
+import static utils.NumberTheory.gcd;
 
 /*
  * Brute force: iterate through each denominator d and find corresponding numerator n minimizing the difference 3/7 - n/d.

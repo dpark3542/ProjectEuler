@@ -1,6 +1,6 @@
 package solutions._100;
 
-import static utils.Utils.isPrime;
+import static utils.NumberTheory.isPrime;
 
 public class Problem132 {
     public static void main(String[] args) {

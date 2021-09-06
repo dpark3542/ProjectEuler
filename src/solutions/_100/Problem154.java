@@ -20,7 +20,7 @@ package solutions._100;
 public class Problem154 {
     public static void main(String[] args) {
         int n = 200000, ans = 0;
-        int[] v2 = new int[n + 1], v5 = new int[n + 1];;
+        int[] v2 = new int[n + 1], v5 = new int[n + 1];
         // compute v_2(i!) and v_5(i!) for i <= n
         // set up v_2 and v_5 for dp
         for (int i = 2; i <= n; i *= 2) {

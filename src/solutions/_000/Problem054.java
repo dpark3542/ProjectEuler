@@ -13,13 +13,12 @@ public class Problem054 {
     public static void main(String[] args) throws IOException {
         // input
         BufferedReader br = new BufferedReader(new FileReader("src/input/p054_poker.txt"));
-        StringTokenizer st;
         int cnt = 0;
         for (int i = 0; i < 1000; i++) {
-            st = new StringTokenizer(br.readLine());
+            String[] split = br.readLine().split("\\s");
             Card[] cards = new Card[10];
             for (int j = 0; j < 10; j++) {
-                cards[j] = new Card(st.nextToken());
+                cards[j] = new Card(split[j]);
             }
             if (new Hand(cards[0], cards[1], cards[2], cards[3], cards[4]).compareTo(new Hand(cards[5], cards[6], cards[7], cards[8], cards[9])) > 0) {
                 cnt++;

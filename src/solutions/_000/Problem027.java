@@ -1,6 +1,6 @@
 package solutions._000;
 
-import static utils.Utils.isPrime;
+import static utils.NumberTheory.isPrime;
 
 /*
  * Brute force: test all polynomials

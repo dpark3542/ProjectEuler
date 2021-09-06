@@ -1,7 +1,7 @@
 package solutions._100;
 
-import static utils.Utils.gcd;
-import static utils.Utils.isPrime;
+import static utils.NumberTheory.gcd;
+import static utils.NumberTheory.isPrime;
 
 public class Problem130 {
     public static void main(String[] args) {
