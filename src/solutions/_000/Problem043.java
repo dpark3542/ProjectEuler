@@ -4,8 +4,7 @@ import static utils.Miscellaneous.generateNextPermutation;
 
 /*
  * Brute force: test each permutation for the desired properties.
- * Many algorithms exist for generating permutations.
- * Optimizations can be made in noticing that the fourth digit must be even and the sixth digit must be 0 or 5.
+ * The fourth digit must be even and the sixth digit must be 0 or 5.
  *
  */
 public class Problem043 {

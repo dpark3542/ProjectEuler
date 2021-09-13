@@ -18,7 +18,7 @@ public class Problem085 {
 
     private static boolean f(int n) {
         for (int i = 1; i <= Math.sqrt(n); i++) {
-            if ((n) % i == 0) {
+            if (n % i == 0) {
                 int d1 = 8 * i + 1, d2 = 8 * n / i + 1;
                 int sq1 = (int) Math.sqrt(d1), sq2 = (int) Math.sqrt(d2);
                 if (sq1 * sq1 == d1 && sq2 * sq2 == d2) {

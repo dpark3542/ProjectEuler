@@ -10,7 +10,7 @@ import static utils.Miscellaneous.generateNextPermutation;
 
 /**
  * Inspection of the text file suggests the passcode is simple and may not repeat digits.
- * Indeed, the passcode does not repeat any digits and can be solved by hand.
+ * Indeed, the passcode does not repeat any digits and can even be found by hand.
  * Brute force of all permutations is implemented below.
  * A rigorous solution that is scalable to a larger passcode and alphabet will be slower.
  */
