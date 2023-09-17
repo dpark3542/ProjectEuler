@@ -24,8 +24,8 @@ public class Problem083 {
             }
         }
 
-        int d[][] = new int[n][n];
-        PriorityQueue<Triple<Integer, Integer, Integer>> pq = new PriorityQueue<>(Comparator.comparing(o -> o.third));
+        int[][] d = new int[n][n];
+        PriorityQueue<Triple<Integer, Integer, Integer>> pq = new PriorityQueue<>(Comparator.comparing(Triple::getThird));
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (i != 0 || j != 0) {
@@ -39,35 +39,35 @@ public class Problem083 {
         while (!pq.isEmpty()) {
             Triple<Integer, Integer, Integer> u = pq.poll();
             // left
-            if (u.second - 1 >= 0) {
-                int alt = d[u.first][u.second] + a[u.first][u.second - 1];
-                if (alt < d[u.first][u.second - 1]) {
-                    d[u.first][u.second - 1] = alt;
-                    pq.add(new Triple<>(u.first, u.second - 1, alt));
+            if (u.getSecond() - 1 >= 0) {
+                int alt = d[u.getFirst()][u.getSecond()] + a[u.getFirst()][u.getSecond() - 1];
+                if (alt < d[u.getFirst()][u.getSecond() - 1]) {
+                    d[u.getFirst()][u.getSecond() - 1] = alt;
+                    pq.add(new Triple<>(u.getFirst(), u.getSecond() - 1, alt));
                 }
             }
             // right
-            if (u.second + 1 < n) {
-                int alt = d[u.first][u.second] + a[u.first][u.second + 1];
-                if (alt < d[u.first][u.second + 1]) {
-                    d[u.first][u.second + 1] = alt;
-                    pq.add(new Triple<>(u.first, u.second + 1, alt));
+            if (u.getSecond() + 1 < n) {
+                int alt = d[u.getFirst()][u.getSecond()] + a[u.getFirst()][u.getSecond() + 1];
+                if (alt < d[u.getFirst()][u.getSecond() + 1]) {
+                    d[u.getFirst()][u.getSecond() + 1] = alt;
+                    pq.add(new Triple<>(u.getFirst(), u.getSecond() + 1, alt));
                 }
             }
             // up
-            if (u.first - 1 >= 0) {
-                int alt = d[u.first][u.second] + a[u.first - 1][u.second];
-                if (alt < d[u.first - 1][u.second]) {
-                    d[u.first - 1][u.second] = alt;
-                    pq.add(new Triple<>(u.first - 1, u.second, alt));
+            if (u.getFirst() - 1 >= 0) {
+                int alt = d[u.getFirst()][u.getSecond()] + a[u.getFirst() - 1][u.getSecond()];
+                if (alt < d[u.getFirst() - 1][u.getSecond()]) {
+                    d[u.getFirst() - 1][u.getSecond()] = alt;
+                    pq.add(new Triple<>(u.getFirst() - 1, u.getSecond(), alt));
                 }
             }
             // down
-            if (u.first + 1 < n) {
-                int alt = d[u.first][u.second] + a[u.first + 1][u.second];
-                if (alt < d[u.first + 1][u.second]) {
-                    d[u.first + 1][u.second] = alt;
-                    pq.add(new Triple<>(u.first + 1, u.second, alt));
+            if (u.getFirst() + 1 < n) {
+                int alt = d[u.getFirst()][u.getSecond()] + a[u.getFirst() + 1][u.getSecond()];
+                if (alt < d[u.getFirst() + 1][u.getSecond()]) {
+                    d[u.getFirst() + 1][u.getSecond()] = alt;
+                    pq.add(new Triple<>(u.getFirst() + 1, u.getSecond(), alt));
                 }
             }
         }

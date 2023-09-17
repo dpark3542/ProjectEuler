@@ -107,10 +107,10 @@ public class NumberTheory {
      */
     public static long powerMod(long n, long e, long m) {
         if (e <= 0) {
-            throw new RuntimeException("Nonnegative exponent");
+            throw new IllegalArgumentException("Non-negative exponent");
         }
         if (m - 1 > Math.sqrt(Long.MAX_VALUE)) {
-            throw new RuntimeException("Possible overflow error");
+            throw new IllegalArgumentException("Possible overflow error");
         }
 
         n %= m;

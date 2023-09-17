@@ -1,41 +1,54 @@
-import java.io.*;
-import java.lang.reflect.Method;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public final class Checker {
+    private static final String PROBLEM_CLASS_NAME_FORMAT = "solutions._%d00.Problem%03d";
+    private static final String MAIN_METHOD_NAME = "main";
+    private static final String PROJECT_EULER_URL_FORMAT = "https://projecteuler.info/problem=%d";
+    private static final String BODY_FORMAT = "answer_%d=%s&captcha=";
+    private static final String SET_COOKIE_HEADER = "set-cookie";
+    private static final String COOKIE_HEADER = "Cookie";
+    private static final String CONTENT_TYPE_HEADER = "Content-Type";
+    private static final String CONTENT_TYPE_VALUE = "application/x-www-form-urlencoded";
+    private static final String CONTENT_LENGTH_HEADER = "Content-Length";
+    private static final String CORRECT_ANSWER_PROMPT_FORMAT = "Congratulations, the answer you gave to problem %d is correct.";
+    private static final String WRONG_ANSWER_PROMPT = "Sorry, but the answer you gave appears to be incorrect.";
+
     /**
      * Runs program for a given problem.
      *
      * @param id problem number
      * @return output of program
      */
-    public static String run(int id) {
+    public static String runProblem(int id) {
+        if (id < 1) {
+            throw new IllegalArgumentException("Problem id must be positive");
+        }
+
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream), stdout = System.out;
-        String className = "solutions._" + (id / 100) + "00.Problem" + String.format("%03d", id), result = null;
-        try {
-            Class<?> problem = Class.forName(className);
-            Method main = problem.getMethod("main", String[].class);
+        PrintStream stdout = System.out;
 
-            // run program
+        try (PrintStream printStream = new PrintStream(outputStream)) {
+            Class<?> problem = Class.forName(String.format(PROBLEM_CLASS_NAME_FORMAT, id / 100, id));
+
             System.setOut(printStream);
-            main.invoke(null, (Object) null);
-            System.setOut(stdout);
+            problem.getMethod(MAIN_METHOD_NAME, String[].class).invoke(null, (Object) null);
 
-            result = outputStream.toString();
-        }
-        catch (Exception e) {
+            return Objects.requireNonNull(outputStream.toString()).strip();
+        } catch (ClassNotFoundException e) {
+            throw new UnsupportedOperationException("Problem not implemented");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
             System.setOut(stdout);
-            e.printStackTrace();
         }
-        finally {
-            printStream.close();
-        }
-        if (result == null) {
-            throw new RuntimeException("No answer found.");
-        }
-        return result.strip();
     }
 
     /**
@@ -45,33 +58,34 @@ public final class Checker {
      * @param answer answer
      * @return boolean if answer is correct
      */
-    public static boolean check(int id, String answer) {
-        String url = "https://projecteuler.info/problem=" + id;
-        String formData = "answer_" + id + "=" + URLEncoder.encode(answer, StandardCharsets.UTF_8) + "&captcha=";
+    public static boolean checkAnswer(int id, String answer) {
+        if (id < 1) {
+            throw new IllegalArgumentException("Problem id must be positive");
+        }
+
         try {
-            byte[] formDataBytes = formData.getBytes(StandardCharsets.UTF_8);
+            URL url = new URL(String.format(PROJECT_EULER_URL_FORMAT, id));
 
-            // get a cookie
-            HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-            conn.setRequestMethod("GET");
-            String cookie = conn.getHeaderFields().get("set-cookie").get(0).split(";")[0];
+            URLConnection cookieConnection = url.openConnection();
+            cookieConnection.setDoOutput(false);
+            System.out.println(cookieConnection.getHeaderFields().get(SET_COOKIE_HEADER));
+            String cookie = cookieConnection.getHeaderFields().get(SET_COOKIE_HEADER).get(0).split(";")[0];
 
-            // send answer
-            conn = (HttpURLConnection) new URL(url).openConnection();
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            conn.setRequestProperty("Content-Length", Integer.toString(formDataBytes.length));
-            conn.setRequestProperty("Cookie", cookie);
-            conn.getOutputStream().write(formDataBytes);
+            URLConnection answerConnection = url.openConnection();
+            answerConnection.setDoOutput(true);
+            answerConnection.setRequestProperty(COOKIE_HEADER, cookie);
+            answerConnection.setRequestProperty(CONTENT_TYPE_HEADER, CONTENT_TYPE_VALUE);
 
-            // check response
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            byte[] body = String.format(BODY_FORMAT, id, answer).getBytes(StandardCharsets.UTF_8);
+            answerConnection.setRequestProperty(CONTENT_LENGTH_HEADER, Integer.toString(body.length));
+            answerConnection.getOutputStream().write(body);
+
+            String correctAnswerPrompt = String.format(CORRECT_ANSWER_PROMPT_FORMAT, id);
+            BufferedReader br = new BufferedReader(new InputStreamReader(answerConnection.getInputStream()));
             for (String line = ""; line != null; line = br.readLine()) {
-                if (line.contains("Correct")) {
+                if (line.contains(correctAnswerPrompt)) {
                     return true;
-                }
-                else if (line.contains("Wrong")) {
+                } else if (line.contains(WRONG_ANSWER_PROMPT)) {
                     return false;
                 }
             }
@@ -80,6 +94,6 @@ public final class Checker {
             throw new RuntimeException(e);
         }
 
-        throw new RuntimeException("No response found.");
+        throw new RuntimeException("Could not determine from response if correct or wrong");
     }
 }

@@ -1,13 +1,15 @@
 package utils.structs;
 
-public class Triple<S, T, U> {
-    public S first;
-    public T second;
-    public U third;
+public record Triple<S, T, U>(S first, T second, U third) {
+    public S getFirst() {
+        return first;
+    }
 
-    public Triple(S s, T t, U u) {
-        first = s;
-        second = t;
-        third = u;
+    public T getSecond() {
+        return second;
+    }
+
+    public U getThird() {
+        return third;
     }
 }

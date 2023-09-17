@@ -1,11 +1,11 @@
 package utils.structs;
 
-public class Pair<S, T> {
-    public S first;
-    public T second;
+public record Pair<S, T>(S first, T second) {
+    public S getFirst() {
+        return first;
+    }
 
-    public Pair(S s, T t) {
-        first = s;
-        second = t;
+    public T getSecond() {
+        return second;
     }
 }
