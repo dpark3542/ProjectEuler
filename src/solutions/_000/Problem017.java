@@ -1,18 +1,47 @@
 package solutions._000;
 
-import java.util.HashMap;
 import java.util.Map;
 
+import static java.util.Map.entry;
+
+/**
+ * Implementation: convert every number to words.
+ */
 public class Problem017 {
-    /*
-     * Implementation: convert every number to words.
-     */
+    private static final Map<Integer, String> MAP = Map.ofEntries(
+            entry(1, "one"),
+            entry(2, "two"),
+            entry(3, "three"),
+            entry(4, "four"),
+            entry(5, "five"),
+            entry(6, "six"),
+            entry(7, "seven"),
+            entry(8, "eight"),
+            entry(9, "nine"),
+            entry(10, "ten"),
+            entry(11, "eleven"),
+            entry(12, "twelve"),
+            entry(13, "thirteen"),
+            entry(14, "fourteen"),
+            entry(15, "fifteen"),
+            entry(16, "sixteen"),
+            entry(17, "seventeen"),
+            entry(18, "eighteen"),
+            entry(19, "nineteen"),
+            entry(20, "twenty"),
+            entry(30, "thirty"),
+            entry(40, "forty"),
+            entry(50, "fifty"),
+            entry(60, "sixty"),
+            entry(70, "seventy"),
+            entry(80, "eighty"),
+            entry(90, "ninety"),
+            entry(1000, "one thousand")
+    );
     public static void main(String[] args) {
         int tot = 0;
-        initMap();
         for (int i = 1; i <= 1000; i++) {
             String s = convert(i);
-            System.out.println(s);
             for (char c : s.toCharArray()) {
                 if (c != ' ' && c != '-') {
                     tot++;
@@ -23,56 +52,22 @@ public class Problem017 {
     }
 
     private static String convert(int x) {
-        if (map.containsKey(x)) {
-            return map.get(x);
+        if (MAP.containsKey(x)) {
+            return MAP.get(x);
         }
         String s = "";
         if (x >= 100) {
-            s += map.get(x / 100) + " hundred ";
+            s += MAP.get(x / 100) + " hundred ";
             if (x % 100 != 0) {
                 s += "and ";
             }
         }
-        if (map.containsKey(x % 100)) {
-            s += map.get(x % 100);
+        if (MAP.containsKey(x % 100)) {
+            s += MAP.get(x % 100);
         }
         else if (x % 100 != 0) {
-            s += map.get(x % 100 - x % 10) + "-" + map.get(x % 10);
+            s += MAP.get(x % 100 - x % 10) + "-" + MAP.get(x % 10);
         }
         return s;
-    }
-
-    private static Map<Integer, String> map;
-
-    private static void initMap() {
-        map = new HashMap<>();
-        map.put(1, "one");
-        map.put(2, "two");
-        map.put(3, "three");
-        map.put(4, "four");
-        map.put(5, "five");
-        map.put(6, "six");
-        map.put(7, "seven");
-        map.put(8, "eight");
-        map.put(9, "nine");
-        map.put(10, "ten");
-        map.put(11, "eleven");
-        map.put(12, "twelve");
-        map.put(13, "thirteen");
-        map.put(14, "fourteen");
-        map.put(15, "fifteen");
-        map.put(16, "sixteen");
-        map.put(17, "seventeen");
-        map.put(18, "eighteen");
-        map.put(19, "nineteen");
-        map.put(20, "twenty");
-        map.put(30, "thirty");
-        map.put(40, "forty");
-        map.put(50, "fifty");
-        map.put(60, "sixty");
-        map.put(70, "seventy");
-        map.put(80, "eighty");
-        map.put(90, "ninety");
-        map.put(1000, "one thousand");
     }
 }

@@ -15,9 +15,6 @@ public final class Checker {
     private static final String BODY_FORMAT = "answer_%d=%s&captcha=";
     private static final String SET_COOKIE_HEADER = "set-cookie";
     private static final String COOKIE_HEADER = "Cookie";
-    private static final String CONTENT_TYPE_HEADER = "Content-Type";
-    private static final String CONTENT_TYPE_VALUE = "application/x-www-form-urlencoded";
-    private static final String CONTENT_LENGTH_HEADER = "Content-Length";
     private static final String CORRECT_ANSWER_PROMPT_FORMAT = "Congratulations, the answer you gave to problem %d is correct.";
     private static final String WRONG_ANSWER_PROMPT = "Sorry, but the answer you gave appears to be incorrect.";
 
@@ -68,20 +65,16 @@ public final class Checker {
 
             URLConnection cookieConnection = url.openConnection();
             cookieConnection.setDoOutput(false);
-            System.out.println(cookieConnection.getHeaderFields().get(SET_COOKIE_HEADER));
-            String cookie = cookieConnection.getHeaderFields().get(SET_COOKIE_HEADER).get(0).split(";")[0];
+            cookieConnection.connect();
 
             URLConnection answerConnection = url.openConnection();
             answerConnection.setDoOutput(true);
-            answerConnection.setRequestProperty(COOKIE_HEADER, cookie);
-            answerConnection.setRequestProperty(CONTENT_TYPE_HEADER, CONTENT_TYPE_VALUE);
+            answerConnection.setRequestProperty(COOKIE_HEADER, cookieConnection.getHeaderField(SET_COOKIE_HEADER));
+            answerConnection.getOutputStream().write(String.format(BODY_FORMAT, id, answer).getBytes(StandardCharsets.UTF_8));
+            answerConnection.connect();
 
-            byte[] body = String.format(BODY_FORMAT, id, answer).getBytes(StandardCharsets.UTF_8);
-            answerConnection.setRequestProperty(CONTENT_LENGTH_HEADER, Integer.toString(body.length));
-            answerConnection.getOutputStream().write(body);
-
-            String correctAnswerPrompt = String.format(CORRECT_ANSWER_PROMPT_FORMAT, id);
             BufferedReader br = new BufferedReader(new InputStreamReader(answerConnection.getInputStream()));
+            String correctAnswerPrompt = String.format(CORRECT_ANSWER_PROMPT_FORMAT, id);
             for (String line = ""; line != null; line = br.readLine()) {
                 if (line.contains(correctAnswerPrompt)) {
                     return true;
