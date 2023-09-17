@@ -1,7 +1,7 @@
 package solutions._000;
 
-import utils.DataStructures.Pair;
-import utils.NumberTheory.BigFraction;
+import utils.structs.BigFraction;
+import utils.structs.Pair;
 
 import java.util.ArrayList;
 import java.util.Comparator;

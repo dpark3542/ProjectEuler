@@ -3,7 +3,6 @@ package solutions._000;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 /*
  * Brute force: compute all totals
@@ -19,7 +18,6 @@ public class Problem018 {
     public static void main(String[] args) throws IOException {
         // input
         BufferedReader br = new BufferedReader(new FileReader("src/input/p018_triangle.txt"));
-        StringTokenizer st;
         int n = 15;
         int[][] a = new int[n][n];
         for (int i = 0; i < n; i++) {

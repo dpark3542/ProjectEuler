@@ -1,6 +1,6 @@
 package solutions._000;
 
-import utils.DataStructures.Triple;
+import utils.structs.Triple;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

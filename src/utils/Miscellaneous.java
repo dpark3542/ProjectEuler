@@ -1,6 +1,6 @@
 package utils;
 
-import utils.NumberTheory.BigFraction;
+import utils.structs.BigFraction;
 
 public final class Miscellaneous {
     /**
@@ -40,7 +40,7 @@ public final class Miscellaneous {
     }
 
     /**
-     * Uses Gaussian elimination to row reduce matrices to echelon form in place.
+     * Uses Gaussian elimination to row reduce matrices to reduced echelon form in place.
      * @param a m by n matrix
      */
     public static void rowReduce(BigFraction[][] a) {

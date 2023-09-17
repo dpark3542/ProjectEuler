@@ -6,14 +6,12 @@ package solutions._100;
  *
  * First, we will need v_p(i!) for i <= n. We can calculate this using dynamic programming.
  * For each k, for every kth prime power <= n, increment v_p of that prime power.
- * Now each element in array is the number of times p divides i! more than (i-1)!
+ * Now each element in array is the number of times p divides i! more than (i-1)!.
  * Accumulate at the end.
  *
  * Next, c = C(n, x, y, z) is a multiple of 10^12 if and only if
  * v_2(n) - v_2(x) - v_2(y) - v_2(z) >= 12
- * v_5(n) - v_5(x) - v_5(y) - v_5(z) >= 12
- * are both true.
- *
+ * v_5(n) - v_5(x) - v_5(y) - v_5(z) >= 12.
  * Brute force each triple (x, y, z) for this condition.
  *
  */

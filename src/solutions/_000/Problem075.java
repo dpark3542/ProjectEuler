@@ -12,7 +12,7 @@ public class Problem075 {
 
         for (int m = 2; m <= 865; m++) {
             int lo = m % 2 == 0 ? 1 : 0;
-            int hi = java.lang.Math.min(java.lang.Math.floorDiv(lim, 2 * m) - m, m - 1);
+            int hi = Math.min(Math.floorDiv(lim, 2 * m) - m, m - 1);
             for (int n = lo; n <= hi; n += 2) {
                 if (gcd(n, m) == 1) {
                     int d = 2 * m * (m + n);

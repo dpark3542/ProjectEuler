@@ -1,8 +1,9 @@
 package solutions._000;
 
+import static utils.NumberTheory.divisorCount;
+
 /*
- * Brute force: compute the number of divisors of each triangle number
- * Number of divisors are computed using a prime factorization algorithm.
+ * Brute force: compute the number of divisors of each triangle number.
  *
  */
 public class Problem012 {
@@ -12,19 +13,5 @@ public class Problem012 {
             T = n * (n + 1) / 2;
         }
         System.out.println(T);
-    }
-
-    private static int divisorCount(int x) {
-        int cnt = 0;
-        int sq = (int) Math.sqrt(x);
-        if (x == sq * sq) {
-            cnt++;
-        }
-        for (int i = 2; i < Math.sqrt(x); i++) {
-            if (x % i == 0) {
-                cnt += 2;
-            }
-        }
-        return cnt;
     }
 }

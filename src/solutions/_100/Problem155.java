@@ -1,8 +1,7 @@
 package solutions._100;
 
-import utils.NumberTheory.BigFraction;
+import utils.structs.BigFraction;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
