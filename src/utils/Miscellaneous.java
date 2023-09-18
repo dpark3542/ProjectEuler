@@ -2,11 +2,12 @@ package utils;
 
 import utils.structs.BigFraction;
 
+import java.math.BigInteger;
+
 public final class Miscellaneous {
     /**
-     * Generates next lexicographic permutation.
+     * Generates next lexicographic permutation in place.
      * Implementation from: https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
-     * Modifies permutation array in place.
      * Permutation array can contain any integers since comparisons are used.
      * If permutation is lexicographically last (reverse order), then the same permutation is returned.
      *
@@ -63,5 +64,18 @@ public final class Miscellaneous {
                 h++;
             }
         }
+    }
+
+    public static int digitSum(BigInteger x) {
+        if (x.compareTo(BigInteger.ZERO) < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        int sum = 0;
+        while (!x.equals(BigInteger.ZERO)) {
+            sum += x.mod(BigInteger.TEN).intValue();
+            x = x.divide(BigInteger.TEN);
+        }
+        return sum;
     }
 }

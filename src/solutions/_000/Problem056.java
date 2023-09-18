@@ -2,6 +2,8 @@ package solutions._000;
 
 import java.math.BigInteger;
 
+import static utils.Miscellaneous.digitSum;
+
 /*
  * Brute force: test all digit sums.
  * Some small optimizations can be made such as recursively calculating a^b by storing previous power(s).
@@ -23,14 +25,5 @@ public class Problem056 {
             }
         }
         System.out.println(max);
-    }
-
-    private static int digitSum(BigInteger x) {
-        int ds = 0;
-        while (!x.equals(BigInteger.ZERO)) {
-            ds += x.mod(BigInteger.TEN).intValue();
-            x = x.divide(BigInteger.TEN);
-        }
-        return ds;
     }
 }

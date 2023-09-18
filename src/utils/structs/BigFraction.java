@@ -21,7 +21,7 @@ public class BigFraction extends Number implements Comparable<BigFraction> {
         if (b.compareTo(BigInteger.ZERO) == 0) {
             throw new ArithmeticException("Division by zero");
         }
-        sign = a.compareTo(BigInteger.ZERO) == 0 || a.compareTo(BigInteger.ZERO) * b.compareTo(BigInteger.ZERO) > 0;
+        sign = a.equals(BigInteger.ZERO) || a.compareTo(BigInteger.ZERO) * b.compareTo(BigInteger.ZERO) > 0;
         BigInteger g = a.gcd(b);
         n = a.divide(g).abs();
         d = b.divide(g).abs();
@@ -31,38 +31,67 @@ public class BigFraction extends Number implements Comparable<BigFraction> {
         this(BigInteger.valueOf(a), BigInteger.valueOf(b));
     }
 
+    public BigFraction(BigInteger a) {
+        this(a, BigInteger.ONE);
+    }
+
+    public BigFraction(long a) {
+        this(BigInteger.valueOf(a));
+    }
+
     public BigFraction add(BigFraction f) {
         BigInteger a = sign ? n : n.negate(), c = f.sign ? f.n : f.n.negate();
         return new BigFraction(a.multiply(f.d).add(c.multiply(d)), d.multiply(f.d));
     }
 
+    public BigFraction subtract(BigFraction f) {
+        return add(f.negate());
+    }
+
     public BigFraction multiply(BigFraction f) {
         BigInteger g = n.gcd(f.d), h = f.n.gcd(d);
-        boolean newSign = sign == f.sign || n.compareTo(BigInteger.ZERO) == 0 || f.n.compareTo(BigInteger.ZERO) == 0;
-        return new BigFraction(n.divide(g).multiply(f.n.divide(h)), d.divide(h).multiply(f.d.divide(g)), newSign);
+        return new BigFraction(n.divide(g).multiply(f.n.divide(h)),
+                               d.divide(h).multiply(f.d.divide(g)),
+                               sign == f.sign || n.equals(BigInteger.ZERO) || f.n.equals(BigInteger.ZERO));
+    }
+
+    public BigFraction divide(BigFraction f) {
+        return multiply(f.inverse());
     }
 
     public BigFraction negate() {
-        if (n.compareTo(BigInteger.ZERO) == 0) {
+        if (equals(ZERO)) {
             return this;
         }
         return new BigFraction(n, d, !sign);
     }
 
     public BigFraction inverse() {
+        if (equals(ZERO)) {
+            throw new ArithmeticException("Division by zero");
+        }
+
         return new BigFraction(d, n, sign);
     }
 
     @Override
     public int intValue() {
-        int value = n.divide(d).intValue();
-        return sign ? value : -value;
+        if (n.mod(d).equals(BigInteger.ZERO)) {
+            int value = n.divide(d).intValue();
+            return sign ? value : -value;
+        } else {
+            throw new ArithmeticException("Fraction does not evaluate to integer");
+        }
     }
 
     @Override
     public long longValue() {
-        long value = n.divide(d).longValue();
-        return sign ? value : -value;
+        if (n.mod(d).equals(BigInteger.ZERO)) {
+            long value = n.divide(d).longValue();
+            return sign ? value : -value;
+        } else {
+            throw new ArithmeticException("Fraction does not evaluate to integer");
+        }
     }
 
     @Override
@@ -73,7 +102,7 @@ public class BigFraction extends Number implements Comparable<BigFraction> {
 
     @Override
     public double doubleValue() {
-        double value = new BigDecimal(n).divide(new BigDecimal(d), MathContext.DECIMAL32).doubleValue();
+        double value = new BigDecimal(n).divide(new BigDecimal(d), MathContext.DECIMAL64).doubleValue();
         return sign ? value : -value;
     }
 
@@ -84,8 +113,7 @@ public class BigFraction extends Number implements Comparable<BigFraction> {
         } else if (!(obj instanceof BigFraction)) {
             return false;
         }
-        BigFraction f = (BigFraction) obj;
-        return n.equals(f.n) && d.equals(f.d) && sign == f.sign;
+        return compareTo((BigFraction) obj) == 0;
     }
 
     @Override
