@@ -7,7 +7,6 @@ package solutions._100;
  * The fundamental solution is trivially (u,v) = (1,1).
  * Then all solutions (u,v) satisfy (1+sqrt(2))^k = u + v * sqrt(2) for some k.
  * Iterate on k until u = 2y-1 > 2 * 10^12 + 1.
- *
  * We can also get a close lower bound on k:
  * Summing (1+sqrt(2))^k and (1-sqrt(2))^k cancels all the non-integral terms in the expansion.
  * Hence, u = ((1+sqrt(2))^k + (1-sqrt(2))^k) / 2.
@@ -17,7 +16,7 @@ package solutions._100;
 public class Problem100 {
     public static void main(String[] args) {
         long u = 1, v = 1;
-        while (u - 1 <= 2e12) {
+        while (u - 1 <= 2000000000000L) {
             long a = u, b = v;
             u = a + 2 * b;
             v = a + b;

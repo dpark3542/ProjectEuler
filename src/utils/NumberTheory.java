@@ -62,7 +62,7 @@ public class NumberTheory {
     /**
      * Generates phi(i) from 1 <= i < n.
      * Phi is multiplicative hence the use of dynamic programming.
-     * @param n
+     * @param n n
      * @return array of phi values
      */
     public static int[] phi(int n) {
@@ -126,6 +126,29 @@ public class NumberTheory {
             if ((e & 1) != 0) {
                 ans = (ans * pow) % m;
             }
+        }
+        return ans;
+    }
+
+    /**
+     * Returns p-adic valuation of n!.
+     * v_p(n!) = \sum_{i=1}^\infty \lfloor n/p^i \rfloor
+     *
+     * @param p prime
+     * @param n n
+     * @return v_p(n!)
+     */
+    public static long legendre(long p, long n) {
+        if (!isPrime(p)) {
+            throw new IllegalArgumentException("Not prime");
+        }
+        if (n < 0) {
+            throw new IllegalArgumentException("Non-negative n");
+        }
+
+        long ans = 0;
+        for (long x = p; x <= n; x *= p) {
+            ans += n / x;
         }
         return ans;
     }
