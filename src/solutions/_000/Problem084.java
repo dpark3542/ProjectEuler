@@ -144,9 +144,9 @@ public class Problem084 {
             }
             a.add(new Pair<>(p, i));
         }
-        a.sort(Comparator.comparing(Pair::getFirst));
+        a.sort(Comparator.comparing(Pair::first));
         for (int i = 0; i < 3; i++) {
-            System.out.printf("%02d", a.get(i).getSecond());
+            System.out.printf("%02d", a.get(i).second());
         }
     }
 }

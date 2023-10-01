@@ -27,7 +27,7 @@ import static utils.NumberTheory.powerMod;
  * \[h(x):=|f^{-1}(x)|=\lvert\{(a,b) \in (\Z^+)^2 \mid x2^a5^b \leq n\}\rvert.\]
  * is monotone decreasing. Moreover, the number of times $h$ strictly decreases is bounded by
  * \[|h(1)| \leq (\log_2n+1)(\log_5n+1).\]
- * We can easily represent $h$ with an accumulated array even though $n$ is large. We can also compute $h^{-1}(x)$ easily with binary search. Finally,
+ * We can easily represent $h$ with an accumulated array even though $n$ is large. We can also compute $h^{-1}$ easily with binary search. Finally,
  * \[|g^{-1}(x)|=\sum_{y\in \im h} y\lvert h^{-1}(y) \cap (m\Z + x)\rvert.\]
  */
 public class Problem160 {
