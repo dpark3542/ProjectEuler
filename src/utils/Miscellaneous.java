@@ -41,6 +41,35 @@ public final class Miscellaneous {
     }
 
     /**
+     * Generates previous permutation in place.
+     * Permutation array can contain any integers since comparisons are used.
+     * If permutation is lexicographically first, then the same permutation is returned.
+     *
+     * @param a permutation
+     */
+    public static void generatePreviousPermutation(int[] a) {
+        int n = a.length, k = n - 2;
+        while (k >= 0 && a[k] <= a[k + 1]) {
+            k--;
+        }
+        if (k < 0) {
+            return;
+        }
+        int l = n - 1;
+        while (a[k] <= a[l]) {
+            l--;
+        }
+        int t = a[l];
+        a[l] = a[k];
+        a[k] = t;
+        for (int i = k + 1; i <= (k + n - 1) / 2; i++) {
+            t = a[n - i + k];
+            a[n - i + k] = a[i];
+            a[i] = t;
+        }
+    }
+
+    /**
      * Uses Gaussian elimination to row reduce matrices to reduced echelon form in place.
      * @param a m by n matrix
      */
