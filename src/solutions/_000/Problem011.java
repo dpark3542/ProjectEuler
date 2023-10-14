@@ -3,7 +3,6 @@ package solutions._000;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 public class Problem011 {
     /*
@@ -11,7 +10,7 @@ public class Problem011 {
      */
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p011_grid.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p011_grid.txt"));
         int n = 20;
         int[][] a = new int[n][n];
         for (int i = 0; i < n; i++) {

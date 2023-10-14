@@ -8,7 +8,7 @@ public class Problem099 {
     private static final int n = 1000;
 
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p099_base_exp.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p099_base_exp.txt"));
         int[][] a = new int[n][2];
         for (int i = 0; i < n; i++) {
             String[] split = br.readLine().split(",");

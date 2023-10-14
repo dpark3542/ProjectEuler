@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.StringTokenizer;
 
 public class Problem054 {
     /*
@@ -12,7 +11,7 @@ public class Problem054 {
      */
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p054_poker.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p054_poker.txt"));
         int cnt = 0;
         for (int i = 0; i < 1000; i++) {
             String[] split = br.readLine().split("\\s");

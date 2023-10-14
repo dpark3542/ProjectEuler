@@ -17,7 +17,7 @@ import java.io.IOException;
 public class Problem018 {
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p018_triangle.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p018_triangle.txt"));
         int n = 15;
         int[][] a = new int[n][n];
         for (int i = 0; i < n; i++) {

@@ -11,7 +11,7 @@ public class Problem042 {
      */
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p042_words.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p042_words.txt"));
         String[] a = br.readLine().split("(\\W)+");
 
         int cnt = 0;

@@ -1,18 +1,18 @@
 package solutions._000;
 
+/**
+ * Test all numbers up to 10^6.
+ * Beyond 6 digits, the maximum possible sum of fifth digit powers is too small.
+ */
 public class Problem030 {
-    /*
-     * Brute force: test all numbers.
-     * An upper bound of 10^6 can be established as all 7 digit numbers are greater than 7*9^5, the maximum possible sum
-     * of the fifth powers of the digits.
-     * This also holds true for numbers with more digits.
-     */
+    private static final int MAX = 1000000;
+
     public static void main(String[] args) {
-        int max = 1000000, tot = 0;
-        for (int i = 10; i < max; i++) {
+        int tot = 0;
+        for (int i = 10; i < MAX; i++) {
             int sum = 0;
             for (int j = i; j > 0; j /= 10) {
-                sum += Math.pow(j % 10, 5);
+                sum += (j % 10) * (j % 10) * (j % 10) * (j % 10) * (j % 10);
             }
             if (i == sum) {
                 tot += i;

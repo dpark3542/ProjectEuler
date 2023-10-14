@@ -2,9 +2,8 @@ package solutions._000;
 
 import static utils.NumberTheory.gcd;
 
-/*
+/**
  * Compute lcm using ab = gcd(a,b)*lcm(a,b).
- *
  */
 public class Problem005 {
     public static void main(String[] args) {

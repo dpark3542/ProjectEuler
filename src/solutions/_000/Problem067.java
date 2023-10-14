@@ -3,7 +3,6 @@ package solutions._000;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 /*
  * See Problem 18.
@@ -20,8 +19,7 @@ import java.util.StringTokenizer;
 public class Problem067 {
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p067_triangle.txt"));
-        StringTokenizer st;
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p067_triangle.txt"));
         int n = 100;
         int[][] a = new int[n][n];
         for (int i = 0; i < n; i++) {

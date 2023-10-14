@@ -11,7 +11,7 @@ public class Problem013 {
      */
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p013_numbers.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p013_numbers.txt"));
         BigInteger sum = BigInteger.ZERO;
         while (br.ready()) {
             sum = sum.add(new BigInteger(br.readLine()));

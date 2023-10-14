@@ -8,7 +8,7 @@ public class Problem098 {
     private static final long LIMIT = 9876543210L;
 
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p098_words.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p098_words.txt"));
         String[] a = br.readLine().split("(\\W)+");
 
 

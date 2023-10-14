@@ -8,6 +8,8 @@ import static java.util.Map.entry;
  * Implementation: convert every number to words.
  */
 public class Problem017 {
+    private static final String HUNDRED = " hundred ";
+    private static final String AND = "and ";
     private static final Map<Integer, String> MAP = Map.ofEntries(
             entry(1, "one"),
             entry(2, "two"),
@@ -55,19 +57,22 @@ public class Problem017 {
         if (MAP.containsKey(x)) {
             return MAP.get(x);
         }
-        String s = "";
+        StringBuilder sb = new StringBuilder();
         if (x >= 100) {
-            s += MAP.get(x / 100) + " hundred ";
+            sb.append(MAP.get(x / 100))
+              .append(HUNDRED);
             if (x % 100 != 0) {
-                s += "and ";
+                sb.append(AND);
             }
         }
         if (MAP.containsKey(x % 100)) {
-            s += MAP.get(x % 100);
+            sb.append(MAP.get(x % 100));
         }
         else if (x % 100 != 0) {
-            s += MAP.get(x % 100 - x % 10) + "-" + MAP.get(x % 10);
+            sb.append(MAP.get(x % 100 - x % 10))
+              .append('-')
+              .append(MAP.get(x % 10));
         }
-        return s;
+        return sb.toString();
     }
 }

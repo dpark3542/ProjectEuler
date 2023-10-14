@@ -14,7 +14,7 @@ import java.util.PriorityQueue;
 public class Problem083 {
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p083_matrix.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p083_matrix.txt"));
         int n = 80;
         int[][] a = new int[n][n];
         for (int i = 0; i < n; i++) {

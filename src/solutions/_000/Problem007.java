@@ -1,23 +1,20 @@
 package solutions._000;
 
+import static utils.NumberTheory.isPrime;
+
+/**
+ * Testing primality is well known. Trial division up to square root implemented below.
+ */
 public class Problem007 {
-    /*
-     * Brute force: test numbers for primality using trial division.
-     * Alternative primality tests exist such as Miller-Rabin.
-     * Java implements a primality test in the BigInteger class.
-     */
+    private static final int n = 10001;
+
     public static void main(String[] args) {
-        int cnt = 0, p = 1;
-        out:
-        while (cnt < 10001) {
-            p++;
-            for (int i = 2; i <= Math.sqrt(p); i++) {
-                if (p % i == 0) {
-                    continue out;
-                }
+        int p = 2;
+        for (int cnt = 0; cnt < n; p++) {
+            if (isPrime(p)) {
+                cnt++;
             }
-            cnt++;
         }
-        System.out.println(p);
+        System.out.println(p - 1);
     }
 }

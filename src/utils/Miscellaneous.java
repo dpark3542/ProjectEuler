@@ -7,7 +7,7 @@ import java.math.BigInteger;
 public final class Miscellaneous {
     /**
      * Generates next lexicographic permutation in place.
-     * Implementation from: https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
+     * Implementation from <a href="https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order">here</a>.
      * Permutation array can contain any integers since comparisons are used.
      * If permutation is lexicographically last (reverse order), then the same permutation is returned.
      *

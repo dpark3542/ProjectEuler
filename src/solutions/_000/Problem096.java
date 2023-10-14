@@ -201,7 +201,7 @@ public class Problem096 {
     }
 
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p096_sudoku.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p096_sudoku.txt"));
         int ans = 0;
         int[][] a = new int[9][9];
         for (int i = 0; i < 50; i++) {

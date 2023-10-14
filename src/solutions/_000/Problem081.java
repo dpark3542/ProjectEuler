@@ -7,7 +7,7 @@ import java.io.IOException;
 public class Problem081 {
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p081_matrix.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p081_matrix.txt"));
         int n = 80;
         int[][] a = new int[n][n];
         for (int i = 0; i < n; i++) {

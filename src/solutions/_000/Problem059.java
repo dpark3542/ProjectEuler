@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 public class Problem059 {
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p059_cipher.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p059_cipher.txt"));
         String[] split = br.readLine().split(",");
         int n = split.length;
         int[] txt = new int[n];

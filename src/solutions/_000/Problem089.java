@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Problem089 {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p089_roman.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p089_roman.txt"));
         int ans = 0;
         while (br.ready()) {
             String s = br.readLine();

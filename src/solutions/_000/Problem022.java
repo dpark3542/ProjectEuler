@@ -11,7 +11,7 @@ public class Problem022 {
      */
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p022_names.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p022_names.txt"));
         String[] a = br.readLine().split("(\\W)+");
 
         Arrays.sort(a);

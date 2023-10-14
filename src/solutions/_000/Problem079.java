@@ -17,7 +17,7 @@ import static utils.Miscellaneous.generateNextPermutation;
 public class Problem079 {
     public static void main(String[] args) throws IOException {
         // input
-        BufferedReader br = new BufferedReader(new FileReader("src/input/p079_keylog.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/resource/p079_keylog.txt"));
         List<List<Integer>> a = new ArrayList<>();
         while (br.ready()) {
             int x = Integer.parseInt(br.readLine());

@@ -1,9 +1,9 @@
 package solutions._000;
 
+/**
+ * Brute force: compute all products and return largest product that is a palindrome
+ */
 public class Problem004 {
-    /*
-     * Brute force: compute all products and return largest product that is a palindrome
-     */
     public static void main(String[] args) {
         int ans = 101 * 101;
         for (int i = 100; i < 999; i++) {
@@ -17,6 +17,6 @@ public class Problem004 {
     }
 
     private static boolean isPalindrome(int x) {
-        return Integer.toString(x).equals(new StringBuilder(Integer.toString(x)).reverse().toString());
+        return Integer.toString(x).contentEquals(new StringBuilder(Integer.toString(x)).reverse());
     }
 }

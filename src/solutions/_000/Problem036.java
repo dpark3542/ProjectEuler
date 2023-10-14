@@ -15,6 +15,6 @@ public class Problem036 {
     }
 
     private static boolean isPalindrome(String s) {
-        return s.equals(new StringBuilder(s).reverse().toString());
+        return s.contentEquals(new StringBuilder(s).reverse());
     }
 }
