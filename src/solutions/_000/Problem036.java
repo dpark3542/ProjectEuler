@@ -1,9 +1,11 @@
 package solutions._000;
 
+import static utils.Miscellaneous.reverseString;
+
+/**
+ * Brute force: test all numbers less than one million.
+ */
 public class Problem036 {
-    /*
-     * Brute force: test all numbers less than one million.
-     */
     public static void main(String[] args) {
         int sum = 0;
         for (int i = 1; i < 1000000; i++) {
@@ -15,6 +17,6 @@ public class Problem036 {
     }
 
     private static boolean isPalindrome(String s) {
-        return s.contentEquals(new StringBuilder(s).reverse());
+        return s.equals(reverseString(s));
     }
 }

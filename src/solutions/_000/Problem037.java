@@ -2,9 +2,8 @@ package solutions._000;
 
 import static utils.NumberTheory.isPrime;
 
-/*
+/**
  * Brute force: test primes until 11 truncatable primes are found.
- *
  */
 public class Problem037 {
     public static void main(String[] args) {
@@ -16,7 +15,7 @@ public class Problem037 {
                     continue out;
                 }
             }
-            for (int q = p; q > 0; q %= Math.pow(10, (int) Math.log10(q))) {
+            for (int q = p; q > 0; q %= (int) Math.pow(10, (int) Math.log10(q))) {
                 if (!isPrime(q)) {
                     continue out;
                 }

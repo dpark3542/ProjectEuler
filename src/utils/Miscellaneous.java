@@ -101,10 +101,13 @@ public final class Miscellaneous {
         }
 
         int sum = 0;
-        while (!x.equals(BigInteger.ZERO)) {
-            sum += x.mod(BigInteger.TEN).intValue();
-            x = x.divide(BigInteger.TEN);
+        for (char c : x.toString().toCharArray()) {
+            sum += c - '0';
         }
         return sum;
+    }
+
+    public static String reverseString(String s) {
+        return new StringBuilder(s).reverse().toString();
     }
 }

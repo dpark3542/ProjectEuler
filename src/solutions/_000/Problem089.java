@@ -12,11 +12,11 @@ public class Problem089 {
             String s = br.readLine();
             ans += s.length();
             s = s.replaceAll("IIII", "IV")
-                    .replaceAll("XXXX", "XL")
-                    .replaceAll("CCCC", "CD")
-                    .replaceAll("VIV", "IX")
-                    .replaceAll("LXL", "XC")
-                    .replaceAll("DCD", "CM");
+                 .replaceAll("XXXX", "XL")
+                 .replaceAll("CCCC", "CD")
+                 .replaceAll("VIV", "IX")
+                 .replaceAll("LXL", "XC")
+                 .replaceAll("DCD", "CM");
             ans -= s.length();
         }
         System.out.println(ans);
