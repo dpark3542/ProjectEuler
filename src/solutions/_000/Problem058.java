@@ -2,27 +2,24 @@ package solutions._000;
 
 import static utils.NumberTheory.isPrime;
 
-/*
+/**
  * Brute force: test each layer.
- * An optimization can be made in obtaining the formulas of each of the corners and realizing the bottom right
- * corner will always be a perfect square and thus not a prime.
- * For the nth layer of numbers around the center, the following closed-form expressions for the corners can be
- * derived for n >= 2:
- * 4n^2 - 4n + 1, 4n^2 - 6n + 3, 4n^2 - 8n + 5, 4n^2 - 10n + 7
- *
+ * For n >= 2, the corners of the nth layer are:
+ * 4n^2 - 4n + 1, 4n^2 - 6n + 3, 4n^2 - 8n + 5, 4n^2 - 10n + 7.
+ * Notice the first corner is a perfect square, hence not prime.
  */
 public class Problem058 {
     public static void main(String[] args) {
         int n = 2, cnt = 3;
-        while ((double) cnt / (4 * n - 3) >= 0.1) {
+        while (10 * cnt >= 4 * n - 3) {
             n++;
-            if (isPrime(4 * n * n - 10 * n + 7)) {
+            if (isPrime(4L * n * n - 10L * n + 7)) {
                 cnt++;
             }
-            if (isPrime(4 * n * n - 8 * n + 5)) {
+            if (isPrime(4L * n * n - 8L * n + 5)) {
                 cnt++;
             }
-            if (isPrime(4 * n * n - 6 * n + 3)) {
+            if (isPrime(4L * n * n - 6L * n + 3)) {
                 cnt++;
             }
         }

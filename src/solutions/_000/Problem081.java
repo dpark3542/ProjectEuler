@@ -11,9 +11,9 @@ public class Problem081 {
         int n = 80;
         int[][] a = new int[n][n];
         for (int i = 0; i < n; i++) {
-            String[] split = br.readLine().split(",");
+            String[] line = br.readLine().split(",");
             for (int j = 0; j < n; j++) {
-                a[i][j] = Integer.parseInt(split[j]);
+                a[i][j] = Integer.parseInt(line[j]);
             }
         }
 
