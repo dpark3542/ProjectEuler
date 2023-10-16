@@ -30,10 +30,8 @@ public class Problem105 {
         System.out.println(sum);
     }
 
-    private static boolean isSpecial(List<Integer> a) {
-        int n = a.size();
-
-        for (int i = 1; 2 * i + 1 <= n; i++) {
+    public static boolean isSpecial(List<Integer> a) {
+        for (int i = 1; 2 * i + 1 <= a.size(); i++) {
             int x = 0;
             for (int j = 0; j < i + 1; j++) {
                 x += a.get(j);
@@ -41,7 +39,7 @@ public class Problem105 {
 
             int y = 0;
             for (int j = 0; j < i; j++) {
-                y += a.get(n - j - 1);
+                y += a.get(a.size() - j - 1);
             }
 
             if (x < y) {

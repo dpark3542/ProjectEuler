@@ -31,7 +31,7 @@ public class Problem101 {
         System.out.println(ans);
     }
 
-    public static long u(int x) {
+    private static long u(int x) {
         long ans = 0, p = 1;
         for (int i = 0; i <= n; i++) {
             ans += p;

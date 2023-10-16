@@ -15,7 +15,6 @@ import java.util.Set;
  */
 public class Problem103 {
     private static final int n = 7;
-    private static final int MAX = 128;
     private static final int[] OFFSET = {0, 1, 2, 4, 7, 8, 9};
     private static final int[] ACCUMULATE = {0, 0, 1, 3, 7, 14, 22, 31};
     public static void main(String[] args) {
@@ -30,32 +29,35 @@ public class Problem103 {
 
     private static boolean dfs(List<Integer> a, int sum) {
         if (a.size() == n - 1) {
-            int tot = 0;
-            for (int i = 0; i < n - 1; i++) {
-                tot += a.get(i);
-            }
             List<Integer> b = new ArrayList<>(a);
-            b.add(sum - tot);
-            return isSpecial(b);
+            b.add(sum);
+            if (isSpecial(b)) {
+                for (int i = 0; i < n; i++) {
+                    System.out.print(b.get(i));
+                }
+                System.out.println();
+                return true;
+            } else {
+                return false;
+            }
         }
 
-        int lo = 0, tot = 0;
+        int lo = 0;
         for (int i = 0; i < a.size(); i++) {
             lo = Math.max(lo, a.get(i) + OFFSET[a.size() - i]);
-            tot += a.get(i);
         }
-        for (int i = lo; tot + (n - a.size()) * i + ACCUMULATE[n - a.size()] <= sum; i++) {
+        for (int i = lo; (n - a.size()) * i + ACCUMULATE[n - a.size()] <= sum; i++) {
             List<Integer> b = new ArrayList<>(a);
             b.add(i);
-            if (dfs(b, sum)) {
+            if (dfs(b, sum - i)) {
                 return true;
             }
         }
         return false;
     }
 
-    private static boolean isSpecial(List<Integer> a) {
-        for (int i = 1; 2 * i + 1 <= n; i++) {
+    public static boolean isSpecial(List<Integer> a) {
+        for (int i = 1; 2 * i + 1 <= a.size(); i++) {
             int x = 0;
             for (int j = 0; j < i + 1; j++) {
                 x += a.get(j);
@@ -63,7 +65,7 @@ public class Problem103 {
 
             int y = 0;
             for (int j = 0; j < i; j++) {
-                y += a.get(n - j - 1);
+                y += a.get(a.size() - j - 1);
             }
 
             if (x < y) {
@@ -72,7 +74,7 @@ public class Problem103 {
         }
 
         Set<Integer> s = new HashSet<>();
-        for (int i = 0; i < MAX; i++) {
+        for (int i = 0; i < Math.pow(2, a.size()); i++) {
             int tot = 0;
             for (int j = 0, k = i; k > 0; k >>= 1, j++) {
                 if ((k & 1) == 1) {
@@ -85,10 +87,6 @@ public class Problem103 {
             s.add(tot);
         }
 
-        for (int i = 0; i < n; i++) {
-            System.out.print(a.get(i));
-        }
-        System.out.println();
         return true;
     }
 }
