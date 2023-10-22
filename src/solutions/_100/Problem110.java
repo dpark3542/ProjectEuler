@@ -33,10 +33,10 @@ public class Problem110 {
             ANS = Math.min(ANS, ap);
         } else {
             long nap = ap * PRIMES.get(a.size());
-            for(int i = 1; i <= a.get(a.size() - 1) && nap < ANS; i++, nap *= PRIMES.get(a.size())) {
+            for (int i = 1; i <= a.get(a.size() - 1) && nap < ANS; i++, nap *= PRIMES.get(a.size())) {
                 List<Integer> b = new ArrayList<>(a);
                 b.add(i);
-                int nep = (ep * (2 * i + 1));
+                int nep = ep * (2 * i + 1);
 
                 dfs(b, nap, nep);
 
