@@ -30,7 +30,7 @@ public class Problem079 {
         }
 
         int[] p = {0, 1, 2, 3, 6, 7, 8, 9};
-        for (int i = 0; i < 40320; i++) {
+        while (true) {
             boolean flag = true;
             for (List<Integer> b : a) {
                 int j = 0, k = 0;

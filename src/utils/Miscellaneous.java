@@ -6,38 +6,46 @@ import java.math.BigInteger;
 
 public final class Miscellaneous {
     /**
-     * Generates next lexicographic permutation in place.
+     * Generates the next lexicographic permutation in place.
      * Implementation from <a href="https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order">here</a>.
      * Permutation array can contain any integers since comparisons are used.
-     * If permutation is lexicographically last (reverse order), then the same permutation is returned.
+     * If permutation is lexicographically last (reverse order), then no change is made.
      *
      * @param a permutation
+     * @return if array was modified
      */
-    public static void generateNextPermutation(int[] a) {
+    public static boolean generateNextPermutation(int[] a) {
         int n = a.length, k = n - 2;
+
         // find largest k such that a[k] < a[k + 1]
         while (k >= 0 && a[k] >= a[k + 1]) {
             k--;
         }
+
         // return early if permutation is in reverse order
         if (k < 0) {
-            return;
+            return false;
         }
+
         // find largest l such that a[k] < a[l]
         int l = n - 1;
         while (a[k] >= a[l]) {
             l--;
         }
+
         // swap a[k] and a[l]
         int t = a[l];
         a[l] = a[k];
         a[k] = t;
+
         // reverse a[k+1..l]
         for (int i = k + 1; i <= (k + n - 1) / 2; i++) {
             t = a[n - i + k];
             a[n - i + k] = a[i];
             a[i] = t;
         }
+
+        return true;
     }
 
     /**
@@ -47,13 +55,13 @@ public final class Miscellaneous {
      *
      * @param a permutation
      */
-    public static void generatePreviousPermutation(int[] a) {
+    public static boolean generatePreviousPermutation(int[] a) {
         int n = a.length, k = n - 2;
         while (k >= 0 && a[k] <= a[k + 1]) {
             k--;
         }
         if (k < 0) {
-            return;
+            return false;
         }
         int l = n - 1;
         while (a[k] <= a[l]) {
@@ -67,6 +75,7 @@ public final class Miscellaneous {
             a[n - i + k] = a[i];
             a[i] = t;
         }
+        return true;
     }
 
     /**
@@ -109,5 +118,28 @@ public final class Miscellaneous {
 
     public static String reverseString(String s) {
         return new StringBuilder(s).reverse().toString();
+    }
+
+    /**
+     * Slow calculation of binomial coefficient n choose k.
+     *
+     * @param n n
+     * @param k k
+     * @return n choose k
+     */
+    public static BigInteger binomial(int n, int k) {
+        if (k < 0 || k > n) {
+            throw new IllegalArgumentException();
+        }
+
+        if (2 * k > n) {
+            k = n - k;
+        }
+
+        BigInteger ans = BigInteger.ONE;
+        for (int i = 0; i < k; i++) {
+            ans = ans.multiply(BigInteger.valueOf(n - i)).divide(BigInteger.valueOf(i + 1));
+        }
+        return ans;
     }
 }

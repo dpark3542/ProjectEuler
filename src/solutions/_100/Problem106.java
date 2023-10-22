@@ -1,5 +1,9 @@
 package solutions._100;
 
+import java.math.BigInteger;
+
+import static utils.Miscellaneous.binomial;
+
 /**
  * Given a satisfying pair of subsets of size $i$, there are $\frac{1}{2}\binom{2i}{i}-C_i$ ways their union can be ordered.
  * Multiply by the number of ways $\binom{n}{2i}$ to get $2i$ such elements.
@@ -10,21 +14,10 @@ public class Problem106 {
     private static final int n = 12;
 
     public static void main(String[] args) {
-        int ans = 0;
+        BigInteger ans = BigInteger.ZERO;
         for (int i = 2; 2 * i <= n; i++) {
-            ans += binomial(n, 2 * i) * (binomial(2 * i, i + 1) - binomial(2 * i, i) / 2);
+            ans = ans.add(binomial(n, 2 * i).multiply(binomial(2 * i, i + 1).subtract(binomial(2 * i, i).divide(BigInteger.TWO))));
         }
         System.out.println(ans);
-    }
-
-    private static int binomial(int a, int b) {
-        int ans = 1;
-        for (int i = b + 1; i <= a; i++) {
-            ans *= i;
-        }
-        for (int i = 2; i <= a - b; i++) {
-            ans /= i;
-        }
-        return ans;
     }
 }

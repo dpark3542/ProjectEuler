@@ -57,8 +57,8 @@ public class Problem093 {
             for (BiFunction<BigFraction, BigFraction, BigFraction> p : OPERATORS) {
                 for (BiFunction<BigFraction, BigFraction, BigFraction> q : OPERATORS) {
                     for (QuinFunction t : TREES) {
-                        int[] l = new int[]{a, b, c, d};
-                        for (int i = 0; i < 24; i++) {
+                        int[] l = {a, b, c, d};
+                        while (true) {
                             try {
                                 int x = t.apply(new BigFraction(l[0]),
                                                 new BigFraction(l[1]),
@@ -72,7 +72,9 @@ public class Problem093 {
 
                             }
 
-                            generateNextPermutation(l);
+                            if (!generateNextPermutation(l)) {
+                                break;
+                            }
                         }
                     }
                 }

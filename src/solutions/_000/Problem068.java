@@ -22,7 +22,7 @@ public class Problem068 {
             a[i] = i + 1;
         }
         // iterate through all permutations
-        for (int i = 0; i < 3628800; i++) {
+        while (true) {
             boolean flag = true; // flag if magic ring found
             int sum = a[0] + a[1] + a[3]; // sum of first group of 3
             // verify if ring is magic
@@ -53,7 +53,9 @@ public class Problem068 {
                     max = sb.toString();
                 }
             }
-            generateNextPermutation(a);
+            if (!generateNextPermutation(a)) {
+                break;
+            }
         }
         System.out.println(max);
     }
