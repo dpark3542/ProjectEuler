@@ -120,6 +120,14 @@ public final class Miscellaneous {
         return new StringBuilder(s).reverse().toString();
     }
 
+    public static boolean isPalindrome(long x) {
+        if (x < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        return Long.toString(x).equals(reverseString(Long.toString(x)));
+    }
+
     /**
      * Slow calculation of binomial coefficient n choose k.
      *

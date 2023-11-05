@@ -3,10 +3,6 @@ package utils;
 public class NumberTheory {
     /**
      * Returns if a number is prime using trial division.
-     * There exist many other well-known primality tests which are more efficient.
-     * Storing primes up to some limit and using binary search may be more efficient.
-     * (May implement this in the future and store primes in a text file somewhere.)
-     * Often times trial division is fast and simplistic enough to justify being used.
      *
      * @param n integer to check
      * @return boolean if integer is prime
@@ -15,7 +11,7 @@ public class NumberTheory {
         if (n < 2) {
             return false;
         }
-        for (long i = 2; i <= Math.sqrt(n); i++) {
+        for (long i = 2; i * i <= n; i++) {
             if (n % i == 0) {
                 return false;
             }

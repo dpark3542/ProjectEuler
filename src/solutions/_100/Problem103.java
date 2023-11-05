@@ -74,9 +74,9 @@ public class Problem103 {
         }
 
         Set<Integer> s = new HashSet<>();
-        for (int i = 0; i < Math.pow(2, a.size()); i++) {
+        for (int i = 0; i < (1 << a.size()); i++) {
             int tot = 0;
-            for (int j = 0, k = i; k > 0; k >>= 1, j++) {
+            for (int j = 0, k = i; k > 0; j++, k >>= 1) {
                 if ((k & 1) == 1) {
                     tot += a.get(j);
                 }

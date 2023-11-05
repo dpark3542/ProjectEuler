@@ -1,6 +1,6 @@
 package solutions._000;
 
-import static utils.Miscellaneous.reverseString;
+import static utils.Miscellaneous.isPalindrome;
 
 /**
  * Brute force: compute all products and return the largest product that is a palindrome.
@@ -16,9 +16,5 @@ public class Problem004 {
             }
         }
         System.out.println(ans);
-    }
-
-    private static boolean isPalindrome(int x) {
-        return Integer.toString(x).equals(reverseString(Integer.toString(x)));
     }
 }
