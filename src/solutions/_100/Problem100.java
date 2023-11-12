@@ -1,26 +1,28 @@
 package solutions._100;
 
+import utils.structs.Pair;
+
+import java.math.BigInteger;
+import java.util.Iterator;
+
+import static utils.NumberTheory.pellSolve;
+
 /**
  * Let there be x blue balls and y total balls.
  * The probability is x(x-1)/(y(y-1)) = 1/2.
- * This is the Pell's equation u^2 - 2v^2 = -1 with the change of variables u = 2y-1 and v = 2x-1.
- * The fundamental solution is trivially (u,v) = (1,1).
- * Then all solutions (u,v) satisfy (1+sqrt(2))^k = u + v * sqrt(2) for some k.
- * Iterate on k until u = 2y-1 > 2 * 10^12 + 1.
- * We can also get a close lower bound on k:
- * Summing (1+sqrt(2))^k and (1-sqrt(2))^k cancels all the non-integral terms in the expansion.
- * Hence, u = ((1+sqrt(2))^k + (1-sqrt(2))^k) / 2.
- * Solving (1+sqrt(2))^k > u > 2 * 10^12 + 1 yields a lower bound.
- * Since (1-sqrt(2))^k vanishes as k grows, this lower bound is a good approximation.
+ * This is the Pell equation u^2 - 2v^2 = -1 with the change of variables u = 2y-1 and v = 2x-1.
  */
 public class Problem100 {
+    private static final long LIMIT = 1000000000000L;
+
     public static void main(String[] args) {
-        long u = 1, v = 1;
-        while (u - 1 <= 2000000000000L) {
-            long a = u, b = v;
-            u = a + 2 * b;
-            v = a + b;
+        Iterator<Pair<BigInteger, BigInteger>> ps = pellSolve(2, -1);
+        BigInteger u = BigInteger.ZERO, v = BigInteger.ZERO;
+        while (!(u.mod(BigInteger.TWO).equals(BigInteger.ONE) && u.compareTo(BigInteger.valueOf(2 * LIMIT - 1)) > 0)) {
+            Pair<BigInteger, BigInteger> p = ps.next();
+            u = p.first();
+            v = p.second();
         }
-        System.out.println((v + 1) / 2);
+        System.out.println(v.add(BigInteger.ONE).divide(BigInteger.TWO));
     }
 }

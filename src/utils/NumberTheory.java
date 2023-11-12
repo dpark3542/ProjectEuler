@@ -1,6 +1,22 @@
 package utils;
 
-public class NumberTheory {
+import utils.structs.DistinctPriorityQueue;
+import utils.structs.InfiniteIterator;
+import utils.structs.Pair;
+import utils.structs.Triple;
+
+import java.math.BigInteger;
+import java.util.AbstractQueue;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+
+import static utils.ContinuedFraction.squareRootContinuedFraction;
+
+public final class NumberTheory {
+    private static final BigInteger LIMIT = BigInteger.valueOf(10000000);
+
     /**
      * Returns if a number is prime using trial division.
      *
@@ -147,5 +163,149 @@ public class NumberTheory {
             ans += n / x;
         }
         return ans;
+    }
+
+    /**
+     * Solves Pell equation x^2 - d * y^2 = n.
+     * Based on a <a href="https://kconrad.math.uconn.edu/blurbs/ugradnumthy/pelleqn2.pdf">write up</a> by Keith Conrad.
+     *
+     * @param d d
+     * @param n n
+     * @return sorted, positive solutions to x^2 - d * y^2 = n.
+     */
+    public static Iterator<Pair<BigInteger, BigInteger>> pellSolve(int d, int n) {
+        if (d <= 0) {
+            throw new IllegalArgumentException();
+        }
+
+        if (n == 0) {
+            return Collections.emptyIterator();
+        }
+
+        // Find u = a + b sqrt(d) such that a^2 - d * b^2 = 1.
+        Iterator<Triple<BigInteger, BigInteger, BigInteger>> cf = squareRootContinuedFraction(BigInteger.valueOf(d));
+        BigInteger a = BigInteger.ZERO, b = BigInteger.ZERO;
+        while (!multiply(new Pair<>(a, b), new Pair<>(a, b.negate()), BigInteger.valueOf(d))
+                .equals(new Pair<>(BigInteger.ONE, BigInteger.ZERO))) {
+            Triple<BigInteger, BigInteger, BigInteger> t = cf.next();
+            a = t.second();
+            b = t.third();
+        }
+        final Pair<BigInteger, BigInteger> u = new Pair<>(a, b);
+
+        // If n = 1, then all solutions are powers of u.
+        if (n == 1) {
+            return new InfiniteIterator<>() {
+                private Pair<BigInteger, BigInteger> p = new Pair<>(BigInteger.ONE, BigInteger.ZERO);
+
+                @Override
+                public Pair<BigInteger, BigInteger> next() {
+                    p = multiply(p, u, BigInteger.valueOf(d));
+                    return p;
+                }
+            };
+        }
+
+        // Find all fundamental solutions (x', y') from Theorem 3.3.
+        AbstractQueue<Pair<BigInteger, BigInteger>> fs = new DistinctPriorityQueue<>(Comparator.comparing(p -> p.second().abs()));
+        BigInteger hi = a.add(b.multiply(ceilSquareRoot(BigInteger.valueOf(d))))
+                         .sqrt()
+                         .add(BigInteger.ONE)
+                         .multiply(ceilSquareRoot(BigInteger.valueOf(Math.abs(n))))
+                         .divide(BigInteger.TWO.multiply(BigInteger.valueOf(d).sqrt()));
+        // Brute force if bound on |y'| from Theorem 3.3 is small. Otherwise, use a continued fraction.
+        if (hi.compareTo(LIMIT) < 0) {
+            for (int y = 1; y <= hi.intValue(); y++) {
+                long s = n + (long) d * y * y, x = (long) Math.sqrt(s);
+                if (x * x == s) {
+                    fs.add(new Pair<>(BigInteger.valueOf(x), BigInteger.valueOf(y)));
+                }
+            }
+        } else if (n * n >= d) {
+            cf = squareRootContinuedFraction(BigInteger.valueOf(d));
+            for (Triple<BigInteger, BigInteger, BigInteger> t = cf.next(); t.third()
+                                                                            .compareTo(hi) <= 0; t = cf.next()) {
+                BigInteger x = t.second(), y = t.third();
+                if (x.multiply(x).subtract(BigInteger.valueOf(d).multiply(y).multiply(y)).equals(BigInteger.valueOf(n))) {
+                    fs.add(new Pair<>(x, y));
+                }
+            }
+        } else {
+            throw new UnsupportedOperationException();
+        }
+
+        if (fs.isEmpty()) {
+            return Collections.emptyIterator();
+        } else {
+            return new InfiniteIterator<>() {
+                @Override
+                public Pair<BigInteger, BigInteger> next() {
+                    Pair<BigInteger, BigInteger> ans = fs.poll();
+
+                    List<Pair<BigInteger, BigInteger>> a = List.of(
+                            multiply(ans, u, BigInteger.valueOf(d)),
+                            multiply(ans, conjugate(u), BigInteger.valueOf(d)),
+                            multiply(conjugate(ans), u, BigInteger.valueOf(d)),
+                            multiply(conjugate(ans), conjugate(u), BigInteger.valueOf(d))
+                    );
+
+                    for (Pair<BigInteger, BigInteger> p : a) {
+                        if (p.second().abs().compareTo(ans.second().abs()) > 0) {
+                            fs.add(abs(p));
+                        }
+                    }
+
+                    return ans;
+                }
+            };
+        }
+    }
+
+    // TODO: refactor below to Miscellaneous
+    private static BigInteger ceilSquareRoot(BigInteger x) {
+        if (x.compareTo(BigInteger.ZERO) < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        BigInteger[] sqr = x.sqrtAndRemainder();
+        if (sqr[1].equals(BigInteger.ZERO)) {
+            return sqr[0];
+        } else {
+            return sqr[0].add(BigInteger.ONE);
+        }
+    }
+
+    /**
+     * Multiply p = a + b sqrt(D) by q = c + d sqrt(D) in Z[sqrt(D)].
+     *
+     * @param p a + b sqrt(D)
+     * @param q c + d sqrt(D)
+     * @return product in Z[sqrt(D)]
+     */
+    private static Pair<BigInteger, BigInteger> multiply(Pair<BigInteger, BigInteger> p, Pair<BigInteger, BigInteger> q, BigInteger d) {
+        return new Pair<>(
+                p.first().multiply(q.first()).add(d.multiply(p.second()).multiply(q.second())),
+                p.first().multiply(q.second()).add(p.second().multiply(q.first()))
+        );
+    }
+
+    /**
+     * Conjugate a - b sqrt(D) of p = a + b sqrt(D) in Z[sqrt(D)].
+     *
+     * @param p a + b sqrt(D)
+     * @return conjugate of p
+     */
+    private static Pair<BigInteger, BigInteger> conjugate(Pair<BigInteger, BigInteger> p) {
+        return new Pair<>(p.first(), p.second().negate());
+    }
+
+    /**
+     * Applies absolute value to each argument.
+     *
+     * @param p (a, b)
+     * @return (|a|, |b|)
+     */
+    private static Pair<BigInteger, BigInteger> abs(Pair<BigInteger, BigInteger> p) {
+        return new Pair<>(p.first().abs(), p.second().abs());
     }
 }
