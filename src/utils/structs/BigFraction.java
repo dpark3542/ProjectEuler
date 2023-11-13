@@ -74,6 +74,18 @@ public class BigFraction extends Number implements Comparable<BigFraction> {
         return new BigFraction(d, n, sign);
     }
 
+    public BigInteger getNumerator() {
+        return n;
+    }
+
+    public BigInteger getDenominator() {
+        return d;
+    }
+
+    public boolean getSign() {
+        return sign;
+    }
+
     @Override
     public int intValue() {
         if (n.mod(d).equals(BigInteger.ZERO)) {

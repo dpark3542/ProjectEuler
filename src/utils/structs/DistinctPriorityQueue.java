@@ -18,16 +18,12 @@ public class DistinctPriorityQueue<E> extends AbstractQueue<E>  {
 
     @Override
     public boolean add(E e) {
-        return s.add(e) && pq.add(e);
+        return !s.add(e) || pq.add(e);
     }
 
     @Override
     public boolean offer(E e) {
-        if (s.add(e)) {
-            return pq.offer(e);
-        } else {
-            return true;
-        }
+        return !s.add(e) || pq.offer(e);
     }
 
     @Override
