@@ -15,7 +15,7 @@ import java.util.List;
 import static utils.ContinuedFraction.squareRootContinuedFraction;
 
 public final class NumberTheory {
-    private static final BigInteger LIMIT = BigInteger.valueOf(10000000);
+    private static final BigInteger PELL_BRUTE_FORCE_THRESHOLD = BigInteger.valueOf(10000000);
 
     /**
      * Returns if a number is prime using trial division.
@@ -54,21 +54,51 @@ public final class NumberTheory {
 
     /**
      * Returns gcd of two positive numbers using the Euclidean algorithm.
-     * There exist other algorithms which are more efficient.
-     * Java's BigInteger class also implements gcd.
-     * The Euclidean algorithm is simplistic and usually fast enough.
      *
-     * @param x first number
-     * @param y second number
-     * @return gcd of the two numbers
+     * @param a first number
+     * @param b second number
+     * @return gcd(a, b)
      */
-    public static long gcd(long x, long y) {
-        while (y > 0) {
-            long t = y;
-            y = x % y;
-            x = t;
+    public static long gcd(long a, long b) {
+        if (a <= 0 || b <= 0) {
+            throw new IllegalArgumentException();
         }
-        return x;
+
+        while (b > 0) {
+            long t = b;
+            b %= a;
+            a = t;
+        }
+
+        return a;
+    }
+
+    /**
+     * Returns Bezout coefficients (u, v) where au + bv = gcd(a, b) using the extended Euclidean algorithm.
+     *
+     * @param a first number
+     * @param b second number
+     * @return Bezout coefficients
+     */
+    public static Pair<Long, Long> bezout(long a, long b) {
+        if (a <= 1 || b <= 1) {
+            throw new IllegalArgumentException();
+        }
+
+        long rr = a, ss = 1, tt = 0, r = b, s = 0, t = 1;
+        while (r != 0) {
+            long rrr = rr, sss = ss, ttt = tt;
+            rr = r;
+            ss = s;
+            tt = t;
+
+            long q = rrr / rr;
+            r = rrr % rr;
+            s = sss - q * ss;
+            t = ttt - q * tt;
+        }
+
+        return new Pair<>(ss, tt);
     }
 
     /**
@@ -166,6 +196,32 @@ public final class NumberTheory {
     }
 
     /**
+     * Given $x \cong a_i \pmod{n_i}$, returns the unique $x$ mod $\prod n_i$ as determined by the Chinese Remainder Theorem.
+     *
+     * @param a residues
+     * @param n moduli
+     * @return solution to system of congruences
+     */
+    public static long crt(List<Long> a, List<Long> n) {
+        if (n.size() != a.size() || n.size() < 2) {
+            throw new IllegalArgumentException();
+        }
+        // TODO: validate moduli are positive and pairwise coprime
+
+        // TODO: don't combine in given order
+        // TODO: handle overflow
+        long m = n.getFirst(), x = a.getFirst();
+        for (int i = 1; i < n.size(); i++) {
+            Pair<Long, Long> p = bezout(m, n.get(i));
+            x = x * p.second() * n.get(i) + a.get(i) * p.first() * m;
+            m *= n.get(i);
+            x %= m;
+        }
+
+        return Math.floorMod(x, m);
+    }
+
+    /**
      * Solves Pell equation x^2 - d * y^2 = n.
      * Based on a <a href="https://kconrad.math.uconn.edu/blurbs/ugradnumthy/pelleqn2.pdf">write up</a> by Keith Conrad.
      *
@@ -214,7 +270,7 @@ public final class NumberTheory {
                          .multiply(ceilSquareRoot(BigInteger.valueOf(Math.abs(n))))
                          .divide(BigInteger.TWO.multiply(BigInteger.valueOf(d).sqrt()));
         // Brute force if bound on |y'| from Theorem 3.3 is small. Otherwise, use a continued fraction.
-        if (hi.compareTo(LIMIT) < 0) {
+        if (hi.compareTo(PELL_BRUTE_FORCE_THRESHOLD) < 0) {
             for (int y = 1; y <= hi.intValue(); y++) {
                 long s = n + (long) d * y * y, x = (long) Math.sqrt(s);
                 if (x * x == s) {
