@@ -2,10 +2,11 @@ package solutions._100;
 
 import utils.structs.BigFraction;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.math.BigInteger.ZERO;
+import static java.math.BigInteger.valueOf;
 import static utils.NumberTheory.isPrime;
 
 public class Problem152 {
@@ -51,7 +52,7 @@ public class Problem152 {
                 if (g.equals(HALF)) {
                     return 1;
                 }
-            } else if (!g.getDenominator().mod(BigInteger.valueOf(PRIMES.get(i))).equals(BigInteger.ZERO)) {
+            } else if (!g.getDenominator().mod(valueOf(PRIMES.get(i))).equals(ZERO)) {
                 ans += dfs(g, i + 1);
             }
         }

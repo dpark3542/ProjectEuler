@@ -6,17 +6,16 @@ import static utils.NumberTheory.gcd;
  * Iterate through Pythagorean triples and keep count of perimeter.
  */
 public class Problem075 {
-    public static void main(String[] args) {
-        int lim = 1500000;
-        int[] cnt = new int[lim + 1];
+    private static final int LIM = 1500000;
 
-        for (int m = 2; m <= 865; m++) {
-            int lo = m % 2 == 0 ? 1 : 0;
-            int hi = Math.min(Math.floorDiv(lim, 2 * m) - m, m - 1);
-            for (int n = lo; n <= hi; n += 2) {
+    public static void main(String[] args) {
+        int[] cnt = new int[LIM + 1];
+
+        for (int m = 2; 2 * m * (m + 1) <= LIM; m++) {
+            for (int n = m % 2 == 0 ? 1 : 2; n < m && 2 * m * (m + n) <= LIM; n += 2) {
                 if (gcd(n, m) == 1) {
                     int d = 2 * m * (m + n);
-                    for (int i = d; i <= lim; i += d) {
+                    for (int i = d; i <= LIM; i += d) {
                         cnt[i]++;
                     }
                 }
@@ -24,7 +23,7 @@ public class Problem075 {
         }
 
         int ans = 0;
-        for (int i = 12; i <= lim; i++) {
+        for (int i = 12; i <= LIM; i++) {
             if (cnt[i] == 1) {
                 ans++;
             }

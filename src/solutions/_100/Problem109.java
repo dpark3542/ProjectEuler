@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 public class Problem109 {
     private static final String D = "D";
     private static final String S25 = "S25";
@@ -46,6 +48,6 @@ public class Problem109 {
     }
 
     private static int value(String s) {
-        return (PREFIXES.indexOf(s.substring(0, 1)) + 1) * Integer.parseInt(s.substring(1));
+        return (PREFIXES.indexOf(s.substring(0, 1)) + 1) * parseInt(s.substring(1));
     }
 }

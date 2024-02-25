@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static java.lang.Integer.parseInt;
+import static java.lang.StrictMath.max;
+
 /*
  * Brute force: compute all totals
  *
@@ -23,7 +26,7 @@ public class Problem018 {
         for (int i = 0; i < n; i++) {
             String[] split = br.readLine().split("\\s");
             for (int j = 0; j <= i; j++) {
-                a[i][j] = Integer.parseInt(split[j]);
+                a[i][j] = parseInt(split[j]);
             }
         }
 
@@ -34,11 +37,11 @@ public class Problem018 {
             dp[i][0] = dp[i - 1][0] + a[i][0];
             dp[i][i] = dp[i - 1][i - 1] + a[i][i];
             for (int j = 1; j < i; j++) {
-                dp[i][j] = Math.max(dp[i - 1][j - 1], dp[i - 1][j]) + a[i][j];
+                dp[i][j] = max(dp[i - 1][j - 1], dp[i - 1][j]) + a[i][j];
             }
         }
         for (int i = 0; i < n; i++) {
-            max = Math.max(max, dp[n - 1][i]);
+            max = max(max, dp[n - 1][i]);
         }
         System.out.println(max);
     }

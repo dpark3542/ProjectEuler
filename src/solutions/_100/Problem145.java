@@ -1,5 +1,6 @@
 package solutions._100;
 
+import static java.lang.Integer.parseInt;
 import static utils.Miscellaneous.reverseString;
 
 public class Problem145 {
@@ -12,7 +13,7 @@ public class Problem145 {
                 continue;
             }
 
-            int j = Integer.parseInt(reverseString(Integer.toString(i)));
+            int j = parseInt(reverseString(Integer.toString(i)));
 
             for (int k = i + j; k > 0; k /= 10) {
                 if ((k % 10) % 2 == 0) {
@@ -25,5 +26,4 @@ public class Problem145 {
 
         System.out.println(ans);
     }
-
 }

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * Minimum spanning tree is well known.
  * Kruskal's algorithm is implemented below without disjoint set union.
@@ -25,7 +27,7 @@ public class Problem107 {
             String[] line = br.readLine().split(",");
             for (int v = 0; v < u; v++) {
                 if (!line[v].equals("-")) {
-                    int w = Integer.parseInt(line[v]);
+                    int w = parseInt(line[v]);
                     ans += w;
                     a.add(new Triple<>(w, u, v));
                 }

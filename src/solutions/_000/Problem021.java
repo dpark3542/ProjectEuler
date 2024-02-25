@@ -1,5 +1,7 @@
 package solutions._000;
 
+import static java.lang.StrictMath.sqrt;
+
 /*
  * Brute force: determine if each number is amicable by d(d(n)) = n.
  * d can be calculated using prime factorization algorithms.
@@ -21,11 +23,11 @@ public class Problem021 {
         if (x == 1) {
             return 0;
         }
-        int s = 1, sq = (int) Math.sqrt(x);
+        int s = 1, sq = (int) sqrt(x);
         if (x == sq * sq) {
             s += sq;
         }
-        for (int i = 2; i < Math.sqrt(x); i++) {
+        for (int i = 2; i < sqrt(x); i++) {
             if (x % i == 0) {
                 s += i + x / i;
             }

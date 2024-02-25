@@ -1,5 +1,7 @@
 package solutions._100;
 
+import static java.lang.StrictMath.max;
+
 /*
  * p(n) = (26 choose n) * (2^n - n - 1)
  */
@@ -17,7 +19,7 @@ public class Problem158 {
 
         long ans = 0;
         for (int i = 1; i <= n; i++) {
-            ans = Math.max(ans, c[i] * (long) ((1 << i) - i - 1));
+            ans = max(ans, c[i] * (long) ((1 << i) - i - 1));
         }
         System.out.println(ans);
     }

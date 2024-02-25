@@ -1,12 +1,12 @@
 package solutions._000;
 
+/*
+ * Brute force: test all numbers.
+ * An upper bound of 10^7 can be established because all 7-digit numbers are greater than 7*9! the maximum sum of
+ * the factorials.
+ * This also holds true for numbers with more digits.
+ */
 public class Problem034 {
-    /*
-     * Brute force: test all numbers.
-     * An upper bound of 10^7 can be established because all 7-digit numbers are greater than 7*9! the maximum sum of
-     * the factorials.
-     * This also holds true for numbers with more digits.
-     */
     public static void main(String[] args) {
         int[] f = new int[10];
         f[0] = 1;

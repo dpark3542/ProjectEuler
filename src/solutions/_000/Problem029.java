@@ -5,16 +5,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/*
+ * Represent all numbers by their prime factorization and remove repeats.
+ *
+ * Alternatively, use Bignums to calculate and count all numbers.
+ */
 public class Problem029 {
-    /*
-     * Represent all numbers by their prime factorization and remove repeats.
-     *
-     * Alternatively, use Bignums to calculate and count all numbers.
-     */
     public static void main(String[] args) {
         List<Integer> pr = new ArrayList<>();
-        out:
-        for (int p = 2; p <= 100; p++) {
+        out: for (int p = 2; p <= 100; p++) {
             for (int q : pr) {
                 if (p % q == 0) {
                     continue out;

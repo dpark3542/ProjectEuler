@@ -1,7 +1,6 @@
 package solutions._100;
 
-import java.math.BigInteger;
-
+import static java.math.BigInteger.valueOf;
 import static utils.Miscellaneous.binomial;
 
 /**
@@ -10,6 +9,6 @@ import static utils.Miscellaneous.binomial;
 public class Problem113 {
     private static final int n = 100;
     public static void main(String[] args) {
-        System.out.println(binomial(n + 9, 9).add(binomial(n + 10, 10)).subtract(BigInteger.valueOf(10 * n + 2)));
+        System.out.println(binomial(n + 9, 9).add(binomial(n + 10, 10)).subtract(valueOf(10 * n + 2)));
     }
 }

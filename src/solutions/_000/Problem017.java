@@ -8,8 +8,7 @@ import static java.util.Map.entry;
  * Implementation: convert every number to words.
  */
 public class Problem017 {
-    private static final String HUNDRED = " hundred ";
-    private static final String AND = "and ";
+    private static final String HUNDRED = " hundred ", AND = "and ";
     private static final Map<Integer, String> MAP = Map.ofEntries(
             entry(1, "one"),
             entry(2, "two"),

@@ -4,6 +4,10 @@ import utils.structs.BigFraction;
 
 import java.math.BigInteger;
 
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.ZERO;
+import static java.math.BigInteger.valueOf;
+
 public final class Miscellaneous {
     /**
      * Generates the next lexicographic permutation in place.
@@ -105,7 +109,7 @@ public final class Miscellaneous {
     }
 
     public static int digitSum(BigInteger x) {
-        if (x.compareTo(BigInteger.ZERO) < 0) {
+        if (x.compareTo(ZERO) < 0) {
             throw new IllegalArgumentException();
         }
 
@@ -144,9 +148,9 @@ public final class Miscellaneous {
             k = n - k;
         }
 
-        BigInteger ans = BigInteger.ONE;
+        BigInteger ans = ONE;
         for (int i = 0; i < k; i++) {
-            ans = ans.multiply(BigInteger.valueOf(n - i)).divide(BigInteger.valueOf(i + 1));
+            ans = ans.multiply(valueOf(n - i)).divide(valueOf(i + 1));
         }
         return ans;
     }

@@ -1,5 +1,9 @@
 package solutions._000;
 
+import static java.lang.StrictMath.ceil;
+import static java.lang.StrictMath.log10;
+import static java.lang.StrictMath.sqrt;
+
 /**
  * Brute force: use BigNum addition to test every fibonacci number until the number contains 1000 digits.
  * Alternatively, apply Binet's formula:
@@ -8,6 +12,6 @@ package solutions._000;
  */
 public class Problem025 {
     public static void main(String[] args) {
-        System.out.println((int) Math.ceil((999 + Math.log10(5) / 2) / Math.log10((1 + Math.sqrt(5)) / 2)));
+        System.out.println((int) ceil((999 + log10(5) / 2) / log10((1 + sqrt(5)) / 2)));
     }
 }

@@ -5,7 +5,6 @@ import java.util.Set;
 
 /*
  * Brute force: test each quadruple of consecutive integers.
- *
  */
 public class Problem047 {
     public static void main(String[] args) {

@@ -4,6 +4,11 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.TEN;
+import static java.math.BigInteger.TWO;
+import static java.math.BigInteger.ZERO;
+
 /**
  * If $n$ is even, then the summation can only contain 0 or 2 1's.
  * The number of sums with 0 1's is $f(n/2)$.
@@ -21,8 +26,8 @@ public class Problem169 {
     private static final Map<BigInteger, Long> MAP = new HashMap<>();
 
     public static void main(String[] args) {
-        MAP.put(BigInteger.ONE, 1L);
-        System.out.println(g(BigInteger.TEN.pow(25).add(BigInteger.ONE)));
+        MAP.put(ONE, 1L);
+        System.out.println(g(TEN.pow(25).add(ONE)));
     }
 
     private static long g(BigInteger x) {
@@ -30,12 +35,12 @@ public class Problem169 {
             return MAP.get(x);
         }
 
-        BigInteger y = x.divide(BigInteger.TWO);
+        BigInteger y = x.divide(TWO);
         long ans;
-        if (x.mod(BigInteger.TWO).equals(BigInteger.ZERO)) {
+        if (x.mod(TWO).equals(ZERO)) {
             ans = g(y);
         } else {
-            ans = g(y) + g(y.add(BigInteger.ONE));
+            ans = g(y) + g(y.add(ONE));
         }
         MAP.put(x, ans);
         return ans;

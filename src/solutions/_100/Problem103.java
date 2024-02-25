@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static java.lang.StrictMath.max;
+
 /**
  * Lots of ugly inequality manipulation will not be shown, but the following can be proven by hand.
  * Let $A=\{a_1 < \cdots < a_7}$.
@@ -44,7 +46,7 @@ public class Problem103 {
 
         int lo = 0;
         for (int i = 0; i < a.size(); i++) {
-            lo = Math.max(lo, a.get(i) + OFFSET[a.size() - i]);
+            lo = max(lo, a.get(i) + OFFSET[a.size() - i]);
         }
         for (int i = lo; (n - a.size()) * i + ACCUMULATE[n - a.size()] <= sum; i++) {
             List<Integer> b = new ArrayList<>(a);

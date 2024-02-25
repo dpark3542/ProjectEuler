@@ -16,7 +16,7 @@ public class Problem077 {
         List<List<Integer>> dp =  new ArrayList<>();
         dp.add(new ArrayList<>());
         dp.add(new ArrayList<>());
-        dp.get(0).add(1);
+        dp.getFirst().add(1);
         dp.get(1).add(0);
         while (true) {
             List<Integer> row = new ArrayList<>();
@@ -49,10 +49,10 @@ public class Problem077 {
                 primes.add(n);
                 for (int i = 0; i < n; i++) {
                     row = dp.get(i);
-                    row.add(row.get(row.size() - 1));
+                    row.add(row.getLast());
                 }
                 row = dp.get(n);
-                row.add(row.get(row.size() - 1) + 1);
+                row.add(row.getLast() + 1);
                 m++;
             }
 

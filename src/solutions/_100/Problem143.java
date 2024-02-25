@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static java.lang.StrictMath.sqrt;
+
 /**
  * $\angle ATB = 180 - \angle AOB = 120$ since $AOBT$ is a cyclic quadrilateral.
  * By Law of Cosines, $c^2=p^2+pr+r^2$.
@@ -48,7 +50,7 @@ public class Problem143 {
     }
 
     private static boolean isAdjacent(long i, long j) {
-        long x = i * i + i * j + j * j, sq = (long) Math.sqrt(x);
+        long x = i * i + i * j + j * j, sq = (long) sqrt(x);
         return sq * sq == x;
     }
 }

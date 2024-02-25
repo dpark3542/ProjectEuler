@@ -6,6 +6,9 @@ import utils.structs.Triple;
 import java.math.BigInteger;
 import java.util.Iterator;
 
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.TWO;
+import static java.math.BigInteger.valueOf;
 import static utils.ContinuedFraction.continuedFraction;
 import static utils.Miscellaneous.digitSum;
 
@@ -20,11 +23,11 @@ public class Problem065 {
             public BigInteger next() {
                 i++;
                 if (i == 1) {
-                    return BigInteger.TWO;
+                    return TWO;
                 } else if (i % 3 == 0) {
-                    return BigInteger.valueOf(2L * i / 3);
+                    return valueOf(2L * i / 3);
                 } else {
-                    return BigInteger.ONE;
+                    return ONE;
                 }
             }
         });

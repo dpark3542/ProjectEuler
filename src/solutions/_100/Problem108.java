@@ -3,6 +3,8 @@ package solutions._100;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.StrictMath.min;
+import static java.lang.StrictMath.pow;
 import static utils.NumberTheory.isPrime;
 
 /**
@@ -18,7 +20,7 @@ public class Problem108 {
     public static void main(String[] args) {
         ANS = 1;
         PRIMES = new ArrayList<>();
-        for (int i = 2; Math.pow(3, PRIMES.size()) <= 2 * MIN - 1; i++) {
+        for (int i = 2; pow(3, PRIMES.size()) <= 2 * MIN - 1; i++) {
             if (isPrime(i)) {
                 ANS *= i;
                 PRIMES.add(i);
@@ -35,10 +37,10 @@ public class Problem108 {
 
     private static void dfs(List<Integer> a, long ap, int ep) {
         if (ep > 2 * MIN - 1) {
-            ANS = Math.min(ANS, ap);
+            ANS = min(ANS, ap);
         } else {
             long nap = ap * PRIMES.get(a.size());
-            for (int i = 1; i <= a.get(a.size() - 1) && nap < ANS; i++, nap *= PRIMES.get(a.size())) {
+            for (int i = 1; i <= a.getLast() && nap < ANS; i++, nap *= PRIMES.get(a.size())) {
                 List<Integer> b = new ArrayList<>(a);
                 b.add(i);
                 int nep = ep * (2 * i + 1);

@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static java.lang.StrictMath.max;
+
 /**
  * Many algorithms exist to solve sudokus.
  * Inefficient implementation below.
@@ -194,7 +196,7 @@ public class Problem096 {
             if (!b[ux][uy][k]) {
                 int[][] c = clone(a);
                 c[ux][uy] = k;
-                ans = Math.max(ans, solve(c));
+                ans = max(ans, solve(c));
             }
         }
         return ans;

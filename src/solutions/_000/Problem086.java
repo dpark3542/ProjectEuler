@@ -1,5 +1,7 @@
 package solutions._000;
 
+import static java.lang.StrictMath.sqrt;
+
 public class Problem086 {
     public static void main(String[] args) {
         int m = 0, cnt = 0;
@@ -7,7 +9,7 @@ public class Problem086 {
             m++;
             for (int a = 1; a <= m; a++) {
                 for (int b = a; b <= m; b++) {
-                    int d = (a + b) * (a + b) + m * m, sq = (int) Math.sqrt(d);
+                    int d = (a + b) * (a + b) + m * m, sq = (int) sqrt(d);
                     if (sq * sq == d) {
                         cnt++;
                     }

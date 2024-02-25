@@ -8,19 +8,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+import static java.lang.StrictMath.sqrt;
+import static java.math.BigInteger.valueOf;
 import static utils.ContinuedFraction.squareRootContinuedFraction;
 
 public class Problem064 {
     public static void main(String[] args) {
         int cnt = 0;
         for (int n = 2; n <= 10000; n++) {
-            int sq = (int) Math.sqrt(n);
+            int sq = (int) sqrt(n);
             if (n == sq * sq) {
                 continue;
             }
 
             List<Integer> a = new ArrayList<>();
-            Iterator<Triple<BigInteger, BigInteger, BigInteger>> cf = squareRootContinuedFraction(BigInteger.valueOf(n));
+            Iterator<Triple<BigInteger, BigInteger, BigInteger>> cf = squareRootContinuedFraction(valueOf(n));
             while (!check(a)) {
                 a.add(cf.next().first().intValue());
             }
@@ -37,7 +39,7 @@ public class Problem064 {
             return false;
         }
 
-        if (2 * a.get(0) != a.get(a.size() - 1)) {
+        if (2 * a.getFirst() != a.getLast()) {
             return false;
         }
 

@@ -12,7 +12,6 @@ import static utils.Miscellaneous.generateNextPermutation;
  * External nodes in clockwise order are a[0], a[2], a[4], a[6], a[8].
  * Internal nodes in clockwise order are a[1], a[3], a[5], a[7], a[9].
  * a[0] is adjacent to a[1].
- *
  */
 public class Problem068 {
     public static void main(String[] args) {

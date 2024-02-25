@@ -2,6 +2,8 @@ package solutions._100;
 
 import java.math.BigInteger;
 
+import static java.math.BigInteger.TWO;
+import static java.math.BigInteger.ZERO;
 import static utils.Miscellaneous.binomial;
 
 /**
@@ -14,9 +16,9 @@ public class Problem106 {
     private static final int n = 12;
 
     public static void main(String[] args) {
-        BigInteger ans = BigInteger.ZERO;
+        BigInteger ans = ZERO;
         for (int i = 2; 2 * i <= n; i++) {
-            ans = ans.add(binomial(n, 2 * i).multiply(binomial(2 * i, i + 1).subtract(binomial(2 * i, i).divide(BigInteger.TWO))));
+            ans = ans.add(binomial(n, 2 * i).multiply(binomial(2 * i, i + 1).subtract(binomial(2 * i, i).divide(TWO))));
         }
         System.out.println(ans);
     }

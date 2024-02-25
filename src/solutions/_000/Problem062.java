@@ -4,13 +4,16 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.StrictMath.ceil;
+import static java.lang.StrictMath.min;
+import static java.lang.StrictMath.pow;
+
 /*
  * Brute force by number of digits.
  * For each n, find all cubes x with n digits.
  * Convert x to a string and sort the string.
  * Keep a count for the number of times each sorted string appears and the corresponding smallest cube for each sorted string.
  * Stop when such a cube has been found.
- *
  */
 public class Problem062 {
     public static void main(String[] args) {
@@ -23,7 +26,7 @@ public class Problem062 {
             Map<String, Integer> cnt = new HashMap<>();
             Map<String, Long> min = new HashMap<>();
             // iterate through all cubes i^3
-            for (int i = (int) Math.ceil(Math.pow(10, (double) (n - 1) / 3)); i < Math.pow(10, (double) n / 3); i++) {
+            for (int i = (int) ceil(pow(10, (double) (n - 1) / 3)); i < pow(10, (double) n / 3); i++) {
                 long x = (long) i * i * i;
                 // find string
                 char[] a = Long.toString(x).toCharArray();
@@ -38,7 +41,7 @@ public class Problem062 {
             // find cubes with 5 permutations
             for (Map.Entry<String, Integer> e : cnt.entrySet()) {
                 if (e.getValue() == 5) {
-                    ans = Math.min(ans, min.get(e.getKey()));
+                    ans = min(ans, min.get(e.getKey()));
                     flag = false;
                 }
             }

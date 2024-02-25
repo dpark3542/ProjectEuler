@@ -2,11 +2,13 @@ package solutions._100;
 
 import java.math.BigInteger;
 
+import static java.math.BigInteger.ONE;
+
 public class Problem104 {
     private static final int MOD = 1000000000;
     public static void main(String[] args) {
         int prevMod = 1, curMod = 1;
-        BigInteger prev = BigInteger.ONE, cur = BigInteger.ONE;
+        BigInteger prev = ONE, cur = ONE;
         for (int k = 3; ; k++) {
             BigInteger tmp = cur;
             cur = cur.add(prev);

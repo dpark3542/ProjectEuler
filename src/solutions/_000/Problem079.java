@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
 import static utils.Miscellaneous.generateNextPermutation;
 
 /**
@@ -20,7 +21,7 @@ public class Problem079 {
         BufferedReader br = new BufferedReader(new FileReader("src/resource/p079_keylog.txt"));
         List<List<Integer>> a = new ArrayList<>();
         while (br.ready()) {
-            int x = Integer.parseInt(br.readLine());
+            int x = parseInt(br.readLine());
             List<Integer> b = new ArrayList<>();
             while (x > 0) {
                 b.add(0, x % 10);

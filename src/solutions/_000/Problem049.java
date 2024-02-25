@@ -30,7 +30,7 @@ public class Problem049 {
                 }
                 int k = (i + j) / 2;
                 if (isPrime(k) && isPermutation(i, j, k) && (i != 1487 || k != 4817 || j != 8147)) {
-                    System.out.println("" + i + k + j);
+                    System.out.printf("%d%d%d\n", i, k, j);
                     return;
                 }
             }

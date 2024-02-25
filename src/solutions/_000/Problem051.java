@@ -3,6 +3,8 @@ package solutions._000;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.StrictMath.min;
+import static java.lang.StrictMath.pow;
 import static utils.NumberTheory.isPrime;
 
 /*
@@ -11,7 +13,6 @@ import static utils.NumberTheory.isPrime;
  * Generating patterns can be done by generating k-combinations of a list, which is a well-known problem.
  * An optimization can be made in noticing that the number of replaced digits for some pattern must be a multiple of
  * 3, else there are less than 8 possible numbers that are not divisible by 3 and thus not prime.
- *
  */
 public class Problem051 {
     public static void main(String[] args) {
@@ -19,11 +20,10 @@ public class Problem051 {
         int min = Integer.MAX_VALUE;
         for (int n = 1; flag; n++) {
             for (int k = 3; k <= n; k += 3) {
-                out:
-                for (int[] p : generatePatterns(n, k)) {
+                out: for (int[] p : generatePatterns(n, k)) {
                     int cnt = 0;
                     for (int d = 0; d <= 9; d++) {
-                        if ((d == 0 && p[0] < Math.pow(10, n)) || !isPrime(p[0] + d * p[1])) {
+                        if ((d == 0 && p[0] < pow(10, n)) || !isPrime(p[0] + d * p[1])) {
                             cnt++;
                         }
                         if (cnt == 3) {
@@ -31,13 +31,13 @@ public class Problem051 {
                         }
                     }
                     if (isPrime(p[0])) {
-                        min = Math.min(min, p[0]);
+                        min = min(min, p[0]);
                     }
                     else if (isPrime(p[0] + p[1])) {
-                        min = Math.min(min, p[0] + p[1]);
+                        min = min(min, p[0] + p[1]);
                     }
                     else {
-                        min = Math.min(min, p[0] + 2 * p[1]);
+                        min = min(min, p[0] + 2 * p[1]);
                     }
                     flag = false;
                 }
@@ -53,7 +53,7 @@ public class Problem051 {
             a[i] = i;
         }
         while (true) {
-            for (int i = 0; i < Math.pow(10, n - k); i++) {
+            for (int i = 0; i < pow(10, n - k); i++) {
                 if (a[0] != 0 && i % 10 == 0) {
                     continue;
                 }
@@ -62,11 +62,11 @@ public class Problem051 {
                 int b = 0;
                 for (int c = 0; c < n; c++) {
                     if (b < k && c == a[b]) {
-                        p[1] += (int) Math.pow(10, n - c - 1);
+                        p[1] += (int) pow(10, n - c - 1);
                         b++;
                     }
                     else {
-                        p[0] += (j % 10) * Math.pow(10, n - c - 1);
+                        p[0] += (j % 10) * pow(10, n - c - 1);
                         j /= 10;
                     }
                 }

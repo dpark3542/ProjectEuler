@@ -3,6 +3,8 @@ package solutions._100;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import static java.lang.StrictMath.abs;
+
 public class Problem139 {
     public static void main(String[] args) {
         int cnt = 0, lim = 100000000;
@@ -15,7 +17,7 @@ public class Problem139 {
             if (a + b + c >= lim) {
                 continue;
             }
-            if (c % Math.abs(b - a) == 0) {
+            if (c % abs(b - a) == 0) {
                 cnt += (lim - 1) / (a + b + c);
             }
             x.addLast(2 * m - n);

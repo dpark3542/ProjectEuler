@@ -13,16 +13,18 @@ import java.util.List;
  */
 public class Problem024 {
     public static void main(String[] args) {
-        int n = 1000000 - 1;
         List<Integer> d = new ArrayList<>();
         for (int i = 0; i <= 9; i++) {
             d.add(i);
         }
+
         int[] f = new int[10];
         f[0] = 1;
         for (int i = 1; i <= 9; i++) {
             f[i] = f[i - 1] * i;
         }
+
+        int n = 1000000 - 1;
         long ans = 0;
         for (int i = 9; i >= 0; i--) {
             ans = 10 * ans + d.get(n / f[i]);

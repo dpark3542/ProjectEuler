@@ -2,6 +2,10 @@ package solutions._100;
 
 import java.math.BigInteger;
 
+import static java.lang.StrictMath.sqrt;
+import static java.math.BigInteger.TWO;
+import static java.math.BigInteger.ZERO;
+import static java.math.BigInteger.valueOf;
 import static utils.NumberTheory.gcd;
 
 /*
@@ -30,12 +34,12 @@ import static utils.NumberTheory.gcd;
 public class Problem153 {
     public static void main(String[] args) {
         int n = 100000000;
-        BigInteger s = BigInteger.ZERO;
+        BigInteger s = ZERO;
         long[] a = new long[n / 2 + 1];
         // compute a[i], the sum of the divisors of i
         a[1] = 1;
         for (int i = 1; i < a.length; i++) {
-            for (int d = 2; d <= Math.sqrt(i); d++) {
+            for (int d = 2; d <= sqrt(i); d++) {
                 if (i % d != 0) {
                     continue;
                 }
@@ -62,16 +66,16 @@ public class Problem153 {
             a[i] += a[i - 1];
         }
         // go through each complex factor x + yi
-        for (int x = 1; x < Math.sqrt(n); x++) {
+        for (int x = 1; x < sqrt(n); x++) {
             for (int y = 1; x * x + y * y <= n; y++) {
                 if (gcd(x, y) == 1) {
-                    s = s.add(BigInteger.TWO.multiply(BigInteger.valueOf(a[n / (x * x + y * y)]).multiply(BigInteger.valueOf(x))));
+                    s = s.add(TWO.multiply(valueOf(a[n / (x * x + y * y)]).multiply(valueOf(x))));
                 }
             }
         }
         // go through each real factor d
         for (int d = 1; d <= n; d++) {
-            s = s.add(BigInteger.valueOf((n / d) * d));
+            s = s.add(valueOf((n / d) * d));
         }
         System.out.println(s);
     }

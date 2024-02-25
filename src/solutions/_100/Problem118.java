@@ -46,7 +46,7 @@ public class Problem118 {
             ans++;
         }
 
-        for (int i = 0, y = a.get(0); 2 * i + 2 <= a.size(); i++, y = 10 * y + a.get(i)) {
+        for (int i = 0, y = a.getFirst(); 2 * i + 2 <= a.size(); i++, y = 10 * y + a.get(i)) {
             if (y > min && isPrime(y)) {
                 ans += dfs(a.subList(i + 1, a.size()), y);
             }

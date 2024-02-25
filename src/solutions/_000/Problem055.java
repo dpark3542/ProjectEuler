@@ -2,6 +2,7 @@ package solutions._000;
 
 import java.math.BigInteger;
 
+import static java.math.BigInteger.valueOf;
 import static utils.Miscellaneous.reverseString;
 
 /**
@@ -11,9 +12,8 @@ import static utils.Miscellaneous.reverseString;
 public class Problem055 {
     public static void main(String[] args) {
         int cnt = 0;
-        out:
-        for (int i = 1; i < 10000; i++) {
-            BigInteger x = BigInteger.valueOf(i);
+        out: for (int i = 1; i < 10000; i++) {
+            BigInteger x = valueOf(i);
             for (int j = 1; j < 50; j++) {
                 x = x.add(new BigInteger(reverseString(x.toString())));
                 if (x.toString().equals(reverseString(x.toString()))) {

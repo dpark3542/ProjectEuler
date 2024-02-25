@@ -1,5 +1,8 @@
 package solutions._100;
 
+import static java.lang.StrictMath.floorMod;
+import static java.lang.StrictMath.min;
+
 public class Problem150 {
     private static final int RADIUS = 1 << 19;
     private static final int n = 1000;
@@ -11,9 +14,9 @@ public class Problem150 {
         int[][] s = new int[n][n];
         for (int t = 0, i = 0; i < n; i++) {
             for (int j = 0; j <= i; j++) {
-                t = Math.floorMod(a * t + b, RADIUS * 2);
+                t = floorMod(a * t + b, RADIUS * 2);
                 s[i][j] = t - RADIUS;
-                ans = Math.min(ans, s[i][j]);
+                ans = min(ans, s[i][j]);
             }
         }
 
@@ -33,14 +36,14 @@ public class Problem150 {
             dp2[i][0] = s[i][0];
             for (int j = 1; j <= i; j++) {
                 dp2[i][j] = dp2[i - 1][j - 1] + dp[i][j - 1] - dp[i - 1][j - 1] + s[i][j];
-                ans = Math.min(ans, dp2[i][j]);
+                ans = min(ans, dp2[i][j]);
             }
         }
 
         for (int i = 2; i < n; i++) {
             for (int j = 1; j < i; j++) {
                 for (int k = j + 1; k <= i; k++) {
-                    ans = Math.min(ans, dp2[i][k] - dp[i][j - 1] + dp[i - k + j - 1][j - 1] - dp2[i - k + j - 1][j - 1]);
+                    ans = min(ans, dp2[i][k] - dp[i][j - 1] + dp[i - k + j - 1][j - 1] - dp2[i - k + j - 1][j - 1]);
                 }
             }
         }

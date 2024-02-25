@@ -11,7 +11,6 @@ import static utils.Miscellaneous.generateNextPermutation;
  * Go through each permutation of the range of values of s, {3, 4, 5, 6, 7, 8}.
  * For each permutation {s_1, s_2, ...}, search for a cycle that passes through an s_1-gonal number, then an s_2-gonal number, etc.
  * Stop when the unique cycle is found. Sum the vertices in the cycle.
- *
  */
 public class Problem061 {
     public static void main(String[] args) {
@@ -72,7 +71,7 @@ public class Problem061 {
                 int len = q.size();
                 for (int i = 0; i < len; i++) {
                     List<Integer> m = q.pollLast();
-                    int x = m.get(m.size() - 1) % 100;
+                    int x = m.getLast() % 100;
                     if (!a.get(s).containsKey(x)) {
                         continue;
                     }
@@ -85,7 +84,7 @@ public class Problem061 {
             }
             // check if path is a cycle
             for (List<Integer> l : q) {
-                if (l.get(l.size() - 1) % 100 == l.get(0) / 100) {
+                if (l.getLast() % 100 == l.getFirst() / 100) {
                     int sum = 0;
                     for (int e : l) {
                         sum += e;

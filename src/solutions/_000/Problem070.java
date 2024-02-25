@@ -6,11 +6,11 @@ import static utils.NumberTheory.phi;
 
 /*
  * Brute force: test all n.
- *
  */
 public class Problem070 {
+    private static final int n = 10000000;
+
     public static void main(String[] args) {
-        int n = 10000000;
         int[] phi = phi(n);
         // find minimum ratio i/phi(i)
         int ans = 2; // n that gives minimum ratio

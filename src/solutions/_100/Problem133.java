@@ -1,19 +1,20 @@
 package solutions._100;
 
+import static java.lang.StrictMath.max;
+import static java.lang.StrictMath.pow;
 import static utils.NumberTheory.isPrime;
 
 public class Problem133 {
     public static void main(String[] args) {
         int sum = 2 + 3 + 5;
-        out:
-        for (int p = 7; p < 100000; p++) {
+        out: for (int p = 7; p < 100000; p++) {
             if (!isPrime(p)) {
                 continue;
             }
             int d = ord(p, 10);
             int v2 = v(2, p - 1), v5 = v(5, p - 1);
-            int max = Math.max(v2, v5) - 1;
-            int m = (p - 1) / (int) (Math.pow(2, v2) * Math.pow(5, v5));
+            int max = max(v2, v5) - 1;
+            int m = (p - 1) / (int) (pow(2, v2) * pow(5, v5));
             if (m != 1) {
                 max += ord(m, 10);
             }

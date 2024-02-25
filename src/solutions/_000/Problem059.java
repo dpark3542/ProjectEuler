@@ -3,8 +3,8 @@ package solutions._000;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.StringTokenizer;
-import java.util.stream.Stream;
+
+import static java.lang.Integer.parseInt;
 
 /*
  * Brute force: test every possible key for a valid message.
@@ -20,13 +20,13 @@ public class Problem059 {
         int n = split.length;
         int[] txt = new int[n];
         for (int i = 0; i < n; i++) {
-            txt[i] = Integer.parseInt(split[i]);
+            txt[i] = parseInt(split[i]);
         }
 
         int cnt = 0, ans = 0;
-        for (int a = (int) 'a'; a <= (int) 'z'; a++) {
-            for (int b = (int) 'a'; b <= (int) 'z'; b++) {
-                for (int c = (int) 'a'; c <= (int) 'z'; c++) {
+        for (int a = 'a'; a <= (int) 'z'; a++) {
+            for (int b = 'a'; b <= (int) 'z'; b++) {
+                for (int c = 'a'; c <= (int) 'z'; c++) {
                     int cur = 0;
                     int[] decr = new int[n];
                     for (int i = 0; i < n; i++) {

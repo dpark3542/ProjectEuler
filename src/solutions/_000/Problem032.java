@@ -3,12 +3,12 @@ package solutions._000;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+ * Brute force: test all possible combinations of multiplicands and multipliers.
+ * An optimization can be made in noticing that the product must be a 1-digit number times a 4-digit number or a
+ * 2-digit number times a 3-digit number, otherwise the number of digits will not turn out to be 9.
+ */
 public class Problem032 {
-    /*
-     * Brute force: test all possible combinations of multiplicands and multipliers.
-     * An optimization can be made in noticing that the product must be a 1-digit number times a 4-digit number or a
-     * 2-digit number times a 3-digit number, otherwise the number of digits will not turn out to be 9.
-     */
     public static void main(String[] args) {
         Set<Integer> prod = new HashSet<>();
         for (int i = 1; i <= 9; i++) {

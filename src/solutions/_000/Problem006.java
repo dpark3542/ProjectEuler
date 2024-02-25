@@ -1,5 +1,7 @@
 package solutions._000;
 
+import static java.lang.StrictMath.abs;
+
 /**
  * Implementation.
  * Alternatively, compute the answer by hand using the following well known formulas:
@@ -17,6 +19,6 @@ public class Problem006 {
             b += i;
         }
         b = b * b;
-        System.out.println(Math.abs(a - b));
+        System.out.println(abs(a - b));
     }
 }

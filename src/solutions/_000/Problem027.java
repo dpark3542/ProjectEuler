@@ -7,6 +7,7 @@ import static utils.NumberTheory.isPrime;
  */
 public class Problem027 {
     private static final int MAX = 1000;
+
     public static void main(String[] args) {
         int max = 0, maxa = 0, maxb = 0;
         for (int a = -MAX + 1; a <= MAX - 1; a++) {

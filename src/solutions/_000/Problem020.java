@@ -2,6 +2,8 @@ package solutions._000;
 
 import java.math.BigInteger;
 
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.valueOf;
 import static utils.Miscellaneous.digitSum;
 
 /**
@@ -15,9 +17,9 @@ public class Problem020 {
     private static final int n = 100;
 
     public static void main(String[] args) {
-        BigInteger x = BigInteger.ONE;
+        BigInteger x = ONE;
         for (int i = 2; i < n; i++) {
-            x = x.multiply(BigInteger.valueOf(i));
+            x = x.multiply(valueOf(i));
         }
         System.out.println(digitSum(x));
     }

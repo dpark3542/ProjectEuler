@@ -5,10 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
+/*
+ * Implementation: compare each set of poker hands.
+ */
 public class Problem054 {
-    /*
-     * Implementation: compare each set of poker hands.
-     */
     public static void main(String[] args) throws IOException {
         // input
         BufferedReader br = new BufferedReader(new FileReader("src/resource/p054_poker.txt"));

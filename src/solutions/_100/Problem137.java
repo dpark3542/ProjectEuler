@@ -5,6 +5,8 @@ import utils.structs.Pair;
 import java.math.BigInteger;
 import java.util.Iterator;
 
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.valueOf;
 import static utils.NumberTheory.pellSolve;
 
 /**
@@ -34,10 +36,10 @@ public class Problem137 {
         int cnt = 0;
         while (cnt < n) {
             p = ps.next();
-            if (p.first().mod(BigInteger.valueOf(5)).equals(BigInteger.ONE)) {
+            if (p.first().mod(valueOf(5)).equals(ONE)) {
                 cnt++;
             }
         }
-        System.out.println(p.first().subtract(BigInteger.ONE).divide(BigInteger.valueOf(5)));
+        System.out.println(p.first().subtract(ONE).divide(valueOf(5)));
     }
 }

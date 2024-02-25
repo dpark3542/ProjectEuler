@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static java.lang.Integer.parseInt;
+import static java.lang.StrictMath.min;
+
 public class Problem081 {
     public static void main(String[] args) throws IOException {
         // input
@@ -13,7 +16,7 @@ public class Problem081 {
         for (int i = 0; i < n; i++) {
             String[] line = br.readLine().split(",");
             for (int j = 0; j < n; j++) {
-                a[i][j] = Integer.parseInt(line[j]);
+                a[i][j] = parseInt(line[j]);
             }
         }
 
@@ -25,7 +28,7 @@ public class Problem081 {
         }
         for (int i = 1; i < n; i++) {
             for (int j = 1; j < n; j++) {
-                dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + a[i][j];
+                dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + a[i][j];
             }
         }
         System.out.println(dp[n - 1][n - 1]);

@@ -1,5 +1,8 @@
 package solutions._100;
 
+import static java.lang.StrictMath.floor;
+import static java.lang.StrictMath.log10;
+import static java.lang.StrictMath.pow;
 import static utils.NumberTheory.isPrime;
 
 public class Problem134 {
@@ -11,7 +14,7 @@ public class Problem134 {
             while (!isPrime(q)) {
                 q++;
             }
-            int i = (int) Math.pow(10, Math.floor(Math.log10(p)) + 1);
+            int i = (int) pow(10, floor(log10(p)) + 1);
             sum += (long) (((q - p) * modInverse(i % q, q)) % q) * i + p;
             p = q;
         }

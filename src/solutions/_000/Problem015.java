@@ -1,16 +1,16 @@
 package solutions._000;
 
+/*
+ * Dynamic programming:
+ * Let dp[i][j] be the number of ways to get to the intersection of the ith horizontal line and jth vertical line.
+ * Recursive formula: dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+ * Loop formula over all i, j.
+ *
+ * Alternatively, notice all routes must go down a block 20 times and to the right a block 20 times.
+ * Problem is equivalent to choosing when to go down 20 times out of the 40 possible times.
+ * Answer is 40 choose 20.
+ */
 public class Problem015 {
-    /*
-     * Dynamic programming:
-     * Let dp[i][j] be the number of ways to get to the intersection of the ith horizontal line and jth vertical line.
-     * Recursive formula: dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
-     * Loop formula over all i, j.
-     *
-     * Alternatively, notice all routes must go down a block 20 times and to the right a block 20 times.
-     * Problem is equivalent to choosing when to go down 20 times out of the 40 possible times.
-     * Answer is 40 choose 20.
-     */
     public static void main(String[] args) {
         int n = 20;
         long[][] dp = new long[n + 1][n + 1];

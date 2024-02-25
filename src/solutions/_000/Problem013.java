@@ -5,14 +5,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigInteger;
 
+import static java.math.BigInteger.ZERO;
+
+/*
+ * Brute force: sum all numbers
+ */
 public class Problem013 {
-    /*
-     * Brute force: sum all numbers
-     */
     public static void main(String[] args) throws IOException {
         // input
         BufferedReader br = new BufferedReader(new FileReader("src/resource/p013_numbers.txt"));
-        BigInteger sum = BigInteger.ZERO;
+        BigInteger sum = ZERO;
         while (br.ready()) {
             sum = sum.add(new BigInteger(br.readLine()));
         }

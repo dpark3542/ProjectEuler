@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static java.lang.StrictMath.max;
+import static java.lang.StrictMath.sqrt;
+
 public class Problem098 {
     private static final long LIMIT = 9876543210L;
 
@@ -58,10 +61,10 @@ public class Problem098 {
                         x = 10 * x + forward[a[j].charAt(k) - 'A'];
                     }
 
-                    long w = (long) Math.sqrt(x);
+                    long w = (long) sqrt(x);
                     if (w * w == x) {
-                        ans = Math.max(ans, (long) u * u);
-                        ans = Math.max(ans, x);
+                        ans = max(ans, (long) u * u);
+                        ans = max(ans, x);
                     }
                 }
             }

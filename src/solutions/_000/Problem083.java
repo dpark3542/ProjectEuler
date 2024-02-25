@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * Dijkstra's algorithm.
  */
@@ -20,7 +22,7 @@ public class Problem083 {
         for (int i = 0; i < n; i++) {
             String[] split = br.readLine().split(",");
             for (int j = 0; j < n; j++) {
-                a[i][j] = Integer.parseInt(split[j]);
+                a[i][j] = parseInt(split[j]);
             }
         }
 

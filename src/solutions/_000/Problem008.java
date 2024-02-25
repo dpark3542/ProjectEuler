@@ -4,10 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static java.lang.Integer.parseInt;
+import static java.lang.StrictMath.max;
+
+/*
+ * Brute force: test all products
+ */
 public class Problem008 {
-    /*
-     * Brute force: test all products
-     */
     public static void main(String[] args) throws IOException {
         // input
         BufferedReader br = new BufferedReader(new FileReader("src/resource/p008_string.txt"));
@@ -18,7 +21,7 @@ public class Problem008 {
 
         int[] a = new int[1000];
         for (int i = 0; i < 1000; i++) {
-            a[i] = Integer.parseInt(sb.substring(i, i + 1));
+            a[i] = parseInt(sb.substring(i, i + 1));
         }
         long max = 0;
         for (int i = 0; i < 1000 - 13; i++) {
@@ -26,7 +29,7 @@ public class Problem008 {
             for (int j = 0; j < 13; j++) {
                 prod *= a[i + j];
             }
-            max = Math.max(max, prod);
+            max = max(max, prod);
         }
         System.out.println(max);
     }

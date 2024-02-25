@@ -12,10 +12,16 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import static java.lang.StrictMath.floorMod;
+import static java.lang.StrictMath.sqrt;
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.TWO;
+import static java.math.BigInteger.ZERO;
+import static java.math.BigInteger.valueOf;
 import static utils.ContinuedFraction.squareRootContinuedFraction;
 
 public final class NumberTheory {
-    private static final BigInteger PELL_BRUTE_FORCE_THRESHOLD = BigInteger.valueOf(10000000);
+    private static final BigInteger PELL_BRUTE_FORCE_THRESHOLD = valueOf(10000000);
 
     /**
      * Returns if a number is prime using trial division.
@@ -40,11 +46,11 @@ public final class NumberTheory {
             return 1;
         }
         int cnt = 2;
-        long sq = (long) Math.sqrt(x);
+        long sq = (long) sqrt(x);
         if (x == sq * sq) {
             cnt++;
         }
-        for (int i = 2; i < Math.sqrt(x); i++) {
+        for (int i = 2; i < sqrt(x); i++) {
             if (x % i == 0) {
                 cnt += 2;
             }
@@ -65,9 +71,10 @@ public final class NumberTheory {
         }
 
         while (b > 0) {
-            long t = b;
-            b %= a;
-            a = t;
+            a %= b;
+            long t = a;
+            a = b;
+            b = t;
         }
 
         return a;
@@ -103,7 +110,7 @@ public final class NumberTheory {
 
     /**
      * Generates phi(i) from 1 <= i < n.
-     * Phi is multiplicative hence the use of dynamic programming.
+     *
      * @param n n
      * @return array of phi values
      */
@@ -113,7 +120,7 @@ public final class NumberTheory {
         for (int i = 2; i < n; i++) {
             // calculate phi[i]
             // find a prime factor j of i
-            for (int j = 2; j <= Math.sqrt(i); j++) {
+            for (int j = 2; j <= sqrt(i); j++) {
                 int a = 1, b = i;
                 while (b % j == 0) {
                     b /= j;
@@ -151,7 +158,7 @@ public final class NumberTheory {
         if (e <= 0) {
             throw new IllegalArgumentException("Non-negative exponent");
         }
-        if (m - 1 > Math.sqrt(Long.MAX_VALUE)) {
+        if (m - 1 > sqrt(Long.MAX_VALUE)) {
             throw new IllegalArgumentException("Possible overflow error");
         }
 
@@ -218,7 +225,7 @@ public final class NumberTheory {
             x %= m;
         }
 
-        return Math.floorMod(x, m);
+        return floorMod(x, m);
     }
 
     /**
@@ -239,10 +246,10 @@ public final class NumberTheory {
         }
 
         // Find u = a + b sqrt(d) such that a^2 - d * b^2 = 1.
-        Iterator<Triple<BigInteger, BigInteger, BigInteger>> cf = squareRootContinuedFraction(BigInteger.valueOf(d));
-        BigInteger a = BigInteger.ZERO, b = BigInteger.ZERO;
-        while (!multiply(new Pair<>(a, b), new Pair<>(a, b.negate()), BigInteger.valueOf(d))
-                .equals(new Pair<>(BigInteger.ONE, BigInteger.ZERO))) {
+        Iterator<Triple<BigInteger, BigInteger, BigInteger>> cf = squareRootContinuedFraction(valueOf(d));
+        BigInteger a = ZERO, b = ZERO;
+        while (!multiply(new Pair<>(a, b), new Pair<>(a, b.negate()), valueOf(d))
+                .equals(new Pair<>(ONE, ZERO))) {
             Triple<BigInteger, BigInteger, BigInteger> t = cf.next();
             a = t.second();
             b = t.third();
@@ -252,11 +259,11 @@ public final class NumberTheory {
         // If n = 1, then all solutions are powers of u.
         if (n == 1) {
             return new InfiniteIterator<>() {
-                private Pair<BigInteger, BigInteger> p = new Pair<>(BigInteger.ONE, BigInteger.ZERO);
+                private Pair<BigInteger, BigInteger> p = new Pair<>(ONE, ZERO);
 
                 @Override
                 public Pair<BigInteger, BigInteger> next() {
-                    p = multiply(p, u, BigInteger.valueOf(d));
+                    p = multiply(p, u, valueOf(d));
                     return p;
                 }
             };
@@ -264,25 +271,25 @@ public final class NumberTheory {
 
         // Find all fundamental solutions (x', y') from Theorem 3.3.
         AbstractQueue<Pair<BigInteger, BigInteger>> fs = new DistinctPriorityQueue<>(Comparator.comparing(p -> p.second().abs()));
-        BigInteger hi = a.add(b.multiply(ceilSquareRoot(BigInteger.valueOf(d))))
+        BigInteger hi = a.add(b.multiply(ceilSquareRoot(valueOf(d))))
                          .sqrt()
-                         .add(BigInteger.ONE)
-                         .multiply(ceilSquareRoot(BigInteger.valueOf(Math.abs(n))))
-                         .divide(BigInteger.TWO.multiply(BigInteger.valueOf(d).sqrt()));
+                         .add(ONE)
+                         .multiply(ceilSquareRoot(valueOf(Math.abs(n))))
+                         .divide(TWO.multiply(valueOf(d).sqrt()));
         // Brute force if bound on |y'| from Theorem 3.3 is small. Otherwise, use a continued fraction.
         if (hi.compareTo(PELL_BRUTE_FORCE_THRESHOLD) < 0) {
             for (int y = 1; y <= hi.intValue(); y++) {
-                long s = n + (long) d * y * y, x = (long) Math.sqrt(s);
+                long s = n + (long) d * y * y, x = (long) sqrt(s);
                 if (x * x == s) {
-                    fs.add(new Pair<>(BigInteger.valueOf(x), BigInteger.valueOf(y)));
+                    fs.add(new Pair<>(valueOf(x), valueOf(y)));
                 }
             }
         } else if (n * n >= d) {
-            cf = squareRootContinuedFraction(BigInteger.valueOf(d));
+            cf = squareRootContinuedFraction(valueOf(d));
             for (Triple<BigInteger, BigInteger, BigInteger> t = cf.next(); t.third()
                                                                             .compareTo(hi) <= 0; t = cf.next()) {
                 BigInteger x = t.second(), y = t.third();
-                if (x.multiply(x).subtract(BigInteger.valueOf(d).multiply(y).multiply(y)).equals(BigInteger.valueOf(n))) {
+                if (x.multiply(x).subtract(valueOf(d).multiply(y).multiply(y)).equals(valueOf(n))) {
                     fs.add(new Pair<>(x, y));
                 }
             }
@@ -299,10 +306,10 @@ public final class NumberTheory {
                     Pair<BigInteger, BigInteger> ans = fs.poll();
 
                     List<Pair<BigInteger, BigInteger>> a = List.of(
-                            multiply(ans, u, BigInteger.valueOf(d)),
-                            multiply(ans, conjugate(u), BigInteger.valueOf(d)),
-                            multiply(conjugate(ans), u, BigInteger.valueOf(d)),
-                            multiply(conjugate(ans), conjugate(u), BigInteger.valueOf(d))
+                            multiply(ans, u, valueOf(d)),
+                            multiply(ans, conjugate(u), valueOf(d)),
+                            multiply(conjugate(ans), u, valueOf(d)),
+                            multiply(conjugate(ans), conjugate(u), valueOf(d))
                     );
 
                     for (Pair<BigInteger, BigInteger> p : a) {
@@ -319,15 +326,15 @@ public final class NumberTheory {
 
     // TODO: refactor below to Miscellaneous
     private static BigInteger ceilSquareRoot(BigInteger x) {
-        if (x.compareTo(BigInteger.ZERO) < 0) {
+        if (x.compareTo(ZERO) < 0) {
             throw new IllegalArgumentException();
         }
 
         BigInteger[] sqr = x.sqrtAndRemainder();
-        if (sqr[1].equals(BigInteger.ZERO)) {
+        if (sqr[1].equals(ZERO)) {
             return sqr[0];
         } else {
-            return sqr[0].add(BigInteger.ONE);
+            return sqr[0].add(ONE);
         }
     }
 

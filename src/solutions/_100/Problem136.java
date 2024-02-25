@@ -1,13 +1,14 @@
 package solutions._100;
 
 public class Problem136 {
+    private static final int LIM = 50000000;
+
     public static void main(String[] args) {
-        int lim = 50000000;
-        int[] cnt = new int[lim];
-        for (int a = 1; a < lim; a++) {
+        int[] cnt = new int[LIM];
+        for (int a = 1; a < LIM; a++) {
             for (int d = a / 4 + 1; d < a; d++) {
                 int n = 4 * a * d - a * a;
-                if (n < lim) {
+                if (n < LIM) {
                     cnt[n]++;
                 }
                 else {
@@ -16,7 +17,7 @@ public class Problem136 {
             }
         }
         int ans = 0;
-        for (int i = 1; i < lim; i++) {
+        for (int i = 1; i < LIM; i++) {
             if (cnt[i] == 1) {
                 ans++;
             }

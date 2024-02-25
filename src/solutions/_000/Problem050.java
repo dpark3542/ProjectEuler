@@ -5,12 +5,12 @@ import java.util.List;
 
 import static utils.NumberTheory.isPrime;
 
+/*
+ *  Brute force: test each sum of primes in decreasing order of number of primes.
+ *  An optimization can be made using dynamic programming in calculating the sum of primes; store the sum of the
+ *  first n primes.
+ */
 public class Problem050 {
-    /*
-     *  Brute force: test each sum of primes in decreasing order of number of primes.
-     *  An optimization can be made using dynamic programming in calculating the sum of primes; store the sum of the
-     *  first n primes.
-     */
     public static void main(String[] args) {
         List<Integer> pr = new ArrayList<>();
         for (int i = 2; i < 1000000; i++) {
@@ -20,7 +20,7 @@ public class Problem050 {
         }
         int n = pr.size();
         long[] dp = new long[n];
-        dp[0] = pr.get(0);
+        dp[0] = pr.getFirst();
         for (int i = 1; i < n; i++) {
             dp[i] = dp[i - 1] + pr.get(i);
         }

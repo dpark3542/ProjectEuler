@@ -1,5 +1,7 @@
 package solutions._100;
 
+import static java.lang.StrictMath.pow;
+
 /**
  * Brute force. Grids with the same row, column, and diagonal sums can be uniquely determined by 9 entries $a_0,\ldots,a_9$:
  * \[\begin{bmatrix}
@@ -10,7 +12,7 @@ package solutions._100;
  * \end{bmatrix}\]
  */
 public class Problem166 {
-    private static final int n = (int) Math.pow(10, 9);
+    private static final int n = (int) pow(10, 9);
     public static void main(String[] args) {
         int ans = 0;
         for (int i = 0; i < n; i++) {

@@ -1,5 +1,7 @@
 package solutions._100;
 
+import static java.lang.StrictMath.max;
+
 public class Problem159 {
     public static void main(String[] args) {
         int n = 1000000, tot = 0;
@@ -15,7 +17,7 @@ public class Problem159 {
             }
             for (int j = 2; j * j <= i; j++) {
                 if (i % j == 0) {
-                    dp[i] = Math.max(dp[i], dp[j] + dp[i / j]);
+                    dp[i] = max(dp[i], dp[j] + dp[i / j]);
                 }
             }
             tot += dp[i];

@@ -1,11 +1,11 @@
 package solutions._100;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static java.math.BigInteger.valueOf;
 import static utils.NumberTheory.crt;
 import static utils.NumberTheory.isPrime;
 
@@ -66,7 +66,7 @@ public class Problem146 {
         }
 
         for (int i = 1; i <= a.getLast(); i += 2) {
-            if (BigInteger.valueOf(x * x + i).isProbablePrime(c) != a.contains(i)) {
+            if (valueOf(x * x + i).isProbablePrime(c) != a.contains(i)) {
                 return false;
             }
         }

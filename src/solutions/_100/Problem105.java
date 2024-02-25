@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static java.lang.Integer.parseInt;
+
 public class Problem105 {
     private static final int m = 100;
 
@@ -18,7 +20,7 @@ public class Problem105 {
         for (int i = 0; i < m; i++) {
             List<Integer> a = new ArrayList<>();
             for (String s : br.readLine().split(",")) {
-                a.add(Integer.parseInt(s));
+                a.add(parseInt(s));
             }
             Collections.sort(a);
             if (isSpecial(a)) {

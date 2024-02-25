@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.BiPredicate;
 
+import static java.lang.StrictMath.min;
+import static java.lang.StrictMath.pow;
+
 public class Problem161 {
-    private static final int n = 12, m = 9, m_pow = (int) Math.pow(3, 9);
+    private static final int n = 12, m = 9, m_pow = (int) pow(3, 9);
     private static final List<Integer> DOMAIN = new ArrayList<>();
     private static final Map<Integer, List<Pair<Integer, Integer>>> MAP = new HashMap<>();
     private static final List<BiPredicate<int[], Integer>> OPERATIONS = List.of(
@@ -145,7 +148,7 @@ public class Problem161 {
         if (i == m) {
             int min = 3;
             for (int j = 0; j < m; j++) {
-                min = Math.min(min, a[j]);
+                min = min(min, a[j]);
             }
 
             int[] b = a.clone();

@@ -7,10 +7,13 @@ import java.math.BigInteger;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.ZERO;
+
 public final class ContinuedFraction {
     public static Iterator<Triple<BigInteger, BigInteger, BigInteger>> continuedFraction(Iterator<BigInteger> a) {
         return new Iterator<>() {
-            private BigInteger hp = BigInteger.ZERO, h = BigInteger.ONE, kp = BigInteger.ONE, k = BigInteger.ZERO;
+            private BigInteger hp = ZERO, h = ONE, kp = ONE, k = ZERO;
 
             @Override
             public boolean hasNext() {
@@ -34,13 +37,13 @@ public final class ContinuedFraction {
     }
 
     public static Iterator<Triple<BigInteger, BigInteger, BigInteger>> squareRootContinuedFraction(BigInteger n) {
-        if (n.compareTo(BigInteger.ZERO) < 0) {
+        if (n.compareTo(ZERO) < 0) {
             throw new IllegalArgumentException();
         }
 
         BigInteger[] sqr = n.sqrtAndRemainder();
         BigInteger sq = sqr[0];
-        if (sqr[1].equals(BigInteger.ZERO)) {
+        if (sqr[1].equals(ZERO)) {
             return continuedFraction(new Iterator<>() {
                 private boolean hasNext = true;
 
@@ -62,7 +65,7 @@ public final class ContinuedFraction {
         }
 
         return continuedFraction(new InfiniteIterator<>() {
-            private BigInteger p = BigInteger.ZERO, q = n, a = BigInteger.ZERO;
+            private BigInteger p = ZERO, q = n, a = ZERO;
 
             @Override
             public BigInteger next() {

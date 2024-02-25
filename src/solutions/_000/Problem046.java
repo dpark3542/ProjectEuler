@@ -8,8 +8,7 @@ import static utils.NumberTheory.isPrime;
 public class Problem046 {
     public static void main(String[] args) {
         int n = 1;
-        out:
-        while (true) {
+        out: while (true) {
             n += 2;
             if (isPrime(n)) {
                 continue;

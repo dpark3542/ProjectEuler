@@ -4,7 +4,6 @@ import static utils.NumberTheory.gcd;
 
 /*
  * Brute force: test all fractions.
- *
  */
 public class Problem033 {
     public static void main(String[] args) {

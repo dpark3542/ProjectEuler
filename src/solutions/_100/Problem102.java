@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * The orientation of three points $(a, b), (c, d), (e, f)$ is well-known to be
  * \[\begin{vmatrix}
@@ -24,7 +26,7 @@ public class Problem102 {
             String[] line = br.readLine().split(",");
             int[] a = new int[6];
             for (int j = 0; j < 6; j++) {
-                a[j] = Integer.parseInt(line[j]);
+                a[j] = parseInt(line[j]);
             }
             int o = Integer.compare(a[0] * a[3] - a[1] * a[2], 0);
             int p = Integer.compare(a[2] * a[5] - a[3] * a[4], 0);

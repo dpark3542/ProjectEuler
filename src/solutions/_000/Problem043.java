@@ -18,8 +18,7 @@ public class Problem043 {
         }
 
         long sum = 0;
-        out:
-        while (generateNextPermutation(a)) {
+        out: while (generateNextPermutation(a)) {
             for (int j = 0; j < 7; j++) {
                 if ((100 * a[j + 1] + 10 * a[j + 2] + a[j + 3]) % PRIMES[j] != 0) {
                     continue out;
