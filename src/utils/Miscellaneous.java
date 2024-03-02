@@ -3,6 +3,7 @@ package utils;
 import utils.structs.BigFraction;
 
 import java.math.BigInteger;
+import java.util.List;
 
 import static java.math.BigInteger.ONE;
 import static java.math.BigInteger.ZERO;
@@ -151,6 +152,26 @@ public final class Miscellaneous {
         BigInteger ans = ONE;
         for (int i = 0; i < k; i++) {
             ans = ans.multiply(valueOf(n - i)).divide(valueOf(i + 1));
+        }
+        return ans;
+    }
+
+    /**
+     * Slow calculation of multinomial coefficient of $\dbinom{a_1+\cdots+a_n}{a_1,\ldots,a_n}$.
+     *
+     * @param a a
+     * @return multinomial coefficient
+     */
+    public static BigInteger multinomial(List<Integer> a) {
+        if (a.size() < 2) {
+            throw new IllegalArgumentException();
+        }
+
+        int sum = a.getFirst() + a.get(1);
+        BigInteger ans = binomial(sum, a.get(1));
+        for (int i = 2; i < a.size(); i++) {
+            sum += a.get(i);
+            ans = ans.multiply(binomial(sum, a.get(i)));
         }
         return ans;
     }

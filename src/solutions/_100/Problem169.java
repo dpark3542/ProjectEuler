@@ -18,6 +18,7 @@ import static java.math.BigInteger.ZERO;
  * \begin{align*}
  *     f(2n) &= f(n) + f(n - 1),\\
  *     f(2n + 1) &= f(n),\\
+ *     f(0) &= 1.\\
  *     f(1) &= 1.
  * \end{align*}
  * Compute $f(10^{25})$ directly with memoization.
