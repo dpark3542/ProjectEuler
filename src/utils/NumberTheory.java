@@ -7,6 +7,7 @@ import utils.structs.Triple;
 
 import java.math.BigInteger;
 import java.util.AbstractQueue;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -226,6 +227,27 @@ public final class NumberTheory {
         }
 
         return floorMod(x, m);
+    }
+
+    public static List<Integer> toBase(long x, int base) {
+        if (x < 0 || base < 2) {
+            throw new IllegalArgumentException();
+        }
+
+        List<Integer> a = new ArrayList<>();
+        while (x > 0) {
+            a.add((int) x % base);
+            x /= base;
+        }
+        return a;
+    }
+
+    public static long fromBase(List<Integer> a, int base) {
+        long ans = 0;
+        for (int x : a) {
+            ans = ans * base + x;
+        }
+        return ans;
     }
 
     /**

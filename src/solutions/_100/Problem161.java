@@ -9,110 +9,111 @@ import java.util.Map;
 import java.util.function.BiPredicate;
 
 import static java.lang.StrictMath.min;
-import static java.lang.StrictMath.pow;
+import static utils.NumberTheory.fromBase;
+import static utils.NumberTheory.toBase;
 
 public class Problem161 {
-    private static final int n = 12, m = 9, m_pow = (int) pow(3, 9);
+    private static final int n = 12, m = 9, m_pow = 19683;
     private static final List<Integer> DOMAIN = new ArrayList<>();
     private static final Map<Integer, List<Pair<Integer, Integer>>> MAP = new HashMap<>();
-    private static final List<BiPredicate<int[], Integer>> OPERATIONS = List.of(
+    private static final List<BiPredicate<List<Integer>, Integer>> OPERATIONS = List.of(
             (a, i) -> {
                 if (i + 1 >= m) {
                     return false;
-                } else if (a[i + 1] != 1) {
+                } else if (a.get(i + 1) != 1) {
                     return false;
                 } else {
-                    a[i] = 2;
-                    a[i + 1] = 2;
+                    a.set(i, 2);
+                    a.set(i + 1, 2);
                     return true;
                 }
             },
             (a, i) -> {
                 if (i - 1 < 0) {
                     return false;
-                } else if (a[i - 1] != 1) {
+                } else if (a.get(i - 1) != 1) {
                     return false;
                 } else {
-                    a[i - 1] = 2;
-                    a[i] = 2;
+                    a.set(i - 1, 2);
+                    a.set(i, 2);
                     return true;
                 }
             },
             (a, i) -> {
                 if (i + 1 >= m) {
                     return false;
-                } else if (a[i + 1] != 0) {
+                } else if (a.get(i + 1) != 0) {
                     return false;
                 } else {
-                    a[i] = 2;
-                    a[i + 1] = 1;
+                    a.set(i, 2);
+                    a.set(i + 1, 1);
                     return true;
                 }
             },
             (a, i) -> {
                 if (i + 1 >= m) {
                     return false;
-                } else if (a[i + 1] != 0) {
+                } else if (a.get(i + 1) != 0) {
                     return false;
                 } else {
-                    a[i] = 1;
-                    a[i + 1] = 2;
+                    a.set(i, 1);
+                    a.set(i + 1, 2);
                     return true;
                 }
             },
             (a, i) -> {
-                a[i] = 3;
+                a.set(i, 3);
                 return true;
             },
             (a, i) -> {
                 if (i + 2 >= m) {
                     return false;
-                } else if (a[i + 1] != 0 || a[i + 2] != 0) {
+                } else if (a.get(i + 1) != 0 || a.get(i + 2) != 0) {
                     return false;
                 } else {
-                    a[i] = 1;
-                    a[i + 1] = 1;
-                    a[i + 2] = 1;
+                    a.set(i, 1);
+                    a.set(i + 1, 1);
+                    a.set(i + 2, 1);
                     return true;
                 }
             },
             (a, i) -> {
                 if (i + 2 >= m) {
                     return false;
-                } else if (a[i + 1] != 0 || a[i + 2] != 0) {
+                } else if (a.get(i + 1) != 0 || a.get(i + 2) != 0) {
                     return false;
                 } else {
-                    a[i] = 2;
-                    a[i + 1] = 2;
-                    a[i + 2] = 2;
+                    a.set(i, 2);
+                    a.set(i + 1, 2);
+                    a.set(i + 2, 2);
                     return true;
                 }
             },
             (a, i) -> {
                 if (i + 3 >= m) {
                     return false;
-                } else if (a[i + 1] != 0 || a[i + 2] != 0 || a[i + 3] != 0) {
+                } else if (a.get(i + 1) != 0 || a.get(i + 2) != 0 || a.get(i + 3) != 0) {
                     return false;
                 } else {
-                    a[i] = 2;
-                    a[i + 1] = 2;
-                    a[i + 2] = 1;
-                    a[i + 3] = 1;
+                    a.set(i, 2);
+                    a.set(i + 1, 2);
+                    a.set(i + 2, 1);
+                    a.set(i + 3, 1);
                     return true;
                 }
             }
     );
     public static void main(String[] args) {
         for (int i = 0; i < m_pow; i++) {
-            int[] a = pushForward(i);
+            List<Integer> a = toBase(i, 3);
 
-            boolean flag = false;
+            boolean flag = a.size() < m;
             int sum = 0;
-            for (int j = 0; j < m; j++) {
-                if (a[j] == 0) {
+            for (int x : a) {
+                if (x == 0) {
                     flag = true;
                 }
-                sum += a[j];
+                sum += x;
             }
 
             if (flag && sum % 3 == 0) {
@@ -121,10 +122,13 @@ public class Problem161 {
         }
 
         for (int i : DOMAIN) {
-            int[] a = pushForward(i);
+            List<Integer> a = toBase(i, 3);
+            while (a.size() < m) {
+                a.add(0);
+            }
 
             int j = 0;
-            while (a[j] != 0) {
+            while (a.get(j) != 0) {
                 j++;
             }
 
@@ -144,26 +148,26 @@ public class Problem161 {
         System.out.println(dp[n][0]);
     }
     
-    private static List<Pair<Integer, Integer>> dfs(int[] a, int i) {
+    private static List<Pair<Integer, Integer>> dfs(List<Integer> a, int i) {
         if (i == m) {
             int min = 3;
             for (int j = 0; j < m; j++) {
-                min = min(min, a[j]);
+                min = min(min, a.get(j));
             }
 
-            int[] b = a.clone();
+            List<Integer> b = new ArrayList<>(m);
             for (int j = 0; j < m; j++) {
-                b[j] -= min;
+                b.add(a.get(j) - min);
             }
 
-            return List.of(new Pair<>(min, pullBack(b)));
+            return List.of(new Pair<>(min, (int) fromBase(b, 3)));
         } else {
             List<Pair<Integer, Integer>> ans = new ArrayList<>();
-            for (BiPredicate<int[], Integer> op : OPERATIONS) {
-                int[] b = a.clone();
+            for (BiPredicate<List<Integer>, Integer> op : OPERATIONS) {
+                List<Integer> b = new ArrayList<>(a);
                 if (op.test(b, i)) {
                     int j = i + 1;
-                    while (j < m && b[j] != 0) {
+                    while (j < m && b.get(j) != 0) {
                         j++;
                     }
                     ans.addAll(dfs(b, j));
@@ -171,22 +175,5 @@ public class Problem161 {
             }
             return ans;
         }
-    }
-
-    private static int[] pushForward(int x) {
-        int[] a = new int[m];
-        for (int i = 0; i < m && x > 0; i++) {
-            a[i] = x % 3;
-            x /= 3;
-        }
-        return a;
-    }
-
-    private static int pullBack(int[] a) {
-        int x = 0;
-        for (int i = 0; i < m; i++) {
-            x = 3 * x + a[i];
-        }
-        return x;
     }
 }

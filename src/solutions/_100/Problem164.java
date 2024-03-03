@@ -6,6 +6,7 @@ package solutions._100;
  */
 public class Problem164 {
     private static final int n = 20;
+
     public static void main(String[] args) {
         long[][][] dp = new long[n + 1][10][10];
         for (int i = 0; i < 10; i++) {

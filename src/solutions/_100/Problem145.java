@@ -16,7 +16,7 @@ public class Problem145 {
             int j = parseInt(reverseString(Integer.toString(i)));
 
             for (int k = i + j; k > 0; k /= 10) {
-                if ((k % 10) % 2 == 0) {
+                if (k % 2 == 0) {
                     continue out;
                 }
             }

@@ -10,10 +10,7 @@ import static java.lang.Integer.parseInt;
 import static utils.Miscellaneous.generateNextPermutation;
 
 /**
- * Inspection of the text file suggests the passcode is simple and may not repeat digits.
- * Indeed, the passcode does not repeat any digits and can even be found by hand.
- * Brute force of all permutations is implemented below.
- * A rigorous solution that is scalable to a larger passcode and alphabet will be slower.
+ * Implementation below assumes passcode contains no repeated digits.
  */
 public class Problem079 {
     public static void main(String[] args) throws IOException {
@@ -22,12 +19,7 @@ public class Problem079 {
         List<List<Integer>> a = new ArrayList<>();
         while (br.ready()) {
             int x = parseInt(br.readLine());
-            List<Integer> b = new ArrayList<>();
-            while (x > 0) {
-                b.add(0, x % 10);
-                x /= 10;
-            }
-            a.add(b);
+            a.add(List.of(x / 100, (x / 10) % 10, x % 10));
         }
 
         int[] p = {0, 1, 2, 3, 6, 7, 8, 9};

@@ -1,16 +1,14 @@
 package solutions._100;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static utils.NumberTheory.toBase;
 
 public class Problem112 {
     public static void main(String[] args) {
         int tot = 1, cnt = 1;
         while (cnt * 100 != tot) {
-            List<Integer> a = new ArrayList<>();
-            for (int i = tot + 1; i > 0; i /= 10) {
-                a.add(i % 10);
-            }
+            List<Integer> a = toBase(tot + 1, 10);
 
             boolean bouncy = false;
             int sign = 0;
