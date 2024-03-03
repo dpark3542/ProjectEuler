@@ -1,0 +1,25 @@
+name: Check solutions
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
+      with:
+        repository: lucky-bai/projecteuler-solutions
+        sparse-checkout: |
+          Solutions.md
+        sparse-checkout-cone-mode: false
+        path: solutions
+    - uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'oracle'
+    - run: ant -noinput -buildfile build.xml -DsolutionsFile=solutions/Solutions.md

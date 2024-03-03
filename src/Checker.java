@@ -3,6 +3,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
@@ -61,7 +62,7 @@ public final class Checker {
         }
 
         try {
-            URL url = new URL(String.format(PROJECT_EULER_URL_FORMAT, id));
+            URL url = URI.create(String.format(PROJECT_EULER_URL_FORMAT, id)).toURL();
 
             URLConnection cookieConnection = url.openConnection();
             cookieConnection.setDoOutput(false);
@@ -73,16 +74,16 @@ public final class Checker {
             answerConnection.getOutputStream().write(String.format(BODY_FORMAT, id, answer).getBytes(StandardCharsets.UTF_8));
             answerConnection.connect();
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(answerConnection.getInputStream()));
-            String correctAnswerPrompt = String.format(CORRECT_ANSWER_PROMPT_FORMAT, id);
-            for (String line = ""; line != null; line = br.readLine()) {
-                if (line.contains(correctAnswerPrompt)) {
-                    return true;
-                } else if (line.contains(WRONG_ANSWER_PROMPT)) {
-                    return false;
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(answerConnection.getInputStream()))){
+                String correctAnswerPrompt = String.format(CORRECT_ANSWER_PROMPT_FORMAT, id);
+                for (String line = ""; line != null; line = br.readLine()) {
+                    if (line.contains(correctAnswerPrompt)) {
+                        return true;
+                    } else if (line.contains(WRONG_ANSWER_PROMPT)) {
+                        return false;
+                    }
                 }
             }
-            br.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
