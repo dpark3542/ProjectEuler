@@ -229,6 +229,24 @@ public final class NumberTheory {
         return floorMod(x, m);
     }
 
+    public static List<Integer> toBase(long x, int base, int length) {
+        if (x < 0 || base < 2) {
+            throw new IllegalArgumentException();
+        }
+
+        List<Integer> a = new ArrayList<>(length);
+        while (x > 0) {
+            a.add((int) x % base);
+            x /= base;
+        }
+
+        while (a.size() < length) {
+            a.add(0);
+        }
+
+        return a;
+    }
+
     public static List<Integer> toBase(long x, int base) {
         if (x < 0 || base < 2) {
             throw new IllegalArgumentException();
@@ -239,6 +257,7 @@ public final class NumberTheory {
             a.add((int) x % base);
             x /= base;
         }
+
         return a;
     }
 

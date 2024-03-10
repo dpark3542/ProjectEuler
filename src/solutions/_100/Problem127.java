@@ -1,49 +1,52 @@
 package solutions._100;
 
+import utils.structs.Pair;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class Problem127 {
+    private static final int n = 120000;
+
     public static void main(String[] args) {
-        int lim = 120000;
-        int[] r = new int[lim];
-        for (int i = 1; i < lim; i++) {
+        int[] r = new int[n];
+        for (int i = 1; i < n; i++) {
             r[i] = rad(i);
         }
+
         long sum = 0;
-        Deque<Integer> x = new ArrayDeque<>(), y = new ArrayDeque<>();
-        x.addLast(2);
-        y.addLast(1);
-        x.addLast(3);
-        y.addLast(1);
-        while (!x.isEmpty()) {
-            int m = x.pollLast(), n = y.pollLast();
-            if (m + n >= lim) {
-                continue;
+        Deque<Pair<Integer, Integer>> st = new ArrayDeque<>();
+        st.addLast(new Pair<>(2, 1));
+        st.addLast(new Pair<>(3, 1));
+        while (!st.isEmpty()) {
+            Pair<Integer, Integer> p = st.pollLast();
+            int b = p.first(), a = p.second();
+            if ((long) r[a] * r[b] * r[a + b] < a + b) {
+                sum += a + b;
             }
-            if ((long) r[m] * r[n] * r[m + n] < m + n) {
-                sum += m + n;
+            if (3 * b - a < n) {
+                st.addLast(new Pair<>(2 * b - a, b));
             }
-            x.addLast(2 * m - n);
-            y.addLast(m);
-            x.addLast(2 * m + n);
-            y.addLast(m);
-            x.addLast(m + 2 * n);
-            y.addLast(n);
+            if (3 * b + a < n) {
+                st.addLast(new Pair<>(2 * b + a, b));
+            }
+            if (b + 3 * a < n) {
+                st.addLast(new Pair<>(b + 2 * a, a));
+            }
         }
         System.out.println(sum);
     }
 
-    private static int rad(int n) {
-        int x = 1;
-        for (int i = 2; i * i <= n; i++) {
-            if (n % i == 0) {
-                x *= i;
+    private static int rad(int k) {
+        int p = 1;
+        for (int i = 2; i * i <= k; i++) {
+            if (k % i == 0) {
+                p *= i;
             }
-            while (n % i == 0) {
-                n /= i;
+            while (k % i == 0) {
+                k /= i;
             }
         }
-        return x * n;
+        return p * k;
     }
 }

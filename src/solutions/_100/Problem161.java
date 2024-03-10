@@ -123,11 +123,7 @@ public class Problem161 {
         }
 
         for (int i : DOMAIN) {
-            List<Integer> a = toBase(i, 3);
-            while (a.size() < m) {
-                a.add(0);
-            }
-
+            List<Integer> a = toBase(i, 3, m);
             int j = 0;
             while (a.get(j) != 0) {
                 j++;

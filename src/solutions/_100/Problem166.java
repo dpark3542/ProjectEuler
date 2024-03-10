@@ -1,76 +1,52 @@
 package solutions._100;
 
-import java.util.List;
-
-import static utils.NumberTheory.toBase;
+import static java.lang.StrictMath.max;
+import static java.lang.StrictMath.min;
 
 /**
- * Brute force. Grids with the same row, column, and diagonal sums can be uniquely determined by 9 entries $a_0,\ldots,a_9$:
+ * Let the grid be:
  * \[\begin{bmatrix}
- *     a_0 & p & a_1 & a_2\\
- *     w & a_3 & q & a_4\\
- *     x & a_5 & a_6 & r\\
- *     a_7 & y & z & a_8
- * \end{bmatrix}\]
+ *     a & b & c & d\\
+ *     e & f & g & h\\
+ *     i & j & k & l\\
+ *     m & n & o & p
+ * \end{bmatrix}.\]
+ * One can show $a + p = g + j$ and $d + m = f = k$.
  */
 public class Problem166 {
-    private static final int n = 1000000000;
+    private static final int n = 9;
 
     public static void main(String[] args) {
         int ans = 0;
-        for (int i = 0; i < n; i++) {
-            List<Integer> a = toBase(i, 10);
-            while (a.size() < 9) {
-                a.add(0);
+        for (int a = 0; a <= n; a++) {
+            for (int p = 0; p <= n; p++) {
+                for (int g = max(0, a + p - n); g <= n && g <= a + p; g++) {
+                    int j = a + p - g;
+                    for (int f = 0; f <= n; f++) {
+                        for (int k = 0; k <= n; k++) {
+                            int sum = a + f + k + p;
+                            for (int d = max(0, f + k - n); d <= n && d <= f + k; d++) {
+                                int b_low = max4(sum - a - d - n, sum - f - j - n, g + k - a - d, 0);
+                                int b_hi = min4(sum - a - d, sum - f - j, g + k - a - d + n, 9);
+                                int h_low = max4(sum - d - p - n, sum - f - g - n, j + k - d - p, 0);
+                                int h_hi = min4(sum - d - p, sum - f - g, j + k - d - p + n, 9);
+                                if (b_low <= b_hi && h_low <= h_hi) {
+                                    ans += (b_hi - b_low + 1) * (h_hi - h_low + 1);
+                                }
+                            }
+                        }
+                    }
+                }
             }
-
-            int s = a.get(0) + a.get(3) + a.get(6) + a.get(8);
-
-            int p = s - a.get(0) - a.get(1) - a.get(2);
-            if (p < 0 || p >= 10) {
-                continue;
-            }
-
-            int q = s - a.get(2) - a.get(5) - a.get(7);
-            if (q < 0 || q >= 10) {
-                continue;
-            }
-
-            int r = s - a.get(2) - a.get(4) - a.get(8);
-            if (r < 0 || r >= 10) {
-                continue;
-            }
-
-            int w = s - a.get(3) - q - a.get(4);
-            if (w < 0 || w >= 10) {
-                continue;
-            }
-
-            int x = s - a.get(5) - a.get(6) - r;
-            if (x < 0 || x >= 10) {
-                continue;
-            }
-
-            if (a.get(0) + w + x + a.get(7) != s) {
-                continue;
-            }
-
-            int y = s - p - a.get(3) - a.get(5);
-            if (y < 0 || y >= 10) {
-                continue;
-            }
-
-            int z = s - a.get(1) - q - a.get(6);
-            if (z < 0 || z >= 10) {
-                continue;
-            }
-
-            if (a.get(7) + y + z + a.get(8) != s) {
-                continue;
-            }
-
-            ans++;
         }
         System.out.println(ans);
+    }
+
+    private static int min4(int a, int b, int c, int d) {
+        return min(min(a, b), min(c, d));
+    }
+
+    private static int max4(int a, int b, int c, int d) {
+        return max(max(a, b), max(c, d));
     }
 }
