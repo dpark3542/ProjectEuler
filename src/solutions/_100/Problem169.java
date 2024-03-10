@@ -38,7 +38,7 @@ public class Problem169 {
 
         BigInteger y = x.divide(TWO);
         long ans;
-        if (x.mod(TWO).equals(ZERO)) {
+        if (x.mod(TWO).signum() == 0) {
             ans = g(y);
         } else {
             ans = g(y) + g(y.add(ONE));

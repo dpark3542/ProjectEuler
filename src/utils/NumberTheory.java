@@ -348,12 +348,12 @@ public final class NumberTheory {
 
     // TODO: refactor below to Miscellaneous
     private static BigInteger ceilSquareRoot(BigInteger x) {
-        if (x.compareTo(ZERO) < 0) {
+        if (x.signum() < 0) {
             throw new IllegalArgumentException();
         }
 
         BigInteger[] sqr = x.sqrtAndRemainder();
-        if (sqr[1].equals(ZERO)) {
+        if (sqr[1].signum() == 0) {
             return sqr[0];
         } else {
             return sqr[0].add(ONE);

@@ -37,13 +37,13 @@ public final class ContinuedFraction {
     }
 
     public static Iterator<Triple<BigInteger, BigInteger, BigInteger>> squareRootContinuedFraction(BigInteger n) {
-        if (n.compareTo(ZERO) < 0) {
+        if (n.signum() < 0) {
             throw new IllegalArgumentException();
         }
 
         BigInteger[] sqr = n.sqrtAndRemainder();
         BigInteger sq = sqr[0];
-        if (sqr[1].equals(ZERO)) {
+        if (sqr[1].signum() == 0) {
             return continuedFraction(new Iterator<>() {
                 private boolean hasNext = true;
 

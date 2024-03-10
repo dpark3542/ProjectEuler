@@ -6,7 +6,6 @@ import java.math.BigInteger;
 import java.util.List;
 
 import static java.math.BigInteger.ONE;
-import static java.math.BigInteger.ZERO;
 import static java.math.BigInteger.valueOf;
 
 public final class Miscellaneous {
@@ -85,32 +84,46 @@ public final class Miscellaneous {
 
     /**
      * Uses Gaussian elimination to row reduce matrices to reduced echelon form in place.
-     * @param a m by n matrix
+     * @param a matrix
      */
     public static void rowReduce(BigFraction[][] a) {
-        int m = a.length, n = a[0].length;
-        for (int h = 0, k = 0; h < m && k < n; k++) {
-            if (a[h][k].compareTo(BigFraction.ZERO) != 0) {
-                for (int i = 0; i < m; i++) {
-                    if (i != h) {
-                        BigFraction q = a[i][k].multiply(a[h][k].inverse());
-                        a[i][k] = BigFraction.ZERO;
-                        for (int j = k + 1; j < n; j++) {
-                            a[i][j] = a[i][j].add(a[h][j].multiply(q).negate());
-                        }
-                    }
+        int n = a.length, m = a[0].length;
+        for (int i = 0, j = 0; i < n && j < m; j++) {
+            for (int k = i; k < n; k++) {
+                if (!a[k][j].equals(BigFraction.ZERO)) {
+                    BigFraction[] b = a[i];
+                    a[i] = a[k];
+                    a[k] = b;
+                    break;
                 }
-                for (int j = k + 1; j < n; j++) {
-                    a[h][j] = a[h][j].multiply(a[h][k].inverse());
-                }
-                a[h][k] = BigFraction.ONE;
-                h++;
             }
+
+            if (a[i][j].equals(BigFraction.ZERO)) {
+                continue;
+            }
+
+            for (int k = j + 1; k < m; k++) {
+                a[i][k] = a[i][k].divide(a[i][j]);
+            }
+            a[i][j] = BigFraction.ONE;
+
+            for (int k = 0; k < n; k++) {
+                if (k == i) {
+                    continue;
+                }
+
+                for (int l = j + 1; l < m; l++) {
+                    a[k][l] = a[k][l].subtract(a[i][l].multiply(a[k][j]));
+                }
+                a[k][j] = BigFraction.ZERO;
+            }
+
+            i++;
         }
     }
 
     public static int digitSum(BigInteger x) {
-        if (x.compareTo(ZERO) < 0) {
+        if (x.signum() < 0) {
             throw new IllegalArgumentException();
         }
 

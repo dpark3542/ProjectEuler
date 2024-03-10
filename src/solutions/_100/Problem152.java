@@ -5,7 +5,6 @@ import utils.structs.BigFraction;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.math.BigInteger.ZERO;
 import static java.math.BigInteger.valueOf;
 import static utils.NumberTheory.isPrime;
 
@@ -52,7 +51,7 @@ public class Problem152 {
                 if (g.equals(HALF)) {
                     return 1;
                 }
-            } else if (!g.getDenominator().mod(valueOf(PRIMES.get(i))).equals(ZERO)) {
+            } else if (g.getDenominator().mod(valueOf(PRIMES.get(i))).signum() != 0) {
                 ans += dfs(g, i + 1);
             }
         }

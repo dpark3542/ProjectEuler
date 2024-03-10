@@ -4,10 +4,7 @@ import static java.lang.StrictMath.floorMod;
 import static java.lang.StrictMath.min;
 
 public class Problem150 {
-    private static final int RADIUS = 1 << 19;
-    private static final int n = 1000;
-    private static final int a = 615949;
-    private static final int b = 797807;
+    private static final int RADIUS = 1 << 19, n = 1000, a = 615949, b = 797807;
 
     public static void main(String[] args) {
         long ans = 0;

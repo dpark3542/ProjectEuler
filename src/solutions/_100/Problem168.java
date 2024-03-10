@@ -31,7 +31,7 @@ public class Problem168 {
                 int hi = pow[i + 1].subtract(ONE).multiply(x).divide(y).intValue();
                 for (int b = max(lo, 1); b <= hi && b <= 9; b++) {
                     BigInteger t = y.multiply(valueOf(b));
-                    if (t.mod(x).equals(ZERO)) {
+                    if (t.mod(x).signum() == 0) {
                         ans += 10 * t.divide(x).mod(valueOf(MOD / 10)).intValue() + b;
                         ans %= MOD;
                     }
@@ -43,7 +43,7 @@ public class Problem168 {
 
     private static BigInteger ceilDiv(BigInteger n, BigInteger d) {
         BigInteger[] qr = n.divideAndRemainder(d);
-        if (qr[1].equals(ZERO)) {
+        if (qr[1].signum() == 0) {
             return qr[0];
         } else {
             return qr[0].add(ONE);

@@ -103,6 +103,7 @@ public class Problem161 {
                 }
             }
     );
+
     public static void main(String[] args) {
         for (int i = 0; i < m_pow; i++) {
             List<Integer> a = toBase(i, 3);

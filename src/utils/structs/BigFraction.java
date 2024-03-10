@@ -3,13 +3,16 @@ package utils.structs;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
+import java.util.Objects;
+
+import static java.lang.StrictMath.abs;
+import static java.math.BigInteger.valueOf;
 
 public class BigFraction extends Number implements Comparable<BigFraction> {
-    private final boolean sign; // true if nonnegative
-    private final BigInteger n, d;
-
     public static final BigFraction ZERO = new BigFraction(0, 1);
     public static final BigFraction ONE = new BigFraction(1, 1);
+    private final boolean sign; // true if nonnegative
+    private final BigInteger n, d;
 
     private BigFraction(BigInteger a, BigInteger b, boolean sign) {
         n = a;
@@ -18,25 +21,25 @@ public class BigFraction extends Number implements Comparable<BigFraction> {
     }
 
     public BigFraction(BigInteger a, BigInteger b) {
-        if (b.compareTo(BigInteger.ZERO) == 0) {
+        if (b.signum() == 0) {
             throw new ArithmeticException("Division by zero");
         }
-        sign = a.equals(BigInteger.ZERO) || a.compareTo(BigInteger.ZERO) * b.compareTo(BigInteger.ZERO) > 0;
+        sign = a.signum() * b.signum() >= 0;
         BigInteger g = a.gcd(b);
         n = a.divide(g).abs();
         d = b.divide(g).abs();
     }
 
     public BigFraction(long a, long b) {
-        this(BigInteger.valueOf(a), BigInteger.valueOf(b));
+        this(valueOf(a), valueOf(b));
     }
 
     public BigFraction(BigInteger a) {
-        this(a, BigInteger.ONE);
+        this(a.abs(), BigInteger.ONE, a.signum() >= 0);
     }
 
     public BigFraction(long a) {
-        this(BigInteger.valueOf(a));
+        this(valueOf(abs(a)), BigInteger.ONE, a >= 0);
     }
 
     public BigFraction add(BigFraction f) {
@@ -52,7 +55,7 @@ public class BigFraction extends Number implements Comparable<BigFraction> {
         BigInteger g = n.gcd(f.d), h = f.n.gcd(d);
         return new BigFraction(n.divide(g).multiply(f.n.divide(h)),
                                d.divide(h).multiply(f.d.divide(g)),
-                               sign == f.sign || n.equals(BigInteger.ZERO) || f.n.equals(BigInteger.ZERO));
+                               sign == f.sign || n.signum() == 0 || f.n.signum() == 0);
     }
 
     public BigFraction divide(BigFraction f) {
@@ -86,11 +89,14 @@ public class BigFraction extends Number implements Comparable<BigFraction> {
         return sign;
     }
 
+    public boolean isInteger() {
+        return d.equals(BigInteger.ONE);
+    }
+
     @Override
     public int intValue() {
-        if (n.mod(d).equals(BigInteger.ZERO)) {
-            int value = n.divide(d).intValue();
-            return sign ? value : -value;
+        if (isInteger()) {
+            return sign ? n.intValueExact() : -n.intValueExact();
         } else {
             throw new ArithmeticException("Fraction does not evaluate to integer");
         }
@@ -98,9 +104,8 @@ public class BigFraction extends Number implements Comparable<BigFraction> {
 
     @Override
     public long longValue() {
-        if (n.mod(d).equals(BigInteger.ZERO)) {
-            long value = n.divide(d).longValue();
-            return sign ? value : -value;
+        if (isInteger()) {
+            return sign ? n.longValueExact() : -n.longValueExact();
         } else {
             throw new ArithmeticException("Fraction does not evaluate to integer");
         }
@@ -125,7 +130,8 @@ public class BigFraction extends Number implements Comparable<BigFraction> {
         } else if (!(obj instanceof BigFraction)) {
             return false;
         }
-        return compareTo((BigFraction) obj) == 0;
+        BigFraction f = (BigFraction) obj;
+        return sign == f.sign && n.equals(f.n) && d.equals(f.d);
     }
 
     @Override
@@ -142,14 +148,12 @@ public class BigFraction extends Number implements Comparable<BigFraction> {
 
     @Override
     public int hashCode() {
-        return n.hashCode() * 31 + d.hashCode();
+        return Objects.hash(n, d, sign);
     }
 
     @Override
     public String toString() {
-        if (sign) {
-            return n.toString() + '/' + d.toString();
-        }
-        return '-' + n.toString() + '/' + d.toString();
+        String s = n.toString() + '/' + d.toString();
+        return sign ? s : '-' + s;
     }
 }
