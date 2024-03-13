@@ -11,7 +11,7 @@ import static java.lang.StrictMath.min;
  *     i & j & k & l\\
  *     m & n & o & p
  * \end{bmatrix}.\]
- * One can show $a + p = g + j$ and $d + m = f = k$.
+ * One can show $a + p = g + j$ and $d + m = f + k$.
  */
 public class Problem166 {
     private static final int n = 9;

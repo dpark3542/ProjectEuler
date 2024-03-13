@@ -67,9 +67,9 @@ public class Problem163 {
             ans -= nP3(pl.size()) + nP3(ql.size()) + nP3(rl.size());
         }
 
-        for (Map.Entry<Triple<Integer, Integer, Integer>, Set<Triple<Integer, Integer, Integer>>> entry : g.entrySet()) {
-            for (Triple<Integer, Integer, Integer> p : entry.getValue()) {
-                for (Triple<Integer, Integer, Integer> q : entry.getValue()) {
+        for (Set<Triple<Integer, Integer, Integer>> s : g.values()) {
+            for (Triple<Integer, Integer, Integer> p : s) {
+                for (Triple<Integer, Integer, Integer> q : s) {
                     if (g.get(p).contains(q)) {
                         ans++;
                     }
