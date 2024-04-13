@@ -44,7 +44,7 @@ public class Problem109 {
                 }
             }
         }
-        System.out.print(cnt);
+        System.out.println(cnt);
     }
 
     private static int value(String s) {

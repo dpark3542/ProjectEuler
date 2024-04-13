@@ -19,7 +19,7 @@ public class Problem111 {
             }
             ans += cur;
         }
-        System.out.print(ans);
+        System.out.println(ans);
     }
 
     private static long dfs(List<Integer> a, int d, int m) {

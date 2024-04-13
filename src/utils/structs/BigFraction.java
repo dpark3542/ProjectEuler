@@ -21,7 +21,9 @@ public class BigFraction extends Number implements Comparable<BigFraction> {
     }
 
     public BigFraction(BigInteger a, BigInteger b) {
-        if (b.signum() == 0) {
+        if (a == null || b == null) {
+            throw new IllegalArgumentException();
+        } else if (b.signum() == 0) {
             throw new ArithmeticException("Division by zero");
         }
         sign = a.signum() * b.signum() >= 0;
@@ -75,6 +77,22 @@ public class BigFraction extends Number implements Comparable<BigFraction> {
         }
 
         return new BigFraction(d, n, sign);
+    }
+
+    public BigFraction pow(int e) {
+        if (e < 0) {
+            if (equals(ZERO)) {
+                throw new ArithmeticException("Division by zero");
+            }
+            return new BigFraction(d.pow(-e), n.pow(-e), sign || e % 2 == 0);
+        } else if (e == 0) {
+            if (equals(ZERO)) {
+                throw new ArithmeticException("0^0 undefined");
+            }
+            return ONE;
+        } else {
+            return new BigFraction(n.pow(e), d.pow(e), sign || e % 2 == 0);
+        }
     }
 
     public BigInteger getNumerator() {

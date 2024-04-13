@@ -262,9 +262,9 @@ public final class NumberTheory {
     }
 
     public static long fromBase(List<Integer> a, int base) {
-        long ans = 0;
-        for (int x : a) {
-            ans = ans * base + x;
+        long ans = a.getLast();
+        for (int i = a.size() - 2; i >= 0; i--) {
+            ans = ans * base + a.get(i);
         }
         return ans;
     }
